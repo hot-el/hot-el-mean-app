@@ -1,0 +1,166 @@
+<div class="container">
+  <div class="row">
+
+    <!-- <div class="col-2">
+      <div class="user-details-container">
+        <img class="user-image" src="https://randomuser.me/api/portraits/lego/3.jpg"/>
+        <span class="user-title">{{employeeForm.get('fullname').value}}</span>
+        <p class="user-bio">{{employeeForm.get('bio').value}}</p>
+      </div>
+    </div> -->
+
+    <div class="col">
+      <h3 class="section-title">Employee Form</h3>
+      <form [formGroup]="employeeForm" (ngSubmit)="onSubmitEmployee(employeeForm.value)">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="First Name" formControlName="firstName" required>
+          <mat-error *ngFor="let validation of validation_messages.name">
+            <mat-error class="error-message" *ngIf="employeeForm.get('firstName').hasError(validation.type) && (employeeForm.get('firstName').dirty || employeeForm.get('firstName').touched)">{{validation.message}}</mat-error>
+          </mat-error>
+        </mat-form-field>
+
+        <br>
+        
+        <mat-form-field class="full-width">
+              <input matInput placeholder="Last Name" formControlName="lastName" required>
+              <mat-error *ngFor="let validation of validation_messages.lastName">
+                <mat-error class="error-message" *ngIf="employeeForm.get('lastName').hasError(validation.type) && (employeeForm.get('lastName').dirty || employeeForm.get('lastName').touched)">{{validation.message}}</mat-error>
+              </mat-error>
+            </mat-form-field>
+    
+            <br>
+
+        <mat-form-field class="full-width">
+          <input matInput [matDatepicker]="picker" placeholder="Your birthday" formControlName="birthday" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngFor="let validation of validation_messages.birthday">
+            <mat-error class="error-message" *ngIf="employeeForm.get('birthday').hasError(validation.type) && (employeeForm.get('birthday').dirty || employeeForm.get('birthday').touched)">{{validation.message}}</mat-error>
+          </mat-error>
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field class="full-width">
+          <mat-select placeholder="Gender" formControlName="gender">
+            <mat-option *ngFor="let gender of genders" [value]="gender">
+              {{ gender }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngFor="let validation of validation_messages.gender">
+            <mat-error class="error-message" *ngIf="employeeForm.get('gender').hasError(validation.type) && (employeeForm.get('gender').dirty || employeeForm.get('gender').touched)">{{validation.message}}</mat-error>
+          </mat-error>
+        </mat-form-field>
+     
+        <br>
+
+        
+        <mat-form-field class="full-width">
+              <mat-select placeholder="Position" formControlName="position">
+                <mat-option *ngFor="let position of positions" [value]="position">
+                  {{ position }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngFor="let validation of validation_messages.position">
+                <mat-error class="error-message" *ngIf="employeeForm.get('position').hasError(validation.type) && (employeeForm.get('position').dirty || employeeForm.get('position').touched)">{{validation.message}}</mat-error>
+              </mat-error>
+            </mat-form-field>
+         
+            <br>
+
+        <mat-form-field class="full-width">
+              <input matInput type="email" placeholder="Email" formControlName="email" required>
+              <mat-error *ngFor="let validation of validation_messages.email">
+                <mat-error class="error-message" *ngIf="employeeForm.get('email').hasError(validation.type) && (employeeForm.get('email').dirty || employeeForm.get('email').touched)">{{validation.message}}</mat-error>
+              </mat-error>
+            </mat-form-field>
+            
+       <br>
+
+        <!-- <mat-form-field class="full-width">
+          <textarea matInput maxlength="256" placeholder="Bio" formControlName="bio" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"></textarea>
+          <mat-hint align="start">Tell us about yourself</mat-hint>
+          <mat-hint align="end">{{employeeForm.get('bio').value.length}} / 256</mat-hint>
+          <mat-error *ngFor="let validation of validation_messages.bio">
+            <mat-error class="error-message" *ngIf="employeeForm.get('bio').hasError(validation.type) && (employeeForm.get('bio').dirty || employeeForm.get('bio').touched)">{{validation.message}}</mat-error>
+          </mat-error>
+        </mat-form-field> -->
+
+<mat-action-row>
+
+        <button class="submit-btn" color="primary" mat-raised-button type="submit" [disabled]="!employeeForm.valid">
+         Add
+        </button>
+
+        <button mat-raised-button class="alert-modal-button alert-modal-button-failure" type="button"(click)="onCloseCancel()">Cancel</button>
+      </mat-action-row>
+
+      </form>
+    </div>
+
+
+    <!-- <div class="col">
+      <h2 class="section-title">Account details</h2>
+
+      <form [formGroup]="employeeForm" novalidate (ngSubmit)="onSubmitemployee(employeeForm.value)">
+
+        <mat-form-field class="full-width">
+          <input matInput maxlength="25" placeholder="Username" formControlName="username" required>
+          <mat-error *ngFor="let validation of account_validation_messages.username">
+            <mat-error class="error-message" *ngIf="employeeForm.get('username').hasError(validation.type) && (employeeForm.get('username').dirty || employeeForm.get('username').touched)">{{validation.message}}</mat-error>
+          </mat-error>
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field class="full-width">
+          <input matInput type="email" placeholder="Email" formControlName="email" required>
+          <mat-error *ngFor="let validation of account_validation_messages.email">
+            <mat-error class="error-message" *ngIf="employeeForm.get('email').hasError(validation.type) && (employeeForm.get('email').dirty || employeeForm.get('email').touched)">{{validation.message}}</mat-error>
+          </mat-error>
+        </mat-form-field>
+        
+        <br>
+
+        <div formGroupName="matching_passwords">
+          <mat-form-field class="full-width">
+            <input matInput type="password" placeholder="Password" formControlName="password" required>
+            <mat-error *ngFor="let validation of account_validation_messages.password">
+              <mat-error class="error-message" *ngIf="employeeForm.get('matching_passwords').get('password').hasError(validation.type) && (employeeForm.get('matching_passwords').get('password').dirty || employeeForm.get('matching_passwords').get('password').touched)">{{validation.message}}</mat-error>
+            </mat-error>
+          </mat-form-field>
+          
+          <br><br>
+
+          <mat-form-field class="full-width">
+            <input matInput type="password" placeholder="Confirm Password" formControlName="confirm_password"  [errorStateMatcher]="parentErrorStateMatcher" required>
+            <mat-error *ngFor="let validation of account_validation_messages.confirm_password">
+              <mat-error class="error-message" *ngIf="(employeeForm.get('matching_passwords').get('confirm_password').hasError(validation.type)|| employeeForm.get('matching_passwords').hasError(validation.type)) && (employeeForm.get('matching_passwords').get('confirm_password').dirty || employeeForm.get('matching_passwords').get('confirm_password').touched)">{{validation.message}}</mat-error>
+            </mat-error>
+          </mat-form-field>
+
+        </div>
+
+        <mat-checkbox formControlName="terms">
+          I accept terms and conditions
+        </mat-checkbox>
+        <mat-error *ngFor="let validation of account_validation_messages.terms">
+          <mat-error class="error-message" *ngIf="employeeForm.get('terms').hasError(validation.type) && (employeeForm.get('terms').dirty || employeeForm.get('terms').touched)">{{validation.message}}</mat-error>
+        </mat-error>
+
+        <button class="submit-btn" color="primary" mat-raised-button type="submit" [disabled]="!employeeForm.valid">
+          Submit
+        </button>
+
+        <button class="submit-btn" color="primary" mat-raised-button type="submit" [disabled]="!addEmployeeForm.valid">
+              Submit
+            </button> 
+
+      </form> -->
+
+      <!-- <button mat-raised-button color="primary" class="alert-modal-button alert-modal-button-success" type="submit" [disabled]="!employeeForm.valid">Edit</button>
+      <button mat-raised-button class="alert-modal-button alert-modal-button-failure" type="button"(click)="onCloseCancel()">Cancel</button>
+
+    </div> -->
+  </div>
+</div>

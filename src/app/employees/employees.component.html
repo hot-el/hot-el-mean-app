@@ -1,0 +1,24 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Employees</mat-card-title>
+    <mat-card-subtitle>Board</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <a mat-raised-button routerLink="/manager">Manager Board</a>
+    <a mat-raised-button routerLink="/dashboard">Employees dashboard</a>
+  </mat-card-content>
+  <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="openNewEmployeeForm()">New Employee</button>
+      <!-- <app-employee-search></app-employee-search> -->
+      <mat-card-content>
+      <h1> List of Employees </h1>
+      </mat-card-content>
+      <mat-nav-list>
+          <mat-divider></mat-divider>
+          <a mat-list-item href="/detail/{{employee._id}}" *ngFor="let employee of employees"> 
+            <i class="material-icons">face </i> {{employee.fullname}} {{employee.roles}}        
+              <mat-divider></mat-divider>
+          </a>
+       </mat-nav-list>
+  </mat-card-actions>
+</mat-card>
