@@ -2,21 +2,23 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { EmployeeService } from '../_services/employee.service';
-
-import { UpdateEmployeeComponent } from './update-employee/update-employee.component';
-import { DeleteEmployeeComponent } from './delete-employee/delete-employee.component';
 import { MatDialog } from '@angular/material';
-
 import {Router} from '@angular/router';
-@Component({
-  selector: 'app-employee-detail',
-  templateUrl: './employee-detail.component.html',
-  styleUrls: ['./employee-detail.component.scss']
-})
-export class EmployeeDetailComponent implements OnInit {
 
-  employee: any;
-  @Input() id: string;
+// import { UpdateEmployeeComponent } from './update-employee/update-employee.component';
+import { DeleteAccountComponent } from './delete-account/delete-account.component';
+
+
+@Component({
+  selector: 'app-account-detail',
+  templateUrl: './account-detail.component.html',
+  styleUrls: ['./account-detail.component.scss']
+})
+export class AccountDetailComponent implements OnInit {
+
+  account: any;
+  isAdmin: boolean;
+  id: string;
   // employees: any;
 
   constructor(
@@ -30,15 +32,17 @@ export class EmployeeDetailComponent implements OnInit {
   ngOnInit() {
     this.getEmployee();
     // this.getEmployees();
-    console.log(this.employee);
+    console.log(this.account);
+    if (this.account.roles[0] === 'Admin') {
+      this.isAdmin = true;
+    }
   }
 
   getEmployee(): void {
     const id = this.route.snapshot.paramMap.get('id');
     console.log(id);
     this.employeeService.getEmployee(id)
-      .subscribe(employee => this.employee = employee);
-    console.log(this.employee);
+      .subscribe(acc => this.account = acc);
   }
 
   // getEmployees(): void {
@@ -47,28 +51,30 @@ export class EmployeeDetailComponent implements OnInit {
   // }
 
   goBack(): void {
-    this.router.navigateByUrl('employees');
+    this.router.navigateByUrl('/admin');
+    // this.goBack();
   }
 
   save(): void {
-    this.employeeService.updateEmployee(this.employee)
-      .subscribe(() => this.goBack());
+    this.employeeService.updateEmployee(this.account)
+      .subscribe(() => this.router.navigateByUrl('/admin'));
+      // this.goBack();
   }
 
-  openUpdateEmployeeForm(employee_) {
-    console.log('ej');
-    console.log(employee_.name);
-    console.log(employee_);
-    const dialogRef = this.dialog.open(UpdateEmployeeComponent, {
-      data: { employee: employee_ }
-    });
-    dialogRef.afterClosed().subscribe(confirm => {
-      if (confirm) {
-        this.employee = confirm;
-      }
-      console.log('confirm');
-      console.log(confirm);
-    });
+  openUpdateAccount(account) {
+    // console.log('ej');
+    // console.log(employee_.name);
+    // console.log(employee_);
+    // const dialogRef = this.dialog.open(UpdateEmployeeComponent, {
+    //   data: { employee: employee_ }
+    // });
+    // dialogRef.afterClosed().subscribe(confirm => {
+    //   if (confirm) {
+    //     this.employee = confirm;
+    //   }
+    //   console.log('confirm');
+    //   console.log(confirm);
+    // });
   }
 
 
@@ -77,15 +83,16 @@ export class EmployeeDetailComponent implements OnInit {
   //   this.employeeService.deleteEmployee(employee).subscribe();
   // }
 
-  openDeleteEmployeeModal(employee) {
-    const dialogRef = this.dialog.open(DeleteEmployeeComponent, {
-      data: { employee: employee }
+  openDeleteAccount(account) {
+    const dialogRef = this.dialog.open(DeleteAccountComponent, {
+      data: { account: account }
     });
 
     dialogRef.afterClosed().subscribe(confirm => {
       if (confirm) {
         // this.delete(employee);
-        this.router.navigateByUrl('/employees');
+        this.router.navigateByUrl('/admin');
+        // this.goBack();
         // refresh the employees list
         // const index = this.employees.findIndex((employee) => employee.id === employeeId);
         // this.employees.splice(index, 1);
@@ -102,6 +109,5 @@ export class EmployeeDetailComponent implements OnInit {
   }
 
 }
-
 
 

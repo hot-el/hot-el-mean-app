@@ -13,9 +13,9 @@ const userSchema = Joi.object({
 const userSchemaByAdmin = Joi.object({
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
-  email: Joi.string().email(),
-  password: Joi.string().required(),
-  repeatPassword: Joi.string().required().valid(Joi.ref('password')),
+  email: Joi.string().email().required(),
+  password: Joi.string().default(''),
+  repeatPassword: Joi.string().valid(Joi.ref('password')),
   roles: Joi.array().required(),
   birthday: Joi.date().required(),
   gender: Joi.string().required()
@@ -49,6 +49,10 @@ async function insertByAdmin(user) {
   user.firstName = user.firstName[0].toUpperCase() + user.firstName.slice(1).toLowerCase()
   user.lastName = user.lastName[0].toUpperCase() + user.lastName.slice(1).toLowerCase();
   user.fullname = user.firstName + ' ' + user.lastName;
+  if (user.password === '') {
+    user.password = (user.firstName[0] + user.lastName).toLowerCase();
+  }
+  user.hashedPassword = bcrypt.hashSync(user.password, 10);
   delete user.password;
   return await new User(user).save();
 }

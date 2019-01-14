@@ -23,6 +23,9 @@ import {MaterialModule} from './material-module/material.module';
 import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
 import { DeleteEmployeeComponent } from './employee-detail/delete-employee/delete-employee.component';
 import { UpdateEmployeeComponent } from './employee-detail/update-employee/update-employee.component';
+import { NewAccountFormComponent } from './admin/new-account-form/new-account-form.component';
+import { AccountDetailComponent } from './account-detail/account-detail.component';
+import { DeleteAccountComponent } from './account-detail/delete-account/delete-account.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +38,8 @@ import { UpdateEmployeeComponent } from './employee-detail/update-employee/updat
     EmployeeDetailComponent,
     DeleteEmployeeComponent,
     UpdateEmployeeComponent,
+    AccountDetailComponent,
+    DeleteAccountComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +64,9 @@ import { UpdateEmployeeComponent } from './employee-detail/update-employee/updat
   entryComponents: [
     NewEmployeeFormComponent,
     DeleteEmployeeComponent,
-    UpdateEmployeeComponent
+    UpdateEmployeeComponent,
+    NewAccountFormComponent,
+    DeleteAccountComponent
   ],
   bootstrap: [AppComponent]
 })

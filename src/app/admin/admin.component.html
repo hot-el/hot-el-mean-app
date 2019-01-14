@@ -1,1 +1,18 @@
 <h4>HELLO FROM ADMIN PAGE</h4>
+
+<mat-card class="example-card">
+        <button mat-raised-button color="primary" (click)="openNewAccountForm()">New Account</button>
+        <!-- <app-account-search></app-account-search> -->
+        <mat-card-content>
+        <h1> List of User Accounts </h1>
+        </mat-card-content>
+        <mat-nav-list>
+            <mat-divider></mat-divider>
+            <a mat-list-item href="/accounts/detail/{{account._id}}" *ngFor="let account of accounts"> 
+              <i class="material-icons">face </i> {{account.fullname}} {{account.roles}}        
+                <mat-divider></mat-divider>
+            </a>
+         </mat-nav-list>
+  </mat-card>
+  <button mat-raised-button color="primary" (click)="fastRoute()"> click me asdfsadfasdf asdfasdfsadf</button>
+  <p>ejej</p>
