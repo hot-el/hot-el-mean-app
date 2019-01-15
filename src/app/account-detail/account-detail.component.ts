@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
 
 // import { UpdateEmployeeComponent } from './update-employee/update-employee.component';
 import { DeleteAccountComponent } from './delete-account/delete-account.component';
+import { UpdateAccountFormComponent } from './update-account-form/update-account-form.component';
 
 
 @Component({
@@ -30,19 +31,24 @@ export class AccountDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getEmployee();
-    // this.getEmployees();
     console.log(this.account);
-    if (this.account.roles[0] === 'Admin') {
-      this.isAdmin = true;
-    }
+    this.getEmployee();
+    // this.getEmployees();console.log(this.account);
+  //   if (this.account.roles[0] === 'Admin') {
+  //     this.isAdmin = true;
+  //   }
+    console.log('onInit');
+    console.log(this.account);
   }
 
   getEmployee(): void {
     const id = this.route.snapshot.paramMap.get('id');
+    console.log('id');
     console.log(id);
     this.employeeService.getEmployee(id)
       .subscribe(acc => this.account = acc);
+    console.log('jo');
+    console.log(this.account);
   }
 
   // getEmployees(): void {
@@ -65,16 +71,16 @@ export class AccountDetailComponent implements OnInit {
     // console.log('ej');
     // console.log(employee_.name);
     // console.log(employee_);
-    // const dialogRef = this.dialog.open(UpdateEmployeeComponent, {
-    //   data: { employee: employee_ }
-    // });
-    // dialogRef.afterClosed().subscribe(confirm => {
-    //   if (confirm) {
-    //     this.employee = confirm;
-    //   }
-    //   console.log('confirm');
-    //   console.log(confirm);
-    // });
+    const dialogRef = this.dialog.open(UpdateAccountFormComponent, {
+      data: { account: account }
+    });
+    dialogRef.afterClosed().subscribe(confirm => {
+      if (confirm) {
+        this.account = confirm;
+      }
+      console.log('confirm');
+      console.log(confirm);
+    });
   }
 
 

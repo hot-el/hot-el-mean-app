@@ -4,6 +4,7 @@ import { EmployeeService } from '../_services/employee.service';
 // import { NewEmployeeFormComponent } from '../employee-form/new-employee-form/new-employee-form.component';
 import { MatDialog } from '@angular/material';
 import { NewEmployeeFormComponent } from './new-employee-form/new-employee-form.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employees',
@@ -17,7 +18,8 @@ export class EmployeesComponent implements OnInit {
 
   constructor(
     private employeeService: EmployeeService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -45,6 +47,12 @@ export class EmployeesComponent implements OnInit {
         this.employees.push(employee);
       }
     });
+  }
+
+  fastRoute(id: string) {
+    // this.url = this.url + id;
+    console.log(id);
+    this.router.navigateByUrl('/detail/' + id);
   }
 
 }

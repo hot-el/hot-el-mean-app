@@ -15,7 +15,7 @@ import {Router} from '@angular/router';
 })
 export class EmployeeDetailComponent implements OnInit {
 
-  employee: any;
+  @Input() employee: any;
   @Input() id: string;
   // employees: any;
 
@@ -24,7 +24,7 @@ export class EmployeeDetailComponent implements OnInit {
     private employeeService: EmployeeService,
     private location: Location,
     public dialog: MatDialog,
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -37,7 +37,8 @@ export class EmployeeDetailComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     console.log(id);
     this.employeeService.getEmployee(id)
-      .subscribe(employee => this.employee = employee);
+      .subscribe(e => this.employee = e);
+    console.log('emp');
     console.log(this.employee);
   }
 

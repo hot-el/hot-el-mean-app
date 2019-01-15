@@ -34,13 +34,10 @@ export class EmployeeService {
   getEmployee(employeeId) {
     const url = `${employeesUrl}/${employeeId}`;
     console.log(url);
-    let x;
-    const data = this.http.get(url, httpOptions).subscribe(e => x = e);
-    console.log(x);
     // const data: Observable<any> = this.http.get(url, httpOptions).pipe(map(this.extractData));
     // console.log('extractedData2');
     // console.log(data.subscribe(e => console.log(e)));
-    return this.http.get(url, httpOptions);
+    return this.http.get(url, httpOptions).pipe();
   }
 
 //   searchEmployees(term: string): Observable<Employee[]> {
@@ -80,6 +77,16 @@ export class EmployeeService {
 
   updateEmployee(employee) {
     const url = `${employeesUrl}/${employee._id}`;
+    return this.http.put(url, employee, httpOptions).pipe();
+  }
+
+  updateEmployeeByAdmin(employee) {
+    const url = `${employeesUrl}/admin/${employee._id}`;
+    return this.http.put(url, employee, httpOptions).pipe();
+  }
+
+  updateEmployeeByManager(employee) {
+    const url = `${employeesUrl}/manager/${employee._id}`;
     return this.http.put(url, employee, httpOptions).pipe();
   }
 

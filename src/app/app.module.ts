@@ -26,6 +26,7 @@ import { UpdateEmployeeComponent } from './employee-detail/update-employee/updat
 import { NewAccountFormComponent } from './admin/new-account-form/new-account-form.component';
 import { AccountDetailComponent } from './account-detail/account-detail.component';
 import { DeleteAccountComponent } from './account-detail/delete-account/delete-account.component';
+import { UpdateAccountFormComponent } from './account-detail/update-account-form/update-account-form.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { DeleteAccountComponent } from './account-detail/delete-account/delete-a
     UpdateEmployeeComponent,
     AccountDetailComponent,
     DeleteAccountComponent,
+    UpdateAccountFormComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +68,8 @@ import { DeleteAccountComponent } from './account-detail/delete-account/delete-a
     DeleteEmployeeComponent,
     UpdateEmployeeComponent,
     NewAccountFormComponent,
-    DeleteAccountComponent
+    DeleteAccountComponent,
+    UpdateAccountFormComponent
   ],
   bootstrap: [AppComponent]
 })

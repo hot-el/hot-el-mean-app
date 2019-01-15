@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, ValidationErrors } from '@angular/forms';
 // import {
 //   UsernameValidator,
 //   PasswordValidator,
@@ -35,7 +35,8 @@ export class NewAccountFormComponent implements OnInit {
     'Manager',
     'Recepcionist',
     'Waiter',
-    'Cleaner'
+    'Cleaner',
+    'Admin'
   ];
 
   validation_messages = {
@@ -95,6 +96,13 @@ export class NewAccountFormComponent implements OnInit {
     this.createForms();
   }
 
+  passwordsMatchValidator(control: FormControl): ValidationErrors {
+    const password = control.root.get('password');
+    return password && control.value !== password.value ? {
+      passwordMatch: true
+    } : null;
+  }
+
   createForms() {
     // matching passwords validation
     // this.matching_passwords_group = new FormGroup({
@@ -115,13 +123,14 @@ export class NewAccountFormComponent implements OnInit {
       birthday: ['', Validators.required],
       gender: new FormControl('', Validators.required),
       position: new FormControl('', Validators.required),
+      // password: new FormControl('password', [Validators.required]),
+      // repeatPassword: new FormControl('password', [Validators.required, this.passwordsMatchValidator]),
       email: new FormControl('', Validators.compose([
         Validators.required,
         // Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'),
         Validators.email
       ])),
     });
-
 
     // user links form validations
     // this.accountDetailsForm = this.fb.group({
@@ -149,6 +158,11 @@ export class NewAccountFormComponent implements OnInit {
 //   onSubmitAccountDetails(value) {
 //     console.log(value);
 //   }
+
+
+  get email(): any { return this.accountForm.get('email'); }
+  get password(): any { return this.accountForm.get('password'); }
+  get repeatPassword(): any { return this.accountForm.get('repeatPassword'); }
 
   onSubmitAccount(values) {
     // console.log(values);

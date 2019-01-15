@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.email, this.password)
     .subscribe(data => {
       this.router.navigate(['']);
-    })
+    });
   }
 
 }

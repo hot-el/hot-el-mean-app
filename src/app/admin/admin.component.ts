@@ -10,11 +10,13 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
 
   accounts: any;
   name: string;
+  // public url: any = '/accounts/detail/';
 
   constructor(
     private employeeService: EmployeeService,
@@ -43,14 +45,16 @@ export class AdminComponent implements OnInit {
     const dialogRef = this.dialog.open(NewAccountFormComponent);
 
     dialogRef.afterClosed().subscribe(acc => {
-      if (acc !==  undefined) {
+      if (acc !==  undefined && acc !== null) {
         this.accounts.push(acc);
       }
     });
   }
 
-  fastRoute() {
-    this.router.navigateByUrl('/accounts/detail/5c3cac7e85957b37400fcb1d');
+  fastRoute(id: string) {
+    // this.url = this.url + id;
+    console.log(id);
+    this.router.navigateByUrl('/accounts/detail/' + id);
   }
 
 }

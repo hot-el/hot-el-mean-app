@@ -20,6 +20,7 @@ async function insertByManager(req, res) {
 
 async function insertByAdmin(req, res) {
     let user = await userCtrl.insertByAdmin(req.body);
+    console.log(user);
     res.json(user);
   }
 
@@ -41,7 +42,7 @@ router.get('/', function(req, res, next) {
 
 /* GET ALL Users by Manager*/
 router.get('/manager', function(req, res, next) {
-    User.find({roles: {$nin: ['admin']}}).exec(function (err, products) {
+    User.find({roles: {$nin: ['Admin']}}).exec(function (err, products) {
         if (err) return next(err);
         res.json(products);
       });
@@ -71,7 +72,45 @@ router.post('/', function(req, res, next) {
   });
 });
 
+// router.route('/manager/:id')
+// .put(asyncHandler(updateByManager));
+
+// router.route('/admin/:id')
+// .put(asyncHandler(updateByAdmin));
+
+// async function updateByAdmin(req, res) {
+//   // let user = await userCtrl.updateByAdmin(req.body);
+//   // console.log(user);
+//   // console.log(req.body);
+//   User.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+//     if (err) return next(err);
+//     res.json(post);
+//   });
+// }
+
+router.route('/admin/:id')
+.put(asyncHandler(updateByAdmin));
+
+async function updateByAdmin(req, res) {
+  let user = await userCtrl.updateByAdmin(req.body);
+  console.log(user);
+  // console.log(req.body);
+  User.findByIdAndUpdate(req.params.id, user, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+}
+
 /* UPDATE User*/
+// router.put('/admin/:id', function(req, res, next) {
+//   let body = userCtrl.updateByAdmin(req.body)
+//   console.log(body);
+//   User.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+//     if (err) return next(err);
+//     res.json(post);
+//   });
+// });
+
 router.put('/:id', function(req, res, next) {
   User.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
     if (err) return next(err);

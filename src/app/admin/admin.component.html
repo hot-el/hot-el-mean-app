@@ -13,6 +13,17 @@
                 <mat-divider></mat-divider>
             </a>
          </mat-nav-list>
+           <!-- <mat-nav-list> -->
+      <mat-divider></mat-divider>
+      <!-- <a mat-list-item href="/accounts/detail/{{account._id}}" *ngFor="let account of accounts">  -->
+      <button mat-button *ngFor="let account of accounts" mat-raised-button color="primary" (click)="fastRoute(account._id)"> 
+        <i class="material-icons">face </i> {{account.firstName}} {{account.lastName}} {{account.roles[0]}}  </button>
+        <!-- <i class="material-icons">face </i> {{account.fullname}} {{account.roles}}         -->
+          <mat-divider></mat-divider>
+      <!-- </a> -->
+   <!-- </mat-nav-list> -->
   </mat-card>
-  <button mat-raised-button color="primary" (click)="fastRoute()"> click me asdfsadfasdf asdfasdfsadf</button>
   <p>ejej</p>
+
+  
+

@@ -1,0 +1,110 @@
+<div class="container">
+    <div class="row">
+  
+      <div class="col">
+        <h3 class="section-title">Account Form</h3>
+        <form class="example-form" (ngSubmit)="onSubmitAccount(updateAccountForm.value)">
+        <!-- <form [formGroup]="updateAccountForm" (ngSubmit)="onSubmitAccount(updateAccountForm.value)"></form> -->
+          <table cellspacing="0" [formGroup]="updateAccountForm">
+              <tr>
+                <td>   
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="First Name" formControlName="firstName" required>
+                    <mat-error *ngFor="let validation of validation_messages.firstName">
+                      <mat-error class="error-message" *ngIf="updateAccountForm.get('firstName').hasError(validation.type) && (updateAccountForm.get('firstName').dirty || updateAccountForm.get('firstName').touched)">{{validation.message}}</mat-error>
+                    </mat-error>
+                  </mat-form-field>
+                </td>
+              </tr>      
+              <tr>
+                <td>
+                  <mat-form-field class="full-width">
+                        <input matInput placeholder="Last Name" formControlName="lastName" required>
+                        <mat-error *ngFor="let validation of validation_messages.lastName">
+                          <mat-error class="error-message" *ngIf="updateAccountForm.get('lastName').hasError(validation.type) && (updateAccountForm.get('lastName').dirty || updateAccountForm.get('lastName').touched)">{{validation.message}}</mat-error>
+                        </mat-error>
+                      </mat-form-field>
+                  </td>
+                </tr>
+                <tr>
+                    <tr>
+                        <td>
+                          <mat-form-field>
+                            <input matInput placeholder="Email" formControlName="email" name="email" required>
+                            <mat-error *ngIf="email.invalid && email.errors.email">Invalid email address</mat-error>
+                          </mat-form-field>
+                        </td>
+                      </tr>
+                      <tr>
+                    <td>
+                      <mat-form-field class="full-width">
+                        <input matInput [matDatepicker]="picker" placeholder="Your birthday" formControlName="birthday" required>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-error *ngFor="let validation of validation_messages.birthday">
+                          <mat-error class="error-message" *ngIf="updateAccountForm.get('birthday').hasError(validation.type) && (updateAccountForm.get('birthday').dirty || updateAccountForm.get('birthday').touched)">{{validation.message}}</mat-error>
+                        </mat-error>
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                  <tr>
+                      <td>
+  
+                  <mat-form-field class="full-width">
+                    <mat-select placeholder="Gender" formControlName="gender">
+                      <mat-option *ngFor="let gender of genders" [value]="gender">
+                        {{ gender }}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngFor="let validation of validation_messages.gender">
+                      <mat-error class="error-message" *ngIf="updateAccountForm.get('gender').hasError(validation.type) && (updateAccountForm.get('gender').dirty || updateAccountForm.get('gender').touched)">{{validation.message}}</mat-error>
+                    </mat-error>
+                  </mat-form-field>
+       
+                </td>
+              </tr>
+              <tr>
+                  <td>
+          <mat-form-field class="full-width">
+                <mat-select placeholder="Position" formControlName="roles">
+                  <mat-option *ngFor="let position of positions" [value]="position">
+                    {{ position }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngFor="let validation of validation_messages.position">
+                  <mat-error class="error-message" *ngIf="updateAccountForm.get('roles').hasError(validation.type) && (updateAccountForm.get('roles').dirty || updateAccountForm.get('roles').touched)">{{validation.message}}</mat-error>
+                </mat-error>
+              </mat-form-field>
+           
+            </td>
+          </tr>
+          <tr>
+              <td>
+                <mat-form-field>
+                  <input matInput placeholder="Password" formControlName="password" type="password" name="password">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field>
+                  <input matInput placeholder="Reapet Password" formControlName="repeatPassword" type="password" name="repeatPassword">
+                  <mat-error *ngIf="repeatPassword.invalid && repeatPassword.errors.passwordMatch">Password mismatch</mat-error>
+                </mat-form-field>
+              </td>
+            </tr>
+  
+  <mat-action-row>
+  
+          <button class="submit-btn" color="primary" mat-raised-button type="submit" [disabled]="!updateAccountForm.valid">
+           Add
+          </button>
+  
+          <button mat-raised-button class="alert-modal-button alert-modal-button-failure" type="button"(click)="onCloseCancel()">Cancel</button>
+        </mat-action-row>
+        </table>
+        </form>
+      </div>
+    </div>
+  </div>
+  
