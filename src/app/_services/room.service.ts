@@ -11,7 +11,7 @@ const httpOptions = {
 })
 export class RoomService {
 
-  private roomsUrl = 'http://localhost:4040/api/rooms';
+  private roomsUrl = 'http://localhost:4040/api/room';
 
   constructor(private http: HttpClient) { }
 
@@ -30,35 +30,34 @@ export class RoomService {
   }
 
   addRoom (room): Observable<any> {
-    // console.log('addRoom');
     return this.http.post(this.roomsUrl, room, httpOptions);
   }
 
   deleteRoom(room): Observable<any> {
-    const id = typeof room === 'number' ? room : room.id;
+    const id = typeof room === 'number' ? room : room._id;
     const url = `${this.roomsUrl}/${id}`;
     return this.http.delete(url, httpOptions);
   }
 
   getRoomsByCategory(category) {
-    const url = `${this.roomsUrl}?filter[where][type]=${category}`;
+    const url = `${this.roomsUrl}/c/${category}`;
     return this.http.get(url, httpOptions);
   }
 
-  getUnreservedRoomsByCategory(category) {
-    const url = `${this.roomsUrl}?filter[where][type]=${category}&filter[where][occupied]=false`;
+  getUnreservedRoomsByCategory(category, isOccupied) {
+    const url = `${this.roomsUrl}/cs/${category}/${isOccupied}`;
     console.log(url);
     return this.http.get(url, httpOptions);
   }
 
   getRoomsByCategoryAndSize(category, size) {
-    const url = `${this.roomsUrl}?filter[where][type]=${category}&filter[where][size]=${size}`;
+    const url = `${this.roomsUrl}/cs/${category}/${size}`;
     console.log(url);
     return this.http.get(url, httpOptions);
   }
 
-  getUnreservedRoomsByCategoryAndSize(category, size) {
-    const url = `${this.roomsUrl}?filter[where][type]=${category}&filter[where][size]=${size}&filter[where][occupied]=false`;
+  getUnreservedRoomsByCategoryAndSize(category, size, isOccupied) {
+    const url = `${this.roomsUrl}/cs/${category}/${size}/${isOccupied}`;
     console.log(url);
     return this.http.get(url, httpOptions);
   }
@@ -72,7 +71,7 @@ export class RoomService {
     const body = JSON.stringify(room);
     console.log('body');
     console.log(body);
-    return this.http.put(url, room, httpOptions).pipe();
+    return this.http.put(url, room, httpOptions);
   }
 
   // getRoomsByCategory(category: string) {

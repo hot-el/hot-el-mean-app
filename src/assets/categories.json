@@ -1,0 +1,36 @@
+[
+    {
+      "slug": "Premium",
+      "title": "Premium apartament",
+      "image": "https://www.gravatar.com/avatar/744f47d2cc92ee4b02ebad5fb363925c",
+      "description": "Premium apartamens are higher standards rooms with better look",
+      "tags": [
+        {
+          "name": "2"
+        },
+        {
+          "name": "4"
+        },
+        {
+          "name": "6"
+        }
+      ]
+    },
+    {
+      "slug": "Basic",
+      "title": "Basic apartament",
+      "image": "https://www.gravatar.com/avatar/fe11d0ca47a111f9b2c7420c91c2d205",
+      "description": "Basic apartaments are good looking rooms.",
+      "tags":[
+        {
+            "name": "2"
+          },
+          {
+            "name": "4"
+          },
+          {
+            "name": "6"
+          }
+      ]
+    }
+  ]

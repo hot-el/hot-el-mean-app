@@ -29,6 +29,14 @@ import { UpdateAccountFormComponent } from './account-detail/update-account-form
 import { CurrentUserComponent } from './current-user/current-user.component';
 import { ChangePasswordComponent } from './current-user/change-password/change-password.component';
 import { RoomModule } from './room/room.module';
+import { RoomCategoryComponent } from './room-category/room-category.component';
+import { NewRoomComponent } from './room-category/new-room/new-room.component';
+import { HttpModule } from '@angular/http';
+import { CategoriesService } from './_services/categories.service';
+import { RoomsComponent } from './rooms/rooms.component';
+import { RoomDetailsComponent } from './room-details/room-details.component';
+import { DeleteRoomComponent } from './room-details/delete-room/delete-room.component';
+import { UpdateRoomComponent } from './room-details/update-room/update-room.component';
 
 @NgModule({
   declarations: [
@@ -45,12 +53,19 @@ import { RoomModule } from './room/room.module';
     DeleteAccountComponent,
     UpdateAccountFormComponent,
     CurrentUserComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    RoomCategoryComponent,
+    NewRoomComponent,
+    RoomsComponent,
+    RoomDetailsComponent,
+    DeleteRoomComponent,
+    UpdateRoomComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    HttpModule,
     RouterModule,
     SharedModule,
     AuthModule,
@@ -66,7 +81,9 @@ import { RoomModule } from './room/room.module';
     provide: HTTP_INTERCEPTORS,
     useClass: CatchErrorInterceptor,
     multi: true,
-  }],
+  },
+  CategoriesService
+  ],
   entryComponents: [
     NewEmployeeFormComponent,
     DeleteEmployeeComponent,
@@ -74,7 +91,10 @@ import { RoomModule } from './room/room.module';
     NewAccountFormComponent,
     DeleteAccountComponent,
     UpdateAccountFormComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    NewRoomComponent,
+    DeleteRoomComponent,
+    UpdateRoomComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -7,6 +7,9 @@ import { EmployeesComponent } from '../employees/employees.component';
 import { EmployeeDetailComponent } from '../employee-detail/employee-detail.component';
 import { AccountDetailComponent } from '../account-detail/account-detail.component';
 import { CurrentUserComponent } from '../current-user/current-user.component';
+import { RoomCategoryComponent } from '../room-category/room-category.component';
+import { RoomsComponent } from '../rooms/rooms.component';
+import { RoomDetailsComponent } from '../room-details/room-details.component';
 
 const routes: Routes = [{
   path: '',
@@ -23,6 +26,9 @@ const routes: Routes = [{
 { path: 'detail/:id', component: EmployeeDetailComponent },
 { path: 'accounts/detail/:id', component: AccountDetailComponent },
 { path: 'your-account', component: CurrentUserComponent},
+{ path: 'room-categories', component: RoomCategoryComponent },
+{ path: 'rooms/:categorySlug/:size', component: RoomsComponent },
+{ path: 'room-details/:id', component: RoomDetailsComponent },
 {
   path: 'room',
   loadChildren: 'app/room/room.module#RoomModule'
