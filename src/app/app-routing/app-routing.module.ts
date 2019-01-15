@@ -22,8 +22,11 @@ const routes: Routes = [{
 { path: 'employees', component: EmployeesComponent },
 { path: 'detail/:id', component: EmployeeDetailComponent },
 { path: 'accounts/detail/:id', component: AccountDetailComponent },
-{ path: 'your-account', component: CurrentUserComponent}
-];
+{ path: 'your-account', component: CurrentUserComponent},
+{
+  path: 'room',
+  loadChildren: 'app/room/room.module#RoomModule'
+}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
