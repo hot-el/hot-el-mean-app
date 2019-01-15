@@ -49,6 +49,7 @@ export class AppComponent implements OnInit {
     this.router.navigate([link]);
   }
 
+  // tslint:disable-next-line:use-life-cycle-interface
   ngOnDestroy() {
     if (this.userSubscription) {
       this.userSubscription.unsubscribe();
@@ -90,7 +91,7 @@ export class AppComponent implements OnInit {
       'trolleybus',
       'water-transportation',
     ].forEach((icon) => {
-      this.matIconRegistry.addSvgIcon(icon, this.domSanitizer.bypassSecurityTrustResourceUrl(`assets/icons/${icon}.svg`))
+      this.matIconRegistry.addSvgIcon(icon, this.domSanitizer.bypassSecurityTrustResourceUrl(`assets/icons/${icon}.svg`));
     });
   }
 

@@ -7,7 +7,7 @@ import { DetailComponent } from './detail/detail.component';
 
 const routes: Routes = [{
     path: 'room',
-    //canActivate
+    // canActivate
     children: [{
         path: '',
         component: RoomComponent
@@ -15,7 +15,7 @@ const routes: Routes = [{
         path: 'detail',
         component: DetailComponent
     }]
-}]
+}];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],

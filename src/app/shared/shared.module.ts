@@ -22,7 +22,7 @@ import {
   MatFormFieldModule,
   MatSelectModule,
   MatDatepickerModule,
-  NativeDateModule,
+  MatNativeDateModule
 } from '@angular/material';
 
 @NgModule({
@@ -49,7 +49,7 @@ import {
     MatSelectModule,
     FlexLayoutModule,
     MatDatepickerModule,
-    NativeDateModule
+    MatNativeDateModule
   ],
   exports: [
     MatToolbarModule,
@@ -73,7 +73,7 @@ import {
     MatSelectModule,
     FlexLayoutModule,
     MatDatepickerModule,
-    NativeDateModule
+    MatNativeDateModule
   ],
   declarations: [],
 })
