@@ -21,6 +21,8 @@ import {
   MatProgressBarModule,
   MatFormFieldModule,
   MatSelectModule,
+  MatDatepickerModule,
+  NativeDateModule,
 } from '@angular/material';
 
 @NgModule({
@@ -46,6 +48,8 @@ import {
     MatFormFieldModule,
     MatSelectModule,
     FlexLayoutModule,
+    MatDatepickerModule,
+    NativeDateModule
   ],
   exports: [
     MatToolbarModule,
@@ -68,6 +72,8 @@ import {
     MatFormFieldModule,
     MatSelectModule,
     FlexLayoutModule,
+    MatDatepickerModule,
+    NativeDateModule
   ],
   declarations: [],
 })

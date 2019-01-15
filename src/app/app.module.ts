@@ -15,12 +15,10 @@ import { CatchErrorInterceptor } from './interceptors/http-error.interceptor';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
-<<<<<<< HEAD
 import { ManagerComponent } from './manager/manager.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { NewEmployeeFormComponent } from './employees/new-employee-form/new-employee-form.component';
 
-import {MaterialModule} from './material-module/material.module';
 import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
 import { DeleteEmployeeComponent } from './employee-detail/delete-employee/delete-employee.component';
 import { UpdateEmployeeComponent } from './employee-detail/update-employee/update-employee.component';
@@ -30,9 +28,7 @@ import { DeleteAccountComponent } from './account-detail/delete-account/delete-a
 import { UpdateAccountFormComponent } from './account-detail/update-account-form/update-account-form.component';
 import { CurrentUserComponent } from './current-user/current-user.component';
 import { ChangePasswordComponent } from './current-user/change-password/change-password.component';
-=======
 import { RoomModule } from './room/room.module';
->>>>>>> ab4b9c490fb3789ab8e989f5d8487cd7a81bb4a6
 
 @NgModule({
   declarations: [
