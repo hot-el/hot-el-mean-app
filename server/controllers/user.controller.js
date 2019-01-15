@@ -30,11 +30,17 @@ const userSchemaByManager = Joi.object({
   gender: Joi.string().required()
 })
 
+const userSchemaPassword = Joi.object({
+  password: Joi.string().trim().required(),
+  repeatPassword: Joi.string().valid(Joi.ref('password')).required(),
+})
+
 module.exports = {
   insert,
   insertByAdmin,
   insertByManager,
-  updateByAdmin
+  updateByAdmin,
+  changePassword
 }
 
 async function insert(user) {
@@ -80,6 +86,15 @@ async function updateByAdmin(user) {
   if (user.password === undefined  || user.password === 'password') {
     user.password = (user.firstName[0] + user.lastName).toLowerCase();
   }
+  user.hashedPassword = bcrypt.hashSync(user.password, 10);
+  console.log(user.password);
+  delete user.password;
+  return await user;
+}
+
+async function changePassword(user) {
+  delete user._id
+  user = await Joi.validate(user, userSchemaPassword, { abortEarly: false });
   user.hashedPassword = bcrypt.hashSync(user.password, 10);
   console.log(user.password);
   delete user.password;

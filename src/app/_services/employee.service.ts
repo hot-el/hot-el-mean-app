@@ -80,6 +80,11 @@ export class EmployeeService {
     return this.http.put(url, employee, httpOptions).pipe();
   }
 
+  updatePassword(user) {
+    const url = `${employeesUrl}/password/${user._id}`;
+    return this.http.put(url, user, httpOptions).pipe();
+  }
+
   updateEmployeeByAdmin(employee) {
     const url = `${employeesUrl}/admin/${employee._id}`;
     return this.http.put(url, employee, httpOptions).pipe();

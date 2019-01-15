@@ -27,6 +27,8 @@ import { NewAccountFormComponent } from './admin/new-account-form/new-account-fo
 import { AccountDetailComponent } from './account-detail/account-detail.component';
 import { DeleteAccountComponent } from './account-detail/delete-account/delete-account.component';
 import { UpdateAccountFormComponent } from './account-detail/update-account-form/update-account-form.component';
+import { CurrentUserComponent } from './current-user/current-user.component';
+import { ChangePasswordComponent } from './current-user/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { UpdateAccountFormComponent } from './account-detail/update-account-form
     UpdateEmployeeComponent,
     AccountDetailComponent,
     DeleteAccountComponent,
-    UpdateAccountFormComponent
+    UpdateAccountFormComponent,
+    CurrentUserComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +73,8 @@ import { UpdateAccountFormComponent } from './account-detail/update-account-form
     UpdateEmployeeComponent,
     NewAccountFormComponent,
     DeleteAccountComponent,
-    UpdateAccountFormComponent
+    UpdateAccountFormComponent,
+    ChangePasswordComponent
   ],
   bootstrap: [AppComponent]
 })

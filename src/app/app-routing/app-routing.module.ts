@@ -6,6 +6,7 @@ import { ManagerComponent } from '../manager/manager.component';
 import { EmployeesComponent } from '../employees/employees.component';
 import { EmployeeDetailComponent } from '../employee-detail/employee-detail.component';
 import { AccountDetailComponent } from '../account-detail/account-detail.component';
+import { CurrentUserComponent } from '../current-user/current-user.component';
 
 const routes: Routes = [{
   path: '',
@@ -20,7 +21,8 @@ const routes: Routes = [{
 { path: 'manager', component: ManagerComponent },
 { path: 'employees', component: EmployeesComponent },
 { path: 'detail/:id', component: EmployeeDetailComponent },
-{ path: 'accounts/detail/:id', component: AccountDetailComponent }
+{ path: 'accounts/detail/:id', component: AccountDetailComponent },
+{ path: 'your-account', component: CurrentUserComponent}
 ];
 
 @NgModule({

@@ -101,6 +101,18 @@ async function updateByAdmin(req, res) {
   });
 }
 
+router.route('/password/:id')
+.put(asyncHandler(changePassword));
+
+async function changePassword(req, res) {
+  let user = await userCtrl.changePassword(req.body);
+  console.log(user);
+  User.findByIdAndUpdate(req.params.id, user, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+}
+
 /* UPDATE User*/
 // router.put('/admin/:id', function(req, res, next) {
 //   let body = userCtrl.updateByAdmin(req.body)
