@@ -1,0 +1,117 @@
+<div class="row text-center">
+    <h1>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h1>
+    <table class="center">
+      <tr>
+          <td>
+            <button mat-button
+              class="btn btn-primary"
+              mwlCalendarPreviousView
+              [view]="view"
+              [(viewDate)]="viewDate"
+              (viewDateChange)="activeDayIsOpen = false">
+              Previous
+          </button>
+          </td>
+          <td>  
+            <button mat-button
+              class="btn btn-outline-secondary"
+              mwlCalendarToday
+              [(viewDate)]="viewDate">
+              Today
+            </button>
+          </td>
+          <td>  
+            <button mat-button
+              class="btn btn-primary"
+              mwlCalendarNextView
+              [view]="view"
+              [(viewDate)]="viewDate"
+              (viewDateChange)="activeDayIsOpen = false">
+              Next
+            </button>
+          </td>
+        </tr>
+      </table>
+
+    <h3>Add new event</h3>
+      <!-- <table class="table table-bordered">
+        <form [formGroup]="eventForm" (ngSubmit)="onSubmitEvent(eventForm.value)">     
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Employee" formControlName="employee" required> 
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput [matDatepicker]="picker1" placeholder="Choose a date" formControlName="date" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="example-full-width">
+                  <input min="0" max="24" matInput placeholder="Starts at" formControlName="from" required>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="example-full-width">
+                  <input min="0" max="24" matInput placeholder="Ends at" formControlName="to" required>
+              </mat-form-field>
+            </td>    
+            <td>
+              <button class="submit-btn" color="primary" mat-raised-button type="submit" [disabled]="!eventForm.valid">
+                Add
+              </button>
+            </td>  
+          </tr>
+        </form>    
+      </table> -->
+
+
+      <form [formGroup]="eventForm" (ngSubmit)="onSubmitEvent(eventForm.value)">
+            <mat-form-field class="full-width">
+              <mat-select formControlName="employee" placeholder="Name">
+                  <mat-option *ngFor="let employee of employees" [value]="employee">
+                    {{ employee.firstName }} {{employee.lastName}} {{employee.roles[0]}}
+                  </mat-option>      
+                </mat-select>
+              </mat-form-field>    
+              <mat-form-field>
+                <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="date" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                  <input min="0" max="24" matInput placeholder="Starts at" formControlName="from" required>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                  <input min="0" max="24" matInput placeholder="Ends at" formControlName="to" required>
+              </mat-form-field>    
+              <button class="submit-btn" color="primary" mat-raised-button type="submit" [disabled]="!eventForm.valid">
+                Add
+              </button>
+        </form>  
+
+
+  <br>
+
+    <mwl-calendar-month-view
+      [viewDate]="viewDate"
+      [events]="events"
+      [refresh]="refresh"
+      [activeDayIsOpen]="activeDayIsOpen"
+      (dayClicked)="dayClicked($event.day)"
+      (eventClicked)="handleEvent('Clicked', $event.event)"
+      >
+    </mwl-calendar-month-view>
+  
+    <!-- <div>
+      <mat-card-actions>
+        <p>Hi</p>
+        <button mat-button *ngFor="let employee of employees" mat-raised-button color="primary" (click)="fastRoute(employee._id)"> 
+            <i class="material-icons">face </i> {{employee.firstName}} {{employee.lastName}} {{employee.roles[0]}}  </button>  
+          </mat-card-actions>  
+          </div> -->
+
+          <!-- {{employees.data}} -->

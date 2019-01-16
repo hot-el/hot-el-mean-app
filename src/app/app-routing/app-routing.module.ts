@@ -7,6 +7,8 @@ import { EmployeesComponent } from '../employees/employees.component';
 import { EmployeeDetailComponent } from '../employee-detail/employee-detail.component';
 import { AccountDetailComponent } from '../account-detail/account-detail.component';
 import { CurrentUserComponent } from '../current-user/current-user.component';
+import { CalendarCommonModule } from 'angular-calendar';
+import { CalendarComponent } from '../calendar/calendar.component';
 
 const routes: Routes = [{
   path: '',
@@ -22,7 +24,8 @@ const routes: Routes = [{
 { path: 'employees', component: EmployeesComponent },
 { path: 'detail/:id', component: EmployeeDetailComponent },
 { path: 'accounts/detail/:id', component: AccountDetailComponent },
-{ path: 'your-account', component: CurrentUserComponent}
+{ path: 'your-account', component: CurrentUserComponent},
+{ path: 'calendar', component: CalendarComponent }
 ];
 
 @NgModule({

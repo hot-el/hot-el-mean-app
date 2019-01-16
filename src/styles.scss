@@ -4,6 +4,9 @@
 @import '~@angular/material/theming';
 @import '~dragula/dist/dragula.css';
 
+/* angular-cli file: src/styles.css */
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+
 $custom-typography: mat-typography-config(
     $font-family: 'Exo'
 );

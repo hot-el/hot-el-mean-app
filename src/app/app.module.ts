@@ -30,6 +30,9 @@ import { UpdateAccountFormComponent } from './account-detail/update-account-form
 import { CurrentUserComponent } from './current-user/current-user.component';
 import { ChangePasswordComponent } from './current-user/change-password/change-password.component';
 
+import { MyCalendarModule } from './calendar/calendar.module';
+import 'hammerjs';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +60,7 @@ import { ChangePasswordComponent } from './current-user/change-password/change-p
     AdminModule,
     AppRoutingModule,
     MaterialModule,
+    MyCalendarModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
