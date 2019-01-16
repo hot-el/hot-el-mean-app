@@ -9,7 +9,15 @@ export class HomeComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  routes: any[];
+
+  ngOnInit() {  
+    this.routes = [
+      'room',
+      'auth',
+      'invoice',
+      'service'
+    ]
   }
 
 }
