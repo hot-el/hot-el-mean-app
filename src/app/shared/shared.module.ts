@@ -18,9 +18,11 @@ import {
   MatSnackBarModule,
   MatSidenavModule,
   MatTreeModule,
+  MatGridListModule,
   MatProgressBarModule,
   MatFormFieldModule,
   MatSelectModule,
+  MatTableModule,
 } from '@angular/material';
 
 @NgModule({
@@ -34,6 +36,7 @@ import {
     MatListModule,
     MatExpansionModule,
     MatButtonModule,
+    MatGridListModule,
     MatIconModule,
     MatDialogModule,
     MatInputModule,
@@ -45,6 +48,7 @@ import {
     MatProgressBarModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatTableModule,
     FlexLayoutModule,
   ],
   exports: [
@@ -59,6 +63,7 @@ import {
     MatIconModule,
     MatDialogModule,
     MatInputModule,
+    MatGridListModule,
     MatSnackBarModule,
     FormsModule,
     ReactiveFormsModule,
@@ -67,6 +72,7 @@ import {
     MatProgressBarModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatTableModule,
     FlexLayoutModule,
   ],
   declarations: [],

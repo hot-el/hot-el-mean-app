@@ -16,6 +16,8 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { RoomModule } from './room/room.module';
+import { InvoiceModule } from './invoice/invoice.module';
+import { ServiceModule } from './service/service.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { RoomModule } from './room/room.module';
     SharedModule,
     AuthModule,
     RoomModule,
+    InvoiceModule,
     AdminModule,
+    ServiceModule,
     AppRoutingModule
   ],
   providers: [{
