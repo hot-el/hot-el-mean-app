@@ -1,0 +1,36 @@
+<mat-table #table [dataSource]="invoices" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="invoiceNumber">
+    <mat-header-cell *matHeaderCellDef> Invoice No. </mat-header-cell>
+    <mat-cell *matCellDef="let invoice"> {{invoice.invoiceNumber}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="issueDate">
+    <mat-header-cell *matHeaderCellDef> Issue Date </mat-header-cell>
+    <mat-cell *matCellDef="let invoice"> {{invoice.issueDate}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="dueDate">
+    <mat-header-cell *matHeaderCellDef> Due Date </mat-header-cell>
+    <mat-cell *matCellDef="let invoice"> {{invoice.dueDate}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="subTotal">
+    <mat-header-cell *matHeaderCellDef> Sub Total </mat-header-cell>
+    <mat-cell *matCellDef="let invoice"> {{invoice.subTotal}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="tax">
+    <mat-header-cell *matHeaderCellDef> Tax </mat-header-cell>
+    <mat-cell *matCellDef="let invoice"> {{invoice.tax}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="grandTotal">
+    <mat-header-cell *matHeaderCellDef> Grand Total </mat-header-cell>
+    <mat-cell *matCellDef="let invoice"> {{invoice.grandTotal}} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onSelect(row)"></mat-row>
+</mat-table>
+
