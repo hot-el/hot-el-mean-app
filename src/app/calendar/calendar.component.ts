@@ -16,6 +16,8 @@ import {
 import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 
 import { EmployeeService } from '../_services/employee.service';
+import { ShiftService } from '../_services/shift.service';
+import { map } from 'rxjs/operators';
 
 const colors: any = {
   manager: {
@@ -41,6 +43,40 @@ interface MyEvent extends CalendarEvent {
   lastName: string;
   role: string;
   id: string;
+  _id: string;
+  actions: any;
+  color: any;
+  
+}
+
+class MyEvent1 implements MyEvent {
+  firstName: string;
+  lastName: string;
+  role: string;
+  id: string;
+  _id: string;
+  actions: any;
+  start: Date;
+  title: string;
+  color: any;
+  resizable: any;
+  draggable: any;
+  constructor(values, actions) {
+    this.actions = actions;
+    this.firstName = values.firstName;
+    this.lastName = values.lastName;
+    this.role = values.role;
+    this.id = values.id;
+    this._id = values._id;
+    this.start = values.start;
+    this.title = values.title;
+    this.color = values.color;
+    this.resizable = {
+      beforeStart: true,
+      afterEnd: true
+    };
+    this.draggable = false;
+  }
 }
 
 @Component({
@@ -63,45 +99,75 @@ export class CalendarComponent implements OnInit {
   actions: CalendarEventAction[] = [
     {
       label: '<i class="fa fa-fw fa-times"> Delete </i>',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.events = this.events.filter(iEvent => iEvent !== event);
+      onClick: ({ event }: { event: MyEvent1 }): void => {
+        console.log('delete');
+        console.log(event._id);
+        this.shiftService.deleteShift(event._id).subscribe(() => {
+          this.events = this.events.filter(iEvent => iEvent !== event);
+        });
         this.handleEvent('Deleted', event);
         console.log('Delete event', event);
       }
     }
   ];
 
+  // e: MyEvent1 = new MyEvent1(this.actions);
+
   refresh: Subject<any> = new Subject();
 
-  events: MyEvent[] = [
-    {
+  events: MyEvent1[] = new Array({
       start: new Date(Date.now()),
-      end: new Date(Date.now()),
       firstName: 'Stanisław',
       lastName: 'Oksymoron',
       role: 'Manager',
       id: '1',
+      _id: '2',
       color: colors.manager,
       actions: this.actions,
       title: 'Stanisław Oksymoron Manager',
-      allDay: true,
       resizable: {
         beforeStart: true,
         afterEnd: true
       },
       draggable: false
-    }
-  ];
+  });
+
+   x: MyEvent1 =  {
+    start: new Date(Date.now()),
+      firstName: 'Stanisław',
+      lastName: 'Oksymoron',
+      role: 'Manager',
+      id: '1',
+      _id: '2',
+      color: colors.manager,
+      actions: this.actions,
+      title: 'Stanisław Oksymoron Manager 222222',
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      draggable: false
+  };
+
+  shifts: any;
 
   activeDayIsOpen = true;
 
   constructor(
     private fb: FormBuilder,
-    private employeeService: EmployeeService) {}
+    private employeeService: EmployeeService,
+    private shiftService: ShiftService) {}
 
   ngOnInit(): void {
     this.createForm();
     this.getEmployees();
+    this.getEvents();
+    console.log('xxxx');
+    console.log(this.x);
+    this.events.push(this.x);
+    // Object.keys(this.shifts).forEach(function (shift) {
+    //   console.log(shift);
+    // });
   }
 
   getEmployees(): void {
@@ -109,7 +175,24 @@ export class CalendarComponent implements OnInit {
         .subscribe(e => this.employees = e);
   }
 
-  dayClicked({ date, events }: { date: Date; events: MyEvent[] }): void {
+  // getEvents() {
+  //   this.shiftService.getShifts().pipe(map(shift => {
+  //     const event = shift;
+  //     event.actions = this.actions;
+  //     event.allDay = true;
+  //     event.resizable = {
+  //       beforeStart: true,
+  //       afterEnd: true
+  //     };
+  //     event.draggable = false;
+  //   })).subscribe(event => this.events = event);
+  // }
+
+  getEvents() {
+    this.shiftService.getShifts().subscribe(shift => this.shifts = shift);
+  }
+
+  dayClicked({ date, events }: { date: Date; events: MyEvent1[] }): void {
     if (isSameMonth(date, this.viewDate)) {
       this.viewDate = date;
       if (
@@ -129,7 +212,18 @@ export class CalendarComponent implements OnInit {
   }
 
   addEvent(event): void {
-    this.events.push(event);
+    this.shiftService.addShift(event).subscribe(e => {
+      console.log('e');
+      console.log(e);
+      const data: MyEvent1 = new MyEvent1(e, this.actions);
+      console.log(JSON.stringify(data));
+      console.log('data');
+      console.log(data);
+      data.start = new Date(Date.now());
+      this.events.push(data);
+      console.log('events');
+      console.log(this.events);
+    });
     this.refresh.next();
   }
 
@@ -137,7 +231,7 @@ export class CalendarComponent implements OnInit {
     // event form validations
     this.eventForm = this.fb.group({
       employee: ['', Validators.required ],
-      date: [new Date(Date.now()), Validators.required],
+      start: [new Date(Date.now()), Validators.required],
       to: new FormControl(16, Validators.required),
       from: [8, Validators.required]
     });
@@ -145,6 +239,7 @@ export class CalendarComponent implements OnInit {
 
   onSubmitEvent(values) {
     // console.log(values);
+    // this.eventForm.reset(this.eventForm['employee']);
     if (values.employee.roles[0] === 'Manager') {
       values.color = colors.manager;
     } else if (values.employee.roles[0] === 'Waiter') {
@@ -154,15 +249,15 @@ export class CalendarComponent implements OnInit {
     } else {
       values.color = colors.receptionist;
     }
+    this.eventForm.controls['employee'].reset();
     values.firstName = values.employee.firstName;
     values.lastName = values.employee.lastName;
     values.role = values.employee.roles[0];
-    values.start = values.date;
-    values.end = values.date;
-    values.actions = this.actions;
+    // values.actions = this.actions;
     values.id = values.employee._id;
     delete values.employee;
     values.title = values.firstName + ' ' + values.lastName + ' ' + values.role +  ' (' + values.from + '-' + values.to + ')';
+    console.log('values');
     console.log(values);
     this.addEvent(values);
   }

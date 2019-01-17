@@ -78,7 +78,7 @@
                 </mat-select>
               </mat-form-field>    
               <mat-form-field>
-                <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="date" required>
+                <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="start" required>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
@@ -106,12 +106,3 @@
       >
     </mwl-calendar-month-view>
   
-    <!-- <div>
-      <mat-card-actions>
-        <p>Hi</p>
-        <button mat-button *ngFor="let employee of employees" mat-raised-button color="primary" (click)="fastRoute(employee._id)"> 
-            <i class="material-icons">face </i> {{employee.firstName}} {{employee.lastName}} {{employee.roles[0]}}  </button>  
-          </mat-card-actions>  
-          </div> -->
-
-          <!-- {{employees.data}} -->
