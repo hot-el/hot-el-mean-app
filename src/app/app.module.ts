@@ -19,7 +19,6 @@ import { ManagerComponent } from './manager/manager.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { NewEmployeeFormComponent } from './employees/new-employee-form/new-employee-form.component';
 
-import {MaterialModule} from './material-module/material.module';
 import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
 import { DeleteEmployeeComponent } from './employee-detail/delete-employee/delete-employee.component';
 import { UpdateEmployeeComponent } from './employee-detail/update-employee/update-employee.component';
@@ -29,6 +28,17 @@ import { DeleteAccountComponent } from './account-detail/delete-account/delete-a
 import { UpdateAccountFormComponent } from './account-detail/update-account-form/update-account-form.component';
 import { CurrentUserComponent } from './current-user/current-user.component';
 import { ChangePasswordComponent } from './current-user/change-password/change-password.component';
+import { RoomModule } from './room/room.module';
+import { InvoiceModule } from './invoice/invoice.module';
+import { ServiceModule } from './service/service.module';
+import { RoomCategoryComponent } from './room-category/room-category.component';
+import { NewRoomComponent } from './room-category/new-room/new-room.component';
+import { HttpModule } from '@angular/http';
+import { CategoriesService } from './_services/categories.service';
+import { RoomsComponent } from './rooms/rooms.component';
+import { RoomDetailsComponent } from './room-details/room-details.component';
+import { DeleteRoomComponent } from './room-details/delete-room/delete-room.component';
+import { UpdateRoomComponent } from './room-details/update-room/update-room.component';
 
 import { MyCalendarModule } from './calendar/calendar.module';
 import 'hammerjs';
@@ -48,19 +58,29 @@ import 'hammerjs';
     DeleteAccountComponent,
     UpdateAccountFormComponent,
     CurrentUserComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    RoomCategoryComponent,
+    NewRoomComponent,
+    RoomsComponent,
+    RoomDetailsComponent,
+    DeleteRoomComponent,
+    UpdateRoomComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    HttpModule,
     RouterModule,
     SharedModule,
     AuthModule,
+    RoomModule,
+    InvoiceModule,
     AdminModule,
     AppRoutingModule,
-    MaterialModule,
-    MyCalendarModule
+    MyCalendarModule,
+    ServiceModule,
+    AppRoutingModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
@@ -70,7 +90,9 @@ import 'hammerjs';
     provide: HTTP_INTERCEPTORS,
     useClass: CatchErrorInterceptor,
     multi: true,
-  }],
+  },
+  CategoriesService
+  ],
   entryComponents: [
     NewEmployeeFormComponent,
     DeleteEmployeeComponent,
@@ -78,7 +100,10 @@ import 'hammerjs';
     NewAccountFormComponent,
     DeleteAccountComponent,
     UpdateAccountFormComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    NewRoomComponent,
+    DeleteRoomComponent,
+    UpdateRoomComponent
   ],
   bootstrap: [AppComponent]
 })

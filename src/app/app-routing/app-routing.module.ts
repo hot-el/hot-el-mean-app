@@ -9,8 +9,11 @@ import { AccountDetailComponent } from '../account-detail/account-detail.compone
 import { CurrentUserComponent } from '../current-user/current-user.component';
 import { CalendarCommonModule } from 'angular-calendar';
 import { CalendarComponent } from '../calendar/calendar.component';
+import { RoomCategoryComponent } from '../room-category/room-category.component';
+import { RoomsComponent } from '../rooms/rooms.component';
+import { RoomDetailsComponent } from '../room-details/room-details.component';
 
-const routes: Routes = [{
+export const routes: Routes = [{
   path: '',
   component: HomeComponent
 }, {
@@ -25,7 +28,20 @@ const routes: Routes = [{
 { path: 'detail/:id', component: EmployeeDetailComponent },
 { path: 'accounts/detail/:id', component: AccountDetailComponent },
 { path: 'your-account', component: CurrentUserComponent},
-{ path: 'calendar', component: CalendarComponent }
+{ path: 'calendar', component: CalendarComponent },
+{ path: 'room-categories', component: RoomCategoryComponent },
+{ path: 'rooms/:categorySlug/:size', component: RoomsComponent },
+{ path: 'room-details/:id', component: RoomDetailsComponent },
+{
+  path: 'room',
+  loadChildren: 'app/room/room.module#RoomModule'
+}, {
+  path: 'invoice',
+  loadChildren: 'app/invoice/invoice.module#InvoiceModule'
+}, {
+  path: 'service',
+  loadChildren: 'app/service/service.module#ServiceModule'
+}
 ];
 
 @NgModule({

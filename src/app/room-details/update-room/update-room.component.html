@@ -1,0 +1,77 @@
+<!-- <div class="alert-modal">
+    <h3 class="alert-modal-title">NEW room</h3>
+    <div>
+      <form [formGroup]="roomForm" class="form" (ngSubmit)="onSubmit(roomForm.value)">
+        <textarea rows=3 class="form-control form-input" type="text" formControlName="name"></textarea>
+        <div class="alert-modal-buttons">
+          <button mat-raised-button color="primary" class="alert-modal-button alert-modal-button-success" type="submit" [disabled]="!roomForm.valid">Add</button>
+          <button mat-raised-button class="alert-modal-button alert-modal-button-failure" type="button"(click)="onCloseCancel()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <app-room-form></app-room-form>
+
+  <button mat-raised-button class="alert-modal-button alert-modal-button-failure" type="button"(click)="onCloseCancel()">Cancel</button>
+  -->
+
+  <div class="container">
+      <div class="row">
+        
+        <div class="col">
+          <h2 class="section-title">Update Room {{room.number}} </h2>
+          <form [formGroup]="roomForm" (ngSubmit)="onSubmitRoom(roomForm.value)">
+            <mat-form-field class="full-width">
+                <mat-select formControlName="type" placeholder="Type: {{room.type}}">
+                    <mat-option *ngFor="let type of types" [value]="type">
+                      {{ type }}
+                    </mat-option>
+                  </mat-select>
+              <mat-error *ngFor="let validation of validation_messages.type">
+                <mat-error class="error-message" *ngIf="roomForm.get('type').hasError(validation.type) && (roomForm.get('type').dirty || roomForm.get('type').touched)">{{validation.message}}</mat-error>
+              </mat-error>
+            </mat-form-field>
+    
+            <br>
+
+            <mat-form-field class="full-width">
+              <input matInput [matDatepicker]="picker" placeholder="Last conservationDate" formControlName="conservationDate" required>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngFor="let validation of validation_messages.conservationDate">
+                <mat-error class="error-message" *ngIf="roomForm.get('conservationDate').hasError(validation.type) && (roomForm.get('conservationDate').dirty || roomForm.get('conservationDate').touched)">{{validation.message}}</mat-error>
+              </mat-error>
+            </mat-form-field>
+    
+            <br>
+
+            <mat-form-field class="full-width">
+              <mat-select formControlName="size" placeholder="Size: {{room.size}}">
+                <mat-option *ngFor="let size of sizes" [value]="size">
+                  {{ size }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngFor="let validation of validation_messages.os">
+                <mat-error class="error-message" *ngIf="roomForm.get('size').hasError(validation.type) && (roomForm.get('size').dirty || roomForm.get('size').touched)">{{validation.message}}</mat-error>
+              </mat-error>
+            </mat-form-field>
+         
+            <br>
+
+            <mat-form-field class="full-width">
+                <input min="0" matInput placeholder="Room number" formControlName="number" required>
+                <mat-error *ngFor="let validation of validation_messages.number">
+                  <mat-error class="error-message" *ngIf="roomForm.get('number').hasError(validation.type) && (roomForm.get('number').dirty || roomForm.get('number').touched)">{{validation.message}}</mat-error>
+                </mat-error>
+              </mat-form-field>
+
+            <button class="submit-btn" color="primary" mat-raised-button type="submit" [disabled]="!roomForm.valid">
+              Edit
+            </button>
+
+            <button mat-raised-button class="alert-modal-button alert-modal-button-failure" type="button"(click)="onCloseCancel()">Cancel</button>
+    
+          </form>
+      </div>
+    </div>

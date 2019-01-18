@@ -4,9 +4,8 @@ import {CommonModule} from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
 import {AdminComponent} from './admin.component';
 import {OnlyAdminUsersGuard} from './admin-user-guard';
-import { MaterialModule } from '../material-module/material.module';
 import { NewAccountFormComponent } from './new-account-form/new-account-form.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -16,8 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    MaterialModule,
-    ReactiveFormsModule
+    SharedModule
   ],
   providers: [
     OnlyAdminUsersGuard

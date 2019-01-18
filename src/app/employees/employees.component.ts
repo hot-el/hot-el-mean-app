@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../_services/employee.service';
-// import { Person } from '../_models/person';
-// import { NewEmployeeFormComponent } from '../employee-form/new-employee-form/new-employee-form.component';
 import { MatDialog } from '@angular/material';
 import { NewEmployeeFormComponent } from './new-employee-form/new-employee-form.component';
 import { Router } from '@angular/router';

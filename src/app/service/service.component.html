@@ -1,0 +1,10 @@
+<p>
+  service works!
+</p>
+<mat-list dense>
+    <mat-list-item *ngFor="let service of services">
+        {{service.name}}
+    </mat-list-item>
+</mat-list>
+
+<button mat-button routerLink="create">Create</button>
