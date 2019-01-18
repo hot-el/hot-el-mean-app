@@ -1,0 +1,11 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Rooms</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-nav-list>
+            <a mat-raised-button *ngFor="let room of rooms" [routerLink]="['/room-details/', room._id]">Room {{room.number}} </a>
+         </mat-nav-list>
+         <p>hi</p>
+    </mat-card-content>
+</mat-card>

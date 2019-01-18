@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col">
+      <h3 class="section-title">Employee Form</h3>
+      <form [formGroup]="updateEmployeeForm" (ngSubmit)="onSubmitEmployee(updateEmployeeForm.value)">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="First Name" formControlName="firstName" required>
+          <mat-error *ngFor="let validation of validation_messages.firstName">
+            <mat-error class="error-message" *ngIf="updateEmployeeForm.get('firstName').hasError(validation.type) && (updateEmployeeForm.get('firstName').dirty || updateEmployeeForm.get('firstName').touched)">{{validation.message}}</mat-error>
+          </mat-error>
+        </mat-form-field>
+
+        <br>
+        
+        <mat-form-field class="full-width">
+              <input matInput placeholder="Last Name" formControlName="lastName" required>
+              <mat-error *ngFor="let validation of validation_messages.lastName">
+                <mat-error class="error-message" *ngIf="updateEmployeeForm.get('lastName').hasError(validation.type) && (updateEmployeeForm.get('lastName').dirty || updateEmployeeForm.get('lastName').touched)">{{validation.message}}</mat-error>
+              </mat-error>
+            </mat-form-field>
+    
+            <br>
+
+        <mat-form-field class="full-width">
+          <input matInput [matDatepicker]="picker" placeholder="Your birthday" formControlName="birthday" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngFor="let validation of validation_messages.birthday">
+            <mat-error class="error-message" *ngIf="updateEmployeeForm.get('birthday').hasError(validation.type) && (updateEmployeeForm.get('birthday').dirty || updateEmployeeForm.get('birthday').touched)">{{validation.message}}</mat-error>
+          </mat-error>
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field class="full-width">
+          <mat-select placeholder="Gender" formControlName="gender">
+            <mat-option *ngFor="let gender of genders" [value]="gender">
+              {{ gender }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngFor="let validation of validation_messages.gender">
+            <mat-error class="error-message" *ngIf="updateEmployeeForm.get('gender').hasError(validation.type) && (updateEmployeeForm.get('gender').dirty || updateEmployeeForm.get('gender').touched)">{{validation.message}}</mat-error>
+          </mat-error>
+        </mat-form-field>
+     
+        <br>
+
+        
+        <mat-form-field class="full-width">
+              <mat-select placeholder="Position" formControlName="roles">
+                <mat-option *ngFor="let position of positions" [value]="position">
+                  {{ position }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngFor="let validation of validation_messages.position">
+                <mat-error class="error-message" *ngIf="updateEmployeeForm.get('roles').hasError(validation.type) && (updateEmployeeForm.get('roles').dirty || updateEmployeeForm.get('roles').touched)">{{validation.message}}</mat-error>
+              </mat-error>
+            </mat-form-field>
+         
+            <br>
+
+<mat-action-row>
+
+        <button class="submit-btn" color="primary" mat-raised-button type="submit" [disabled]="!updateEmployeeForm.valid">
+         Add
+        </button>
+
+        <button mat-raised-button class="alert-modal-button alert-modal-button-failure" type="button"(click)="onCloseCancel()">Cancel</button>
+      </mat-action-row>
+
+      </form>
+    </div>
+  </div>
+</div>

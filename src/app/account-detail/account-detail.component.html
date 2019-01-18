@@ -1,0 +1,50 @@
+<div *ngIf="account">
+  <!-- <mat-list>
+    <h4 mat-subheader>account</h4>
+    <mat-list-item>
+      <mat-icon mat-list-icon>folder</mat-icon>
+      <p mat-line> Name: </p>
+      <p mat-line>{{account.name}}</p>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  </mat-list> -->
+  <p>HI</p>
+  <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Ej {{account.firstName}} Inu {{account.lastName}} {{account.roles[0]}} ?</mat-card-title>
+        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+      </mat-card-header>
+      <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+      <mat-card-content>
+        <p>
+          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+          bred for hunting. lolo {{isAdmin}} lolo lolo
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="goBack()">Go back</button>
+        <button mat-button (click)="openUpdateAccount(account)">Update me </button>
+          <div *ngIf="account.roles[0] !== 'Admin'">
+            <button mat-button (click)="openDeleteAccount(account)">Delete</button>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+
+
+<!-- <h2>{{account.name | uppercase}} Details</h2>
+<div><span>id: </span>{{account.id}}</div>
+<div>
+  <label>name: 
+    <input [(ngModel)]="account.name" placeholder="name"/>
+  </label>
+</div>
+<div>
+  <button (click)="save()">save</button>
+  <button (click)="goBack()">go back</button>
+
+  <button class="update" (click)="openUpdateaccountModal(account)"> Update account {{account.name}}!</button>
+
+</div> -->
+</div>

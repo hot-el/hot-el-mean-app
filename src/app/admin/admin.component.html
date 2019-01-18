@@ -1,1 +1,29 @@
 <h4>HELLO FROM ADMIN PAGE</h4>
+
+<mat-card class="example-card">
+        <button mat-raised-button color="primary" (click)="openNewAccountForm()">New Account</button>
+        <!-- <app-account-search></app-account-search> -->
+        <mat-card-content>
+        <h1> List of User Accounts </h1>
+        </mat-card-content>
+        <mat-nav-list>
+            <mat-divider></mat-divider>
+            <a mat-list-item href="/accounts/detail/{{account._id}}" *ngFor="let account of accounts"> 
+              <i class="material-icons">face </i> {{account.fullname}} {{account.roles}}        
+                <mat-divider></mat-divider>
+            </a>
+         </mat-nav-list>
+           <!-- <mat-nav-list> -->
+      <mat-divider></mat-divider>
+      <!-- <a mat-list-item href="/accounts/detail/{{account._id}}" *ngFor="let account of accounts">  -->
+      <button mat-button *ngFor="let account of accounts" mat-raised-button color="primary" (click)="fastRoute(account._id)"> 
+        <i class="material-icons">face </i> {{account.firstName}} {{account.lastName}} {{account.roles[0]}}  </button>
+        <!-- <i class="material-icons">face </i> {{account.fullname}} {{account.roles}}         -->
+          <mat-divider></mat-divider>
+      <!-- </a> -->
+   <!-- </mat-nav-list> -->
+  </mat-card>
+  <p>ejej</p>
+
+  
+

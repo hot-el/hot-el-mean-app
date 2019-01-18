@@ -6,6 +6,8 @@ import { Subject } from 'rxjs/Subject';
 import { TokenStorage } from './token.storage';
 import { TooltipComponent } from '@angular/material';
 
+// const User = require('../../../server/models/user.model');
+
 @Injectable()
 export class AuthService {
 
@@ -44,7 +46,7 @@ export class AuthService {
   }
 
   setUser(user): void {
-    if (user) user.isAdmin = (user.roles.indexOf('admin') > -1);
+    if (user) user.isAdmin = (user.roles.indexOf('Admin') > -1);
     this.$userSource.next(user);
     (<any>window).user = user;
   }

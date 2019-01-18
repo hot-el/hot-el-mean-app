@@ -5,10 +5,11 @@ const RoomSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    roomType: {
+    type: {
         type: String,
         required: true,
-        default: 'basic'
+        enum: ['Basic', 'Premium'],
+        default: 'Basic'
     },
     size: {
         type: Number,
@@ -17,6 +18,10 @@ const RoomSchema = new mongoose.Schema({
     },
     conservationDate: {
         type: Date
+    },
+    occupied: {
+        type: Boolean,
+        default: false
     }
 }, {
     versionKey: false
