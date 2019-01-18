@@ -3,13 +3,14 @@ import { ServicesService } from './service.service';
 import { Router } from '@angular/router';
 
 export interface Service {
+  _id: String,
   name: String,
   description: String,
   price: Number
 }
 
 @Component({
-  selector: 'app-service',
+  selector: 'service-service',
   templateUrl: './service.component.html',
   styleUrls: ['./service.component.scss']
 })
@@ -24,7 +25,7 @@ export class ServiceComponent implements OnInit {
     this.getServices()
   }
 
-  services: Service[]
+  services: any[]
 
   getServices() {
     this.serviceService.getServices()
