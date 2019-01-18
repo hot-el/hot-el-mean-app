@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Service = require('./service.model');
 
-let ServiceSchema = Service.ServiceSchema
+let ServiceSchema = Service.schema
 
 const InvoiceSchema = new mongoose.Schema({
     invoiceNumber: {

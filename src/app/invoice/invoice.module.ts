@@ -5,9 +5,10 @@ import { InvoiceRoutingModule } from './invoice-routing.module';
 import { InvoiceComponent } from './invoice.component';
 import { SharedModule } from '../shared/shared.module';
 import { DetailComponent } from './detail/detail.component';
+import { CreateComponent } from './create/create.component';
 
 @NgModule({
-  declarations: [InvoiceComponent, DetailComponent],
+  declarations: [InvoiceComponent, DetailComponent, CreateComponent],
   imports: [
     CommonModule,
     InvoiceRoutingModule,

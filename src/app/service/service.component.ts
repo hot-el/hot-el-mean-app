@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ServiceService } from './service.service';
+import { ServicesService } from './service.service';
+import { Router } from '@angular/router';
+
+export interface Service {
+  name: String,
+  description: String,
+  price: Number
+}
 
 @Component({
   selector: 'app-service',
@@ -9,17 +16,23 @@ import { ServiceService } from './service.service';
 export class ServiceComponent implements OnInit {
 
   constructor(
-    private serviceService: ServiceService
+    private serviceService: ServicesService,
+    private router: Router
   ) { }
 
   ngOnInit() {
+    this.getServices()
   }
 
-  services: any[]
+  services: Service[]
 
   getServices() {
-    return this.serviceService.getServices()
+    this.serviceService.getServices()
       .subscribe(services => this.services = services)
+  }
+
+  create() {
+    this.router.navigate(['create'])
   }
 
 }

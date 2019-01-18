@@ -13,6 +13,7 @@ export class InvoiceService {
   ) { }
 
   private invoiceUrl = 'api/invoice'
+  private serviceUrl = 'api/service'
 
   getInvoices(): Observable<any[]> {
     return this.http.get<any[]>(this.invoiceUrl)
@@ -35,6 +36,10 @@ export class InvoiceService {
     let url = `${this.invoiceUrl}/${id}`
     return this.http.put<any>(url, invoice);
     //handleError
+  }
+
+  getServices(): Observable<any[]> {
+    return this.http.get<any[]>(this.serviceUrl);
   }
   
 }
