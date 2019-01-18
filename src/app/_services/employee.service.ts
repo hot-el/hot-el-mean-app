@@ -24,10 +24,18 @@ export class EmployeeService {
     return this.http.get(employeesUrl, httpOptions);
   }
 
-  getEmployeesByManager () {
+  getEmployeesByManager (): Observable<any> {
     console.log('all employees');
     const url = `${employeesUrl}/manager`;
-    return this.http.get(url, httpOptions);
+    console.log(url);
+    return this.http.get(url, httpOptions).pipe();
+  }
+
+  getEmployeesByManagerForCalendar () {
+    console.log('all employees');
+    const url = `${employeesUrl}/manager`;
+    console.log(url);
+    return this.http.get(url, httpOptions).pipe();
   }
 
 //   : Observable<Employee>

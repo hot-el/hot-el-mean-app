@@ -40,6 +40,9 @@ import { RoomDetailsComponent } from './room-details/room-details.component';
 import { DeleteRoomComponent } from './room-details/delete-room/delete-room.component';
 import { UpdateRoomComponent } from './room-details/update-room/update-room.component';
 
+import { MyCalendarModule } from './calendar/calendar.module';
+import 'hammerjs';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,6 +77,8 @@ import { UpdateRoomComponent } from './room-details/update-room/update-room.comp
     RoomModule,
     InvoiceModule,
     AdminModule,
+    AppRoutingModule,
+    MyCalendarModule,
     ServiceModule,
     AppRoutingModule
   ],

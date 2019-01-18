@@ -7,6 +7,8 @@ import { EmployeesComponent } from '../employees/employees.component';
 import { EmployeeDetailComponent } from '../employee-detail/employee-detail.component';
 import { AccountDetailComponent } from '../account-detail/account-detail.component';
 import { CurrentUserComponent } from '../current-user/current-user.component';
+import { CalendarCommonModule } from 'angular-calendar';
+import { CalendarComponent } from '../calendar/calendar.component';
 import { RoomCategoryComponent } from '../room-category/room-category.component';
 import { RoomsComponent } from '../rooms/rooms.component';
 import { RoomDetailsComponent } from '../room-details/room-details.component';
@@ -20,12 +22,13 @@ export const routes: Routes = [{
 }, {
   path: 'admin',
   loadChildren: 'app/admin/admin.module#AdminModule'
-}, 
+},
 { path: 'manager', component: ManagerComponent },
 { path: 'employees', component: EmployeesComponent },
 { path: 'detail/:id', component: EmployeeDetailComponent },
 { path: 'accounts/detail/:id', component: AccountDetailComponent },
 { path: 'your-account', component: CurrentUserComponent},
+{ path: 'calendar', component: CalendarComponent },
 { path: 'room-categories', component: RoomCategoryComponent },
 { path: 'rooms/:categorySlug/:size', component: RoomsComponent },
 { path: 'room-details/:id', component: RoomDetailsComponent },
