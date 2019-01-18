@@ -68,7 +68,7 @@
         </form>    
       </table> -->
 
-
+    <div *ngIf="adminOrManager">
       <form [formGroup]="eventForm" (ngSubmit)="onSubmitEvent(eventForm.value)">
             <mat-form-field class="full-width">
               <mat-select formControlName="employee" placeholder="Name">
@@ -92,7 +92,7 @@
                 Add
               </button>
         </form>  
-
+      </div>
 
   <br>
 

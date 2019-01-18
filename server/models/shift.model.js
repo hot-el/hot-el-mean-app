@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const ShiftSchema = new mongoose.Schema({
-  id: {
+  userId: {
     type: String,
     required: true
   },

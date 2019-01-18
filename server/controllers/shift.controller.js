@@ -2,7 +2,7 @@ const Joi = require('joi');
 const Shift = require('../models/shift.model');
 
 const shiftSchema = Joi.object({
-    id: Joi.string().required(),
+    userId: Joi.string().required(),
     firstName: Joi.string().required(),
     lastName: Joi.string().required(),
     role: Joi.string().required(),
@@ -32,8 +32,9 @@ async function getAllShifts() {
     return await Shift.find();
 }
 
-async function getShiftsByUserId(id) {
-    return await Shift.find().where('id').equals(id);
+async function getShiftsByUserId(userId) {
+    console.log(userId);
+    return await Shift.find().where('userId').equals(userId);
 }
 
 async function deleteShift(id) {
