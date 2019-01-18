@@ -12,10 +12,17 @@ router.route('/')
     .post(asyncHandler(insert))
     .get(asyncHandler(getAll));
 
+router.route('/name/:name')
+    .get(asyncHandler(getByName));
+
+router.route('/name')
+    .get(asyncHandler(getAll));
+
 router.route('/:id')
     .put(asyncHandler(update))
     .delete(asyncHandler(deleteById))
     .get(asyncHandler(getById));
+
 
 async function insert(req, res) {
     let service = await serviceCtrl.insert(req.body);
@@ -41,4 +48,9 @@ async function deleteById(req, res, next) {
     await serviceCtrl.deleteById(req.params.id);
     res.send('Deleted service: '.concat(req.params.id));
     next()
+}
+
+async function getByName(req, res) {
+    let services = await serviceCtrl.getByNamePartial(req.params.name);
+    res.json(services);
 }

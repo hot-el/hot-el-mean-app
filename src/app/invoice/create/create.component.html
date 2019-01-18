@@ -1,77 +1,43 @@
-<p>
-  create works!
-</p>
-
 <mat-card>
   <mat-card-header>
     <mat-card-title>Invoice</mat-card-title>
-    <mat-card-subtitle>Create</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
+    <form class="invoice-form" [formGroup]='invoiceForm'>
+      <mat-form-field>
+        <input type="text" matInput placeholder="Invoice No." formControlName="invoiceNumber">
+      </mat-form-field>
+      <mat-form-field>
+        <input type="date" matInput placeholder="Issue Date" formControlName="issueDate">
+      </mat-form-field>
+      <mat-form-field>
+        <input type="date" matInput placeholder="Due Date" formControlName="dueDate">
+      </mat-form-field>
+      <mat-form-field>
+        <input type="number" matInput placeholder="Tax" formControlName="tax">
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+</mat-card>
 
-    <mat-form-field>
-      <input
-        type="text"
-        matInput
-        placeholder="Invoice No."
-        [formControl]="invoiceNumber"
-      >
-    </mat-form-field>
-
-    <mat-form-field>
-      <input
-        type="date"
-        matInput
-        placeholder="Issue Date"
-        [formControl]="issueDate"
-      >
-    </mat-form-field>
-
-    <mat-form-field>
-      <input
-        type="date"
-        matInput
-        placeholder="Due Date"
-        [formControl]="dueDate"
-      >
-    </mat-form-field>
-
-    <mat-form-field>
-      <input matInput placeholder="Service" aria-label="Service" [matAutocomplete]="auto" [formControl]="serviceCtrl">
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let service of filtredServices | async" [value]="service.name">
-          <span>{{service.name}}</span> |
-          <small>Price: {{service.price}}</small>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Services</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="service-form" [formGroup]='servicesForm'>
+      <mat-form-field>
+        <input matInput placeholder="Service" aria-label="Service" [matAutocomplete]="auto" formControlName="serviceInput">
+        <mat-option *ngIf="isLoading" class="is-loading">
+          <mat-spinner diameter="25"></mat-spinner>
         </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-
-    <mat-form-field>
-      <input
-        type="number"
-        matInput
-        placeholder="Subtotal"
-        [formControl]="subTotal"
-      >
-    </mat-form-field>
-
-    <mat-form-field>
-      <input
-        type="number"
-        matInput
-        placeholder="Tax"
-        [formControl]="tax"
-      >
-    </mat-form-field>
-
-    <mat-form-field>
-      <input
-        type="number"
-        matInput
-        placeholder="Grandtotal"
-        [formControl]="grandTotal"
-      >
-    </mat-form-field>
-
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let service of filtredServices | async" [value]="service.name">
+            <span>{{service?.name}}</span> |
+            <small>Price: {{service?.price}}</small>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
   </mat-card-content>
 </mat-card>

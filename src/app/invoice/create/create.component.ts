@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InvoiceService } from '../invoice.service';
-import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { startWith, map } from 'rxjs/operators';
+import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
+import { debounceTime, switchMap, tap, finalize } from 'rxjs/operators';
 
 export interface Service {
   name: String,
@@ -11,50 +10,41 @@ export interface Service {
 }
 
 @Component({
-  selector: 'app-create',
+  selector: 'invoice-create',
   templateUrl: './create.component.html',
   styleUrls: ['./create.component.scss']
 })
 export class CreateComponent implements OnInit {
+  filteredServices: Service[] = [];
+  invoiceForm: FormGroup;
+  servicesForm: FormGroup;
+  isLoading = false;
 
-  constructor(
-    private invoiceService: InvoiceService,
-  ) { 
-    this.filtredServices = this.serviceCtrl.valueChanges
+  constructor(private invoiceService: InvoiceService, private fb: FormBuilder) { }
+  
+  ngOnInit() { 
+    this.invoiceForm = this.fb.group({
+      invoiceNumber: null,
+      issueDate: null,
+      dueDate: null,
+      tax: null,
+    });
+
+    this.servicesForm = this.fb.group({
+      serviceInput: null
+    })
+
+    this.servicesForm
+      .get('serviceInput')
+      .valueChanges
       .pipe(
-        startWith(''),
-        map(state => state ? this._filterService(state) : this.services.slice())
+        debounceTime(300),
+        tap(() => this.isLoading = true),
+        switchMap(value => this.invoiceService.searchServices(value)
+          .pipe(finalize(() => this.isLoading = false))
+        )
       )
-  }
-
-  ngOnInit() {
-    this.getServices()
-  }
-
-
-  invoiceNumber = new FormControl('');
-  issueDate = new FormControl('');
-  dueDate = new FormControl('');
-  tax = new FormControl('');
-  subTotal = new FormControl('');
-  grandTotal = new FormControl('');
-  serviceCtrl = new FormControl('');
-
-  services: Service[]
-  filtredServices: Observable<Service[]>
-
-  _filterService(value: string): Service[] {
-    const filterValue = value.toLowerCase();
-    return this.services.filter( service => service.name.toLowerCase().indexOf(filterValue) === 0);
-  }
-
-  onCreate() {
-
-  }
-
-  getServices() {
-    this.invoiceService.getServices()
-      .subscribe(services => this.services = services)
+      .subscribe(services => this.filteredServices = services);
   }
 
 }

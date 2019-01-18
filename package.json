@@ -46,6 +46,7 @@
     "jsonwebtoken": "^8.4.0",
     "method-override": "^3.0.0",
     "mongoose": "^5.4.3",
+    "mongoose-find-and-filter": "^1.0.0",
     "morgan": "^1.9.1",
     "ng2-dragula": "^2.1.1",
     "nodemon": "^1.18.9",

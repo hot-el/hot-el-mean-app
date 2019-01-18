@@ -12,7 +12,8 @@ module.exports = {
     getAllServices,
     getServiceById,
     update,
-    deleteById
+    deleteById,
+    getByNamePartial
 }
 
 async function insert(service) {
@@ -35,4 +36,8 @@ async function update(id, service) {
 
 async function deleteById(id) {
     return await Service.findByIdAndDelete(id);
+}
+
+async function getByNamePartial(name) {
+    return await Service.find({'name': new RegExp(name, 'i')}, 'name price', function(err, docs){});
 }

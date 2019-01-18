@@ -45,23 +45,20 @@ export class InvoiceComponent implements OnInit {
       .subscribe(invoices => this.invoices = invoices);
   }
 
-  updateInvoice(): void {
-    this.invoiceService.updateInvoice(this.selectedInvoice._id, this.selectedInvoice)
+  updateInvoice(invoice: Invoice): void {
+    this.invoiceService.updateInvoice(invoice._id, invoice)
       .subscribe();
   }
 
   onSelect(invoice: Invoice): void {
-    this.selectedInvoice = invoice
-
     const dialogRef = this.dialog.open(DetailComponent, {
-      data: this.selectedInvoice
+      data: invoice
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.selectedInvoice = result
-      this.updateInvoice()
-      this.getInvoices()
-    })
+    // dialogRef.afterClosed().subscribe(result => {
+    //   this.updateInvoice(result)
+    //   this.getInvoices()
+    // })
   }
 
   
