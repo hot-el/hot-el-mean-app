@@ -24,15 +24,15 @@ async function insert(room) {
 }
 
 async function getAllRooms() {
-    return await Room.find();
+    return await Room.find().sort({number: 1});
 }
 
 async function getRoomsByCategory(category) {
-    return await Room.find().where('type').equals(category);
+    return await Room.find().where('type').equals(category).sort({number: 1});
 }
 
 async function getRoomsByCategoryAndSize(category, size) {
-    return await Room.find().where('type').equals(category).where('size').equals(size);
+    return await Room.find().where('type').equals(category).where('size').equals(size).sort({number: 1});
 }
 
 async function getRoomById(id) {

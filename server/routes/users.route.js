@@ -26,7 +26,7 @@ async function insertByAdmin(req, res) {
 
 /* GET ALL Users by Admin*/
 router.get('/admin', function(req, res, next) {
-  User.find(function (err, products) {
+  User.find().sort({roles: 1}).exec(function (err, products) {
     if (err) return next(err);
     res.json(products);
   });
@@ -34,7 +34,7 @@ router.get('/admin', function(req, res, next) {
 
 /* GET ALL Users*/
 router.get('/', function(req, res, next) {
-    User.find(function (err, products) {
+    User.find().sort({roles: 1}).exec(function (err, products) {
       if (err) return next(err);
       res.json(products);
     });
@@ -42,7 +42,7 @@ router.get('/', function(req, res, next) {
 
 /* GET ALL Users by Manager*/
 router.get('/manager', function(req, res, next) {
-    User.find({roles: {$nin: ['Admin']}}).exec(function (err, products) {
+    User.find({roles: {$nin: ['Admin']}}).sort({roles: 1}).exec(function (err, products) {
         if (err) return next(err);
         res.json(products);
       });

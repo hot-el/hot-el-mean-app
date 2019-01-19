@@ -1,19 +1,19 @@
 <mat-card *ngIf="room" class="example-card">
     <mat-card-header>
-      <mat-card-title>Room {{room.number}} Details</mat-card-title>
+      <mat-card-title>Room no. {{room.number}}</mat-card-title>
+      <mat-card-subtitle>Details</mat-card-subtitle>
       <!-- <mat-card-subtitle>Type: {{room.type}} </mat-card-subtitle> -->
     </mat-card-header>
     <mat-card-content>
       <!-- <h2>Room {{room.number}} Detail</h2> -->
-      <p>Type: {{room.type}} </p>
-      <p>Size: {{room.size}} </p>
-      <p>Date: {{room.conservationDate}} </p>
-      <p>Id: {{room._id}}</p>
-      <p>Ocuupied: {{room.occupied}} </p>
+      <p><b>Type:</b> {{room.type}} </p>
+      <p><b>Size:</b> {{room.size}} </p>
+      <p><b>Date:</b> {{room.conservationDate | date:'dd/MM/yyyy'}} </p>
+      <p><b>Ocuupied:</b> {{room.occupied}} </p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button (click)="openDeleteRoom(room)">Delete</button>
-      <button mat-raised-button color="primary" (click)="openUpdateRoom(room)">Update Room</button>
-      <button mat-button (click)="goBack()">go back</button>
+      <button mat-raised-button (click)="goBack()">Back</button>
+      <button mat-raised-button (click)="openUpdateRoom(room)">Update Room</button>
+      <button mat-raised-button color="warn" (click)="openDeleteRoom(room)">Delete</button>
     </mat-card-actions>
   </mat-card>

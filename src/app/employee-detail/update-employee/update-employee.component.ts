@@ -21,7 +21,7 @@ export class UpdateEmployeeComponent implements OnInit {
 
   positions = [
     'Manager',
-    'Recepcionist',
+    'Receptionist',
     'Waiter',
     'Cleaner'
   ];
@@ -51,10 +51,7 @@ export class UpdateEmployeeComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public modalData: any) { }
 
   ngOnInit() {
-    console.log('onInit');
-    console.log(this.modalData.employee);
     this.employee = this.modalData.employee;
-    console.log(this.employee);
     this.createForms(this.modalData);
   }
 
@@ -72,17 +69,8 @@ export class UpdateEmployeeComponent implements OnInit {
     value.roles = new Array(value.roles);
     value.gender = value.gender;
     value._id = this.employee._id;
-    console.log('onSumbit');
-    console.log(value);
     this.employeeService.updateEmployee(value).subscribe();
     this.thisDialogRef.close(value);
-    // const newEmployee = this.modalData.employee;
-    // newEmployee.name = values.name;
-    // this.employeeService.updateEmployee(newEmployee)
-    // .subscribe(name => {
-    //   this.thisDialogRef.close(name);
-    //   this.updateEmployeeForm.reset();
-    // });
   }
 
   onCloseCancel() {

@@ -1,26 +1,8 @@
-<!-- <div class="alert-modal">
-    <h3 class="alert-modal-title">NEW room</h3>
-    <div>
-      <form [formGroup]="roomForm" class="form" (ngSubmit)="onSubmit(roomForm.value)">
-        <textarea rows=3 class="form-control form-input" type="text" formControlName="name"></textarea>
-        <div class="alert-modal-buttons">
-          <button mat-raised-button color="primary" class="alert-modal-button alert-modal-button-success" type="submit" [disabled]="!roomForm.valid">Add</button>
-          <button mat-raised-button class="alert-modal-button alert-modal-button-failure" type="button"(click)="onCloseCancel()">Cancel</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <app-room-form></app-room-form>
-
-  <button mat-raised-button class="alert-modal-button alert-modal-button-failure" type="button"(click)="onCloseCancel()">Cancel</button>
-  -->
-
-  <div class="container">
+ <div class="container">
       <div class="row">
         
         <div class="col">
-          <h2 class="section-title">Update Room {{room.number}} </h2>
+          <h2 class="section-title">Update room no. {{room.number}} </h2>
           <form [formGroup]="roomForm" (ngSubmit)="onSubmitRoom(roomForm.value)">
             <mat-form-field class="full-width">
                 <mat-select formControlName="type" placeholder="Type: {{room.type}}">
@@ -66,8 +48,10 @@
                 </mat-error>
               </mat-form-field>
 
+            <br>  
+
             <button class="submit-btn" color="primary" mat-raised-button type="submit" [disabled]="!roomForm.valid">
-              Edit
+              Update
             </button>
 
             <button mat-raised-button class="alert-modal-button alert-modal-button-failure" type="button"(click)="onCloseCancel()">Cancel</button>
