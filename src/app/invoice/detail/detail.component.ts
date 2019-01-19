@@ -1,6 +1,14 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Invoice } from '../invoice.component';
+import { InvoiceService } from '../invoice.service';
+
+interface shortS {
+  name: string,
+  price: number,
+  quantity: number,
+  total: number
+}
 
 @Component({
   selector: 'invoice-detail',
@@ -8,10 +16,12 @@ import { Invoice } from '../invoice.component';
   styleUrls: ['./detail.component.scss']
 })
 export class DetailComponent implements OnInit {
+  services: any[] = [];
 
   constructor(
     public dialogRef: MatDialogRef<DetailComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Invoice
+    @Inject(MAT_DIALOG_DATA) public data: Invoice,
+    private invoiceService: InvoiceService
   ) { }
 
   ngOnInit() { }
@@ -19,4 +29,5 @@ export class DetailComponent implements OnInit {
   onNoClick(): void  {
     this.dialogRef.close();
   }
+
 }

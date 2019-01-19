@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { InvoiceService } from './invoice.service';
 import { MatDialog } from '@angular/material';
 import { DetailComponent } from './detail/detail.component';
+import { Router } from '@angular/router';
 
 export interface Invoice {
   _id: string;
@@ -11,6 +12,7 @@ export interface Invoice {
   subTotal: number;
   tax: number;
   grandTotal: number;
+  services: any[];
 }
 
 @Component({
@@ -22,7 +24,8 @@ export class InvoiceComponent implements OnInit {
 
   constructor(
     private invoiceService: InvoiceService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) { }
 
   selectedInvoice: Invoice
@@ -61,6 +64,8 @@ export class InvoiceComponent implements OnInit {
     // })
   }
 
-  
+  gotoCreate() {
+    this.router.navigate(['/invoice/create'])
+  }
 
 }

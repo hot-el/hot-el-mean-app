@@ -1,10 +1,21 @@
-<h1 matDialogTitle>{{data.invoiceNumber}}</h1>
+<h1 matDialogTitle>Invoice No.: {{data.invoiceNumber}}</h1>
 
 <mat-dialog-content>
-{{data.issueDate}}
+    <p mat-line>Issue Date: {{data.issueDate | date:'longDate'}}</p>
+    <p mat-line>Due Date: {{data.dueDate | date:'longDate'}}</p>
+    <p mat-line>Tax: {{data.tax}}%</p>
+    <p mat-line>Subtotal: {{data.subTotal}}</p>
+    <p mat-line>Grandtotal: {{data.grandTotal}}</p>
+    <ol>
+        <li *ngFor="let service of data.services">
+            <p mat-line>Name: {{service.name}}</p>
+            <p mat-line>Price: {{service.price}}</p>
+            <p mat-line>Quantity: {{service.quantity}}</p>
+            <p mat-line>Total: {{service.total}}</p>
+        </li>
+    </ol>
 </mat-dialog-content>
 
 <mat-dialog-actions>
     <button mat-button matDialogClose (click)="onNoClick()">Close</button>
-    <button mat-button >Action</button>
 </mat-dialog-actions>

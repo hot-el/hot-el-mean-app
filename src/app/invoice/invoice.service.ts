@@ -30,8 +30,7 @@ export class InvoiceService {
   private serviceUrl = 'api/service'
 
   getInvoices(): Observable<any[]> {
-    return this.http.get<any[]>(this.invoiceUrl)
-    .pipe(tap((inv: any) => console.log(`${inv._id}`)));
+    return this.http.get<any[]>(this.invoiceUrl);
     //handleError
   }
 
@@ -54,6 +53,12 @@ export class InvoiceService {
 
   getServices(): Observable<any[]> {
     return this.http.get<any[]>(this.serviceUrl);
+  }
+
+  getServiceById(id: string) {
+    let service;
+    this.http.get<any>(`${this.serviceUrl}/${id}`).subscribe(s => service = s);
+    return service;
   }
 
   searchServices(name: string): Observable<IServiceResponse> {
