@@ -39,5 +39,5 @@ async function deleteById(id) {
 }
 
 async function getByNamePartial(name) {
-    return await Service.find({'name': new RegExp(name, 'i')}, 'name price', function(err, docs){});
+    return await Service.find({'name': new RegExp(name, 'i')});
 }

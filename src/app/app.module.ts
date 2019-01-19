@@ -30,7 +30,7 @@ import { CurrentUserComponent } from './current-user/current-user.component';
 import { ChangePasswordComponent } from './current-user/change-password/change-password.component';
 import { RoomModule } from './room/room.module';
 import { InvoiceModule } from './invoice/invoice.module';
-import { ServiceModule } from './service/service.module';
+// import { ServiceModule } from './service/service.module';
 import { RoomCategoryComponent } from './room-category/room-category.component';
 import { NewRoomComponent } from './room-category/new-room/new-room.component';
 import { HttpModule } from '@angular/http';
@@ -79,7 +79,7 @@ import 'hammerjs';
     AdminModule,
     AppRoutingModule,
     MyCalendarModule,
-    ServiceModule,
+    // ServiceModule,
     AppRoutingModule
   ],
   providers: [{
