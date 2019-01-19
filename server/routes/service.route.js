@@ -12,12 +12,6 @@ router.route('/')
     .post(asyncHandler(insert))
     .get(asyncHandler(getAll));
 
-router.route('/name/:name')
-    .get(asyncHandler(getByName));
-
-router.route('/name')
-    .get(asyncHandler(getAll));
-
 router.route('/:id')
     .put(asyncHandler(update))
     .delete(asyncHandler(deleteById))
@@ -40,7 +34,7 @@ async function getById(req, res) {
 }
 
 async function update(req, res) {
-    let service = await serviceCtrl.update(req.params.id);
+    let service = await serviceCtrl.update(req.params.id, req.body);
     res.json(service);
 }
 

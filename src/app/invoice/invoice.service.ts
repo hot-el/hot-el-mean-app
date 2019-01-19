@@ -55,12 +55,6 @@ export class InvoiceService {
     return this.http.get<any[]>(this.serviceUrl);
   }
 
-  getServiceById(id: string) {
-    let service;
-    this.http.get<any>(`${this.serviceUrl}/${id}`).subscribe(s => service = s);
-    return service;
-  }
-
   searchServices(name: string): Observable<IServiceResponse> {
     return this.http.get<IServiceResponse>(`${this.serviceUrl}/name/${name}`)
       .pipe(
@@ -70,6 +64,10 @@ export class InvoiceService {
             return response
         })
       );
+  }
+
+  deleteInvoice(id: string) {
+    return this.http.delete<any>(`${this.invoiceUrl}/${id}`);
   }
   
 }

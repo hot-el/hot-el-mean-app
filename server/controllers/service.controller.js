@@ -30,8 +30,8 @@ async function getServiceById(id) {
 }
 
 async function update(id, service) {
-    service = await Joi.validate(service, serviceSchema);
-    return await Service.findByIdAndUpdate(id, service);
+    let nservice = await Joi.validate(service, serviceSchema);
+    return await Service.findByIdAndUpdate(id, nservice);
 }
 
 async function deleteById(id) {

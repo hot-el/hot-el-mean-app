@@ -26,7 +26,12 @@ export class InvoiceComponent implements OnInit {
     private invoiceService: InvoiceService,
     public dialog: MatDialog,
     private router: Router
-  ) { }
+  ) {
+    dialog.afterAllClosed
+      .subscribe(() => {
+        this.getInvoices()
+      })
+   }
 
   selectedInvoice: Invoice
   invoices: Invoice[]; 

@@ -5,7 +5,7 @@ import { CreateComponent } from './create/create.component';
 import { DetailComponent } from './detail/detail.component';
 
 const routes: Routes = [{
-  path: 'service',
+  path: '',
   children: [{
     path: '',
     component: ServiceComponent

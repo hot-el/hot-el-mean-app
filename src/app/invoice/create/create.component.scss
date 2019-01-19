@@ -3,6 +3,20 @@ form {
     flex-direction: column;
 }
 
-// mat-card {
-//     width: 50%;
-// }
+.mat-card {
+    // flex-wrap: wrap;
+    // flex-direction: row;
+    display: inline-grid;
+    margin: 5px;
+}
+
+mat-card {
+    width: 450px;
+}
+
+.cards {
+    position: center;
+}
+
+
+

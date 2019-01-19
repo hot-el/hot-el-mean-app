@@ -1,10 +1,19 @@
-<p>
-  service works!
-</p>
-<mat-list dense>
-    <mat-list-item *ngFor="let service of services">
-        {{service.name}}
-    </mat-list-item>
-</mat-list>
-
-<button mat-button routerLink="create">Create</button>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Services</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-list dense>
+            <mat-list-item *ngFor="let service of services">
+                <p mat-line>Name:<b> {{service.name}}</b></p>
+                <p mat-line>Description: {{service.description}} </p>
+                <p mat-line> Price: {{service.price}}</p>
+                <button mat-flat-button color="primary" (click)="edit(service)">Edit</button>
+                <button mat-flat-button color="warn" (click)="delete(service)">Delete</button>
+            </mat-list-item>
+        </mat-list>
+    </mat-card-content>
+    <mat-card-actions align="start">
+        <button mat-button routerLink="create">Create</button>
+    </mat-card-actions>
+</mat-card>

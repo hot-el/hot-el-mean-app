@@ -6,13 +6,15 @@ import { ServiceComponent } from './service.component';
 import { SharedModule } from '../shared/shared.module';
 import { DetailComponent } from './detail/detail.component';
 import { CreateComponent } from './create/create.component';
+import { EditComponent } from './edit/edit.component';
 
 @NgModule({
-  declarations: [ServiceComponent, DetailComponent, CreateComponent],
+  declarations: [ServiceComponent, DetailComponent, CreateComponent, EditComponent],
   imports: [
     CommonModule,
     ServiceRoutingModule,
     SharedModule
-  ]
+  ],
+  entryComponents: [EditComponent]
 })
 export class ServiceModule { }

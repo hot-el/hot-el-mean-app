@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicesService } from './service.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { EditComponent } from './edit/edit.component';
 
 export interface Service {
   _id: String,
@@ -18,14 +20,20 @@ export class ServiceComponent implements OnInit {
 
   constructor(
     private serviceService: ServicesService,
-    private router: Router
-  ) { }
+    private router: Router,
+    public dialog: MatDialog
+  ) {
+    dialog.afterAllClosed
+    .subscribe(() => {
+      this.getServices()
+    })
+   }
 
   ngOnInit() {
     this.getServices()
   }
 
-  services: any[]
+  services: Service[]
 
   getServices() {
     this.serviceService.getServices()
@@ -34,6 +42,17 @@ export class ServiceComponent implements OnInit {
 
   create() {
     this.router.navigate(['create'])
+  }
+
+  delete(id) {
+    this.serviceService.deleteService(id).subscribe();
+    this.getServices()
+  }
+
+  edit(service) {
+    const dialogRef = this.dialog.open(EditComponent, {
+      data: service
+    })
   }
 
 }

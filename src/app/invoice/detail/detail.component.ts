@@ -30,4 +30,10 @@ export class DetailComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  delete() {
+    let s = this.invoiceService.deleteInvoice(this.data._id).subscribe();
+    while(s.closed) {}
+    this.dialogRef.close();
+  }
+
 }
