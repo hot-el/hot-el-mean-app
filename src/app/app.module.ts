@@ -42,6 +42,8 @@ import { UpdateRoomComponent } from './room-details/update-room/update-room.comp
 
 import { MyCalendarModule } from './calendar/calendar.module';
 import 'hammerjs';
+import { SearchEmployeesComponent } from './search-employees/search-employees.component';
+import { FilterPipe } from './search-employees/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,9 @@ import 'hammerjs';
     RoomsComponent,
     RoomDetailsComponent,
     DeleteRoomComponent,
-    UpdateRoomComponent
+    UpdateRoomComponent,
+    SearchEmployeesComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
