@@ -8,7 +8,8 @@ export class CategoriesService {
   constructor(private http: Http) {}
 
   getCategories(): Promise<Category[]> {
-    console.log('room-categories');
+    console.log('room-categories ../ !');
+    // this.http.get('../../assets/categories.json');
     return this.http.get('../assets/categories.json')
     .toPromise()
     .then(res => res.json() as Category[]);

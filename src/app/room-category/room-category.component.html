@@ -1,22 +1,23 @@
 <div class="col-lg-12 categories">
     <div class="card col-md-offset-2 col-md-8 ">
-      <h3 class="list-title">Learn all about Rooms</h3>
+      <h3 class="list-title">Manage hotel rooms</h3>
       <mat-card-actions>
-          <button mat-raised-button color="primary" (click)="openNewRoomForm()">New Room</button>
+          <button mat-raised-button (click)="openNewRoomForm()">New Room</button> <br><br>
       </mat-card-actions>
+      <mat-divider></mat-divider>
       <mat-list class="list">
         <mat-list-item class="list-item" *ngFor="let category of categories">
           <img matListAvatar class="avatar" [src]="category.image">
-          <h3 matLine class="list-line">
-            <a [routerLink]="['/rooms/', category.slug, 'all']">{{category.title}}</a>
+          <h3 matLine>
+            <a mat-button class="button1" [routerLink]="['/rooms/', category.slug, 'all']"><b>{{category.title}}</b></a>
           </h3>
-          <h3 matLine class="list-line">{{category.description}}</h3>
+          <h3 matLine>{{category.description}}</h3>
           <div matLine class="list-line">
             <mat-chip-list>
-              <!-- <mat-chip *ngFor="let tag of category.tags">{{tag.name}}</mat-chip> -->
-              <a mat-mini-fab *ngFor="let tag of category.tags" [routerLink]="['/rooms/', category.slug, tag.name]">{{tag.name}} os.</a>
+              <a mat-raised-button *ngFor="let tag of category.tags" [routerLink]="['/rooms/', category.slug, tag.name]">{{tag.name}} os.</a>
             </mat-chip-list>
           </div>
+          <mat-divider></mat-divider>
         </mat-list-item>
       </mat-list>
   </div>
