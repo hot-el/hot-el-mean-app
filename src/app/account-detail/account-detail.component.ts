@@ -76,7 +76,11 @@ export class AccountDetailComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(confirm => {
       if (confirm) {
-        this.account = confirm;
+        this.account.firstName = confirm.firstName;
+        this.account.lastName = confirm.lastName;
+        this.account.birthday = confirm.birthday;
+        this.account.gender = confirm.gender;
+        this.account.roles = confirm.roles;
       }
       console.log('confirm');
       console.log(confirm);
