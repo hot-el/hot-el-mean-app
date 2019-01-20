@@ -1,3 +1,10 @@
-<p>
-  check-out works!
-</p>
+<mat-card>
+  <mat-card-content>
+      <h2>Checkout</h2>
+      <p>Price for the room: <b> {{roomPrice}}$</b></p>
+    </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" class="alert-modal-button alert-modal-button-success" (click)="onCloseConfirm()">Checkout</button>
+        <button mat-raised-button class="alert-modal-button alert-modal-button-failure" (click)="onCloseCancel()">Cancel</button>
+    </mat-card-actions>
+  </mat-card>

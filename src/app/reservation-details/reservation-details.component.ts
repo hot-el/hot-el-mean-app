@@ -3,7 +3,7 @@ import { DeleteReservationComponent } from './delete-reservation/delete-reservat
 import { MatDialog } from '@angular/material';
 import { RoomService } from '../_services/room.service';
 import { UpdateReservationComponent } from './update-reservation/update-reservation.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { CheckOutComponent } from './check-out/check-out.component';
 
@@ -20,7 +20,8 @@ export class ReservationDetailsComponent implements OnInit {
     public dialog: MatDialog,
     private roomService: RoomService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -56,6 +57,7 @@ export class ReservationDetailsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {
+      this.router.navigateByUrl('/active-reservations');
     });
 
   }
