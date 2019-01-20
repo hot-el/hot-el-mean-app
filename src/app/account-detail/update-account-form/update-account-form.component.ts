@@ -21,7 +21,7 @@ export class UpdateAccountFormComponent implements OnInit {
 
   positions = [
     'Manager',
-    'Recepcionist',
+    'Receptionist',
     'Waiter',
     'Cleaner',
     'Admin'

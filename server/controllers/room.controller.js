@@ -15,7 +15,10 @@ module.exports = {
     getRoomsByCategory,
     getRoomsByCategoryAndSize,
     getRoomById,
-    deleteRoom
+    deleteRoom,
+    getRoomsByCategorySizeAndOccupied,
+    getRoomsByCategoryAndOccupied,
+    getRoomsByOccupied
 }
 
 async function insert(room) {
@@ -41,4 +44,20 @@ async function getRoomById(id) {
 
 async function deleteRoom(id) {
     return await Room.findByIdAndDelete(id);
+}
+
+async function getRoomsByCategorySizeAndOccupied(category, size, occupied) {
+    return await Room.find().where('type').equals(category)
+        .where('size').equals(size)
+        .where('occupied').equals(occupied).sort({number: 1});
+}
+
+async function getRoomsByCategoryAndOccupied(category, occupied) {
+    return await Room.find().where('type').equals(category)
+        .where('occupied').equals(occupied).sort({number: 1});
+}
+
+async function getRoomsByOccupied(occupied) {
+    return await Room.find().where('occupied').equals(occupied).sort({number: 1});
+        
 }

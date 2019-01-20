@@ -22,6 +22,15 @@ router.route('/c/:category')
 router.route('/cs/:category/:size')
     .get(asyncHandler(getRoomsByCategoryAndSize));
 
+router.route('/cso/:category/:size/:occupied')
+    .get(asyncHandler(getRoomsByCategorySizeAndOccupied));
+
+router.route('/co/:category/:occupied')
+    .get(asyncHandler(getRoomsByCategoryAndOccupied));
+
+router.route('/o/:occupied')
+    .get(asyncHandler(getRoomsByOccupied));
+
 async function insert(req, res) {
     let room = await roomCtrl.insert(req.body);
     res.json(room);
@@ -33,7 +42,6 @@ async function getAllRooms(req, res) {
 }
 
 async function getRoomsByCategory(req, res) {
-    console.log(req.params);
     let rooms = await roomCtrl.getRoomsByCategory(req.params.category);
     res.json(rooms);
 }
@@ -43,8 +51,22 @@ async function getRoomsByCategoryAndSize(req, res) {
     res.json(rooms);
 }
 
+async function getRoomsByCategorySizeAndOccupied(req, res) {
+    let rooms = await roomCtrl.getRoomsByCategorySizeAndOccupied(req.params.category, req.params.size, req.params.occupied);
+    res.json(rooms);
+}
+
+async function getRoomsByCategoryAndOccupied(req, res) {
+    let rooms = await roomCtrl.getRoomsByCategoryAndOccupied(req.params.category, req.params.occupied);
+    res.json(rooms);
+}
+
+async function getRoomsByOccupied(req, res) {
+    let rooms = await roomCtrl.getRoomsByOccupied(req.params.occupied);
+    res.json(rooms);
+}
+
 async function getRoomById(req, res) {
-    console.log(req.params.id);
     let room = await roomCtrl.getRoomById(req.params.id);
     res.json(room);
 }

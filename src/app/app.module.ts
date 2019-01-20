@@ -44,6 +44,11 @@ import { MyCalendarModule } from './calendar/calendar.module';
 import 'hammerjs';
 import { SearchEmployeesComponent } from './search-employees/search-employees.component';
 import { FilterPipe } from './search-employees/filter.pipe';
+import { ReceptionistComponent } from './receptionist/receptionist.component';
+import { MakeReservationComponent } from './make-reservation/make-reservation.component';
+import { ReserveRoomComponent } from './make-reservation/reserve-room/reserve-room.component';
+import { RoomsToReserveComponent } from './make-reservation/rooms-to-reserve/rooms-to-reserve.component';
+import { NewReservationComponent } from './make-reservation/reserve-room/new-reservation/new-reservation.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +73,12 @@ import { FilterPipe } from './search-employees/filter.pipe';
     DeleteRoomComponent,
     UpdateRoomComponent,
     SearchEmployeesComponent,
-    FilterPipe
+    FilterPipe,
+    ReceptionistComponent,
+    MakeReservationComponent,
+    ReserveRoomComponent,
+    RoomsToReserveComponent,
+    NewReservationComponent
   ],
   imports: [
     BrowserModule,
@@ -107,7 +117,8 @@ import { FilterPipe } from './search-employees/filter.pipe';
     ChangePasswordComponent,
     NewRoomComponent,
     DeleteRoomComponent,
-    UpdateRoomComponent
+    UpdateRoomComponent,
+    NewReservationComponent
   ],
   bootstrap: [AppComponent]
 })

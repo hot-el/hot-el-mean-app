@@ -1,0 +1,21 @@
+<div class="col-lg-12 categories">
+    <div class="card col-md-offset-2 col-md-8 ">
+      <h3 class="list-title">Choose room to reserve</h3>
+      <mat-divider></mat-divider>
+      <mat-list class="list">
+        <mat-list-item class="list-item" *ngFor="let category of categories">
+          <img matListAvatar class="avatar" [src]="category.image">
+          <h3 matLine>
+            <a mat-button class="button1" [routerLink]="['/rooms-to-reserve/', category.slug, 'all']"><b>{{category.title}}</b></a>
+          </h3>
+          <h3 matLine>{{category.description}}</h3>
+          <div matLine class="list-line">
+            <mat-chip-list>
+              <a mat-raised-button *ngFor="let tag of category.tags" [routerLink]="['/rooms-to-reserve/', category.slug, tag.name]">{{tag.name}} os.</a>
+            </mat-chip-list>
+          </div>
+          <mat-divider></mat-divider>
+        </mat-list-item>
+      </mat-list>
+  </div>
+  </div>

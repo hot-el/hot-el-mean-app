@@ -33,7 +33,7 @@ export class NewAccountFormComponent implements OnInit {
 
   positions = [
     'Manager',
-    'Recepcionist',
+    'Receptionist',
     'Waiter',
     'Cleaner',
     'Admin'
