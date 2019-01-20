@@ -1,19 +1,12 @@
 <mat-card class="example-card">
-  <mat-card-header>
+<mat-card-header>
       <mat-card-title>Admin Board</mat-card-title>
       <mat-card-subtitle>Manager user accounts</mat-card-subtitle>
   </mat-card-header>
   <button mat-raised-button (click)="openNewAccountForm()">New Account</button> <br><br>
-  <!-- <app-account-search></app-account-search> -->
   <mat-card-content>
-    <h1> List of User Accounts </h1>
-  </mat-card-content>
-  <mat-divider></mat-divider>
-  <button mat-button class="button1" *ngFor="let account of accounts" (click)="fastRoute(account._id)"> 
-    <i class="material-icons">face </i> {{account.firstName}} {{account.lastName}} {{account.roles[0]}}  
-    <mat-divider></mat-divider>
-  </button>
+      <h1> List User Accounts </h1>
+      </mat-card-content>
+      <app-search-accounts [accountsArray]="accounts"></app-search-accounts>
 </mat-card>
-
-  
 
