@@ -81,7 +81,7 @@ export class NewReservationComponent implements OnInit {
     reservation['from'] = values.from;
     reservation['to'] = values.to;
     reservation['idCard'] = values.idCard;
-    this.addReservation(reservation, id)
+    this.addReservation(reservation, id);
   }
 
   addReservation(reservation, roomId): void {

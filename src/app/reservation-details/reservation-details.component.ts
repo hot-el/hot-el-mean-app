@@ -1,19 +1,19 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DeleteRoomComponent } from './delete-room/delete-room.component';
+import { DeleteReservationComponent } from './delete-reservation/delete-reservation.component';
 import { MatDialog } from '@angular/material';
 import { RoomService } from '../_services/room.service';
-import { UpdateRoomComponent } from './update-room/update-room.component';
+import { UpdateReservationComponent } from './update-reservation/update-reservation.component';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-room-details',
-  templateUrl: './room-details.component.html',
-  styleUrls: ['./room-details.component.scss']
+  selector: 'app-reservation-details',
+  templateUrl: './reservation-details.component.html',
+  styleUrls: ['./reservation-details.component.scss']
 })
-export class RoomDetailsComponent implements OnInit {
-  @Input() room: any;
-  @Input() isOccupied;
+export class ReservationDetailsComponent implements OnInit {
+
+  @Input() reservation: any;
 
   constructor(
     public dialog: MatDialog,
@@ -26,8 +26,8 @@ export class RoomDetailsComponent implements OnInit {
     this.getRoom();
   }
 
-  openDeleteRoom(room) {
-    const dialogRef = this.dialog.open(DeleteRoomComponent, {
+  openDeleteReservation(room) {
+    const dialogRef = this.dialog.open(DeleteReservationComponent, {
       data: { room: room }
     });
 
@@ -38,8 +38,8 @@ export class RoomDetailsComponent implements OnInit {
     });
   }
 
-  openUpdateRoom(room) {
-    const dialogRef = this.dialog.open(UpdateRoomComponent, {
+  openUpdateReservation(room) {
+    const dialogRef = this.dialog.open(UpdateReservationComponent, {
       data: { room: room }
     });
 
@@ -53,10 +53,7 @@ export class RoomDetailsComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     this.roomService.getRoom(id)
       .subscribe(room => {
-        this.room = room;
-        if (this.room.occupied === true) {
-          this.isOccupied = true;
-        }
+        this.reservation = room;
       });
   }
 

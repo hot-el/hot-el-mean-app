@@ -13,6 +13,7 @@ import { Location } from '@angular/common';
 export class ReserveRoomComponent implements OnInit {
 
   @Input() room: any;
+  @Input() isOccupied: any;
 
   constructor(
     public dialog: MatDialog,
@@ -33,31 +34,20 @@ export class ReserveRoomComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(confirm => {
       if (confirm) {
-        this.delete(room);
+        this.getRoom();
       }
     });
-  }
-
-  delete(room: any): void {
-    this.roomService.deleteRoom(room);
-    // .subscribe();
-  }
-
-  openUpdateRoomForm(room: any) {
-    const dialogRef = this.dialog.open(NewReservationComponent, {
-      data: { room: room }
-    });
-
-    dialogRef.afterClosed().subscribe(() => {
-      this.getRoom();
-    });
-
   }
 
   getRoom(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.roomService.getRoom(id)
-      .subscribe(room => this.room = room);
+      .subscribe(room => {
+        this.room = room;
+        if (this.room.occupied === true) {
+          this.isOccupied = true;
+        }
+      });
   }
 
   goBack(): void {

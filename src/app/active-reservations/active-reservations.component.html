@@ -1,0 +1,15 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Active reservations</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-nav-list>
+            <a class="reservations1" mat-button *ngFor="let reservation of reservations" [routerLink]="['/reservation-details/', reservation._id]">
+             <b> {{reservation.firstName}} {{reservation.lastName}} </b><small> | no. {{reservation.number}} 
+              | From: {{reservation.from | date:'dd/MM/yyyy'}} | To: {{reservation.to | date:'dd/MM/yyyy'}} </small> 
+                <mat-divider></mat-divider>
+            </a>
+         </mat-nav-list>
+    </mat-card-content>
+</mat-card>

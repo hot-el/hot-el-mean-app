@@ -57,25 +57,16 @@ export class RoomService {
 
   getRoomsByCategoryAndSize(category, size) {
     const url = `${this.roomsUrl}/cs/${category}/${size}`;
-    console.log(url);
     return this.http.get(url, httpOptions);
   }
 
   getRoomsByCategorySizeAndOccupied(category, size, isOccupied) {
     const url = `${this.roomsUrl}/cso/${category}/${size}/${isOccupied}`;
-    console.log(url);
     return this.http.get(url, httpOptions);
   }
 
   updateRoom (room, room_id): Observable<any> {
-    console.log('update');
-    console.log(room);
-    console.log('roooom');
     const url = `${this.roomsUrl}/${room_id}`;
-    console.log(room_id);
-    const body = JSON.stringify(room);
-    console.log('body');
-    console.log(body);
     return this.http.put(url, room, httpOptions);
   }
 }

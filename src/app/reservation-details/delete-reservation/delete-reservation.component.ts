@@ -1,24 +1,24 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { RoomService } from '../../_services/room.service';
 
 @Component({
-  selector: 'app-delete-room',
-  templateUrl: './delete-room.component.html',
-  styleUrls: ['./delete-room.component.scss']
+  selector: 'app-delete-reservation',
+  templateUrl: './delete-reservation.component.html',
+  styleUrls: ['./delete-reservation.component.scss']
 })
-export class DeleteRoomComponent implements OnInit {
+export class DeleteReservationComponent implements OnInit {
 
-  room: any;
+  @Input() reservation: any;
 
   constructor(
-    public thisDialogRef: MatDialogRef<DeleteRoomComponent>,
+    public thisDialogRef: MatDialogRef<DeleteReservationComponent>,
     @Inject(MAT_DIALOG_DATA) public modalData: any,
     public roomService: RoomService
   ) {}
 
   ngOnInit(): void {
-    this.room = this.modalData.room;
+    this.reservation = this.modalData.room;
   }
 
   onCloseConfirm() {

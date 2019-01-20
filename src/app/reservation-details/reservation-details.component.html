@@ -1,0 +1,24 @@
+<mat-card *ngIf="reservation" class="example-card">
+    <mat-card-header>
+      <mat-card-title>Reservation no. {{reservation.number}}</mat-card-title>
+      <mat-card-subtitle>Details</mat-card-subtitle>
+      <!-- <mat-card-subtitle>Type: {{reservation.type}} </mat-card-subtitle> -->
+    </mat-card-header>
+    <mat-card-content>
+      <!-- <h2>reservation {{reservation.number}} Detail</h2> -->
+      <p><b>Type:</b> {{reservation.type}} </p>
+      <p><b>Size:</b> {{reservation.size}} </p>
+      <p><b>Date:</b> {{reservation.conservationDate | date:'dd/MM/yyyy'}} </p>
+      <p><b>Occupied:</b> {{reservation.occupied}} </p>
+      <p><b>First name:</b> {{reservation.firstName}} </p>
+      <p><b>Last name:</b> {{reservation.lastName}} </p>
+      <p><b>ID card:</b> {{reservation.idCard}} </p>
+      <p><b>From:</b> {{reservation.from | date:'dd/MM/yyyy'}} </p>
+      <p><b>To:</b> {{reservation.to | date:'dd/MM/yyyy'}} </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button (click)="goBack()">Back</button>
+      <button mat-raised-button (click)="openUpdateReservation(reservation)">Update</button>
+      <button mat-raised-button color="warn" (click)="openDeleteReservation(reservation)">Delete</button>
+    </mat-card-actions>
+  </mat-card>

@@ -49,6 +49,10 @@ import { MakeReservationComponent } from './make-reservation/make-reservation.co
 import { ReserveRoomComponent } from './make-reservation/reserve-room/reserve-room.component';
 import { RoomsToReserveComponent } from './make-reservation/rooms-to-reserve/rooms-to-reserve.component';
 import { NewReservationComponent } from './make-reservation/reserve-room/new-reservation/new-reservation.component';
+import { ActiveReservationsComponent } from './active-reservations/active-reservations.component';
+import { ReservationDetailsComponent } from './reservation-details/reservation-details.component';
+import { DeleteReservationComponent } from './reservation-details/delete-reservation/delete-reservation.component';
+import { UpdateReservationComponent } from './reservation-details/update-reservation/update-reservation.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +82,11 @@ import { NewReservationComponent } from './make-reservation/reserve-room/new-res
     MakeReservationComponent,
     ReserveRoomComponent,
     RoomsToReserveComponent,
-    NewReservationComponent
+    NewReservationComponent,
+    ActiveReservationsComponent,
+    ReservationDetailsComponent,
+    DeleteReservationComponent,
+    UpdateReservationComponent
   ],
   imports: [
     BrowserModule,
@@ -118,7 +126,9 @@ import { NewReservationComponent } from './make-reservation/reserve-room/new-res
     NewRoomComponent,
     DeleteRoomComponent,
     UpdateRoomComponent,
-    NewReservationComponent
+    NewReservationComponent,
+    DeleteReservationComponent,
+    UpdateReservationComponent
   ],
   bootstrap: [AppComponent]
 })
