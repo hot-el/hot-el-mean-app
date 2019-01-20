@@ -14,7 +14,8 @@ router.route('/')
     .get(asyncHandler(getAllRooms));
 
 router.route('/:id')
-    .get(asyncHandler(getRoomById));
+    .get(asyncHandler(getRoomById))
+    .put(asyncHandler(update));
 
 router.route('/c/:category')
     .get(asyncHandler(getRoomsByCategory));
@@ -78,9 +79,15 @@ router.delete('/:id', function(req, res, next) {
     });
   });
 
-router.put('/:id', function(req, res, next) {
-    Room.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
-      if (err) return next(err);
-      res.json(post);
-    });
-  });
+// router.put('/:id', function(req, res, next) {
+//     Room.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+//       if (err) return next(err);
+//       res.json(post);
+//     });
+//   });
+
+async function update(req, res) {
+    console.log('update room');
+    let room = await roomCtrl.update(req.params.id, req.body);
+    res.json(room);
+}

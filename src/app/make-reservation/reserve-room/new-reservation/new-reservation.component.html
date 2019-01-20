@@ -1,3 +1,64 @@
-<p>
-  new-reservation works!
-</p>
+<div class="container">
+    <div class="row">
+          
+      <div class="col">
+        <h2 class="section-title">New reservation</h2>
+        <form [formGroup]="reservationForm" (ngSubmit)="onSubmitReservation(reservationForm.value)">
+          <mat-form-field class="full-width">
+            <input min="0" matInput placeholder="First Name" formControlName="firstName" required>
+            <mat-error *ngFor="let validation of validation_messages.firstName">
+              <mat-error class="error-message" *ngIf="reservationForm.get('firstName').hasError(validation.firstName) && (reservationForm.get('firstName').dirty || reservationForm.get('firstName').touched)">{{validation.message}}</mat-error>
+            </mat-error>
+          </mat-form-field>
+      
+          <br>
+  
+          <mat-form-field class="full-width">
+            <input min="0" matInput placeholder="Last Name" formControlName="lastName" required>
+            <mat-error *ngFor="let validation of validation_messages.lastName">
+              <mat-error class="error-message" *ngIf="reservationForm.get('lastName').hasError(validation.lastName) && (reservationForm.get('lastName').dirty || reservationForm.get('lastName').touched)">{{validation.message}}</mat-error>
+            </mat-error>
+          </mat-form-field>
+        
+          <br>
+  
+          <mat-form-field class="full-width">
+            <input matInput [matDatepicker]="pickerFrom" placeholder="From" formControlName="from" required>
+            <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+            <mat-datepicker #pickerFrom></mat-datepicker>
+            <mat-error *ngFor="let validation of validation_messages.from">
+              <mat-error class="error-message" *ngIf="reservationForm.get('from').hasError(validation.type) && (reservationForm.get('from').dirty || reservationForm.get('from').touched)">{{validation.message}}</mat-error>
+            </mat-error>
+          </mat-form-field>
+      
+          <br>
+  
+          <mat-form-field class="full-width">
+            <input matInput [matDatepicker]="pickerTo" placeholder="To" formControlName="to" required>
+            <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+            <mat-datepicker #pickerTo></mat-datepicker>
+            <mat-error *ngFor="let validation of validation_messages.to">
+              <mat-error class="error-message" *ngIf="reservationForm.get('to').hasError(validation.type) && (reservationForm.get('to').dirty || reservationForm.get('to').touched)">{{validation.message}}</mat-error>
+            </mat-error>
+          </mat-form-field>
+        
+          <br>
+  
+          <mat-form-field class="full-width">
+            <input min="0" matInput placeholder="ID Card" formControlName="idCard" required>
+            <mat-error *ngFor="let validation of validation_messages.idCard">
+              <mat-error class="error-message" *ngIf="reservationForm.get('idCard').hasError(validation.idCard) && (reservationForm.get('idCard').dirty || reservationForm.get('idCard').touched)">{{validation.message}}</mat-error>
+            </mat-error>
+          </mat-form-field>
+          
+          <br>
+  
+          <button class="submit-btn" color="primary" mat-raised-button type="submit" [disabled]="!reservationForm.valid">
+            Reserve
+          </button>
+  
+          <button mat-raised-button class="alert-modal-button alert-modal-button-failure" type="button"(click)="onCloseCancel()">Cancel</button>
+      
+        </form>
+    </div>
+  </div>

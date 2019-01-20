@@ -6,8 +6,18 @@ const roomSchema = Joi.object({
     type: Joi.string().required().default('Basic'),
     size: Joi.number().required().min(2),
     conservationDate: Joi.date(),
-    occupied: Joi.boolean()
-})
+    occupied: Joi.boolean(),
+    firstName: Joi.string()
+        .when('occupied', { is: true, then: Joi.required() }),
+    lastName: Joi.string()
+        .when('occupied', { is: true, then: Joi.required() }),
+    idCard: Joi.string()
+        .when('occupied', { is: true, then: Joi.required() }),
+    from: Joi.date()
+        .when('occupied', { is: true, then: Joi.required() }),
+    to: Joi.date()
+        .when('occupied', { is: true, then: Joi.required() })
+});
 
 module.exports = {
     insert,
@@ -18,7 +28,8 @@ module.exports = {
     deleteRoom,
     getRoomsByCategorySizeAndOccupied,
     getRoomsByCategoryAndOccupied,
-    getRoomsByOccupied
+    getRoomsByOccupied,
+    update
 }
 
 async function insert(room) {
@@ -59,5 +70,10 @@ async function getRoomsByCategoryAndOccupied(category, occupied) {
 
 async function getRoomsByOccupied(occupied) {
     return await Room.find().where('occupied').equals(occupied).sort({number: 1});
-        
+}
+
+async function update(id, room) {
+    console.log(room);
+    room = await Joi.validate(room, roomSchema);
+    return await Room.findByIdAndUpdate(id, room);
 }
