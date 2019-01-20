@@ -1,3 +1,32 @@
-<p>
-  update-reservation works!
-</p>
+<div class="container">
+  <div class="row">
+        
+    <div class="col">
+      <h2 class="section-title">Update reservation</h2>
+      <form [formGroup]="reservationForm" (ngSubmit)="onSubmitReservation(reservationForm.value)">
+       
+        <mat-form-field class="full-width">
+          <input matInput [matDatepicker]="pickerFrom" placeholder="From" formControlName="from" required>
+          <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+          <mat-datepicker #pickerFrom></mat-datepicker>
+        </mat-form-field>
+    
+        <br>
+
+        <mat-form-field class="full-width">
+          <input matInput [matDatepicker]="pickerTo" placeholder="To" formControlName="to" required>
+          <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+          <mat-datepicker #pickerTo></mat-datepicker>
+        </mat-form-field>
+      
+        <br>
+
+        <button class="submit-btn" color="primary" mat-raised-button type="submit" [disabled]="!reservationForm.valid">
+          Update
+        </button>
+
+        <button mat-raised-button class="alert-modal-button alert-modal-button-failure" type="button"(click)="onCloseCancel()">Cancel</button>
+    
+      </form>
+  </div>
+</div>

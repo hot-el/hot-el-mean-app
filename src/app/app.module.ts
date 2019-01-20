@@ -53,6 +53,7 @@ import { ActiveReservationsComponent } from './active-reservations/active-reserv
 import { ReservationDetailsComponent } from './reservation-details/reservation-details.component';
 import { DeleteReservationComponent } from './reservation-details/delete-reservation/delete-reservation.component';
 import { UpdateReservationComponent } from './reservation-details/update-reservation/update-reservation.component';
+import { CheckOutComponent } from './reservation-details/check-out/check-out.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { UpdateReservationComponent } from './reservation-details/update-reserva
     ActiveReservationsComponent,
     ReservationDetailsComponent,
     DeleteReservationComponent,
-    UpdateReservationComponent
+    UpdateReservationComponent,
+    CheckOutComponent
   ],
   imports: [
     BrowserModule,
@@ -128,7 +130,8 @@ import { UpdateReservationComponent } from './reservation-details/update-reserva
     UpdateRoomComponent,
     NewReservationComponent,
     DeleteReservationComponent,
-    UpdateReservationComponent
+    UpdateReservationComponent,
+    CheckOutComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -62,8 +62,8 @@ export class NewReservationComponent implements OnInit {
   createForms() {
     // reservation form validations
     this.reservationForm = this.fb.group({
-      firstName: [this.types[0], Validators.required ],
-      lastName: [this.types[0], Validators.required ],
+      firstName: ['', Validators.required ],
+      lastName: ['', Validators.required ],
       idCard: ['', Validators.required],
       from: ['', Validators.required],
       to: ['', Validators.required]
