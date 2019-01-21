@@ -5,18 +5,18 @@
         <h2 class="section-title">New reservation</h2>
         <form [formGroup]="reservationForm" (ngSubmit)="onSubmitReservation(reservationForm.value)">
           <mat-form-field class="full-width">
-            <input min="0" matInput placeholder="First Name" formControlName="firstName" required>
+            <input matInput placeholder="First Name" formControlName="firstName" required>
             <mat-error *ngFor="let validation of validation_messages.firstName">
-              <mat-error class="error-message" *ngIf="reservationForm.get('firstName').hasError(validation.firstName) && (reservationForm.get('firstName').dirty || reservationForm.get('firstName').touched)">{{validation.message}}</mat-error>
+              <mat-error class="error-message" *ngIf="reservationForm.get('firstName').hasError(validation.type) && (reservationForm.get('firstName').dirty || reservationForm.get('firstName').touched)">{{validation.message}}</mat-error>
             </mat-error>
           </mat-form-field>
       
           <br>
   
           <mat-form-field class="full-width">
-            <input min="0" matInput placeholder="Last Name" formControlName="lastName" required>
+            <input matInput placeholder="Last Name" formControlName="lastName" required>
             <mat-error *ngFor="let validation of validation_messages.lastName">
-              <mat-error class="error-message" *ngIf="reservationForm.get('lastName').hasError(validation.lastName) && (reservationForm.get('lastName').dirty || reservationForm.get('lastName').touched)">{{validation.message}}</mat-error>
+              <mat-error class="error-message" *ngIf="reservationForm.get('lastName').hasError(validation.type) && (reservationForm.get('lastName').dirty || reservationForm.get('lastName').touched)">{{validation.message}}</mat-error>
             </mat-error>
           </mat-form-field>
         
@@ -47,7 +47,7 @@
           <mat-form-field class="full-width">
             <input min="0" matInput placeholder="ID Card" formControlName="idCard" required>
             <mat-error *ngFor="let validation of validation_messages.idCard">
-              <mat-error class="error-message" *ngIf="reservationForm.get('idCard').hasError(validation.idCard) && (reservationForm.get('idCard').dirty || reservationForm.get('idCard').touched)">{{validation.message}}</mat-error>
+              <mat-error class="error-message" *ngIf="reservationForm.get('idCard').hasError(validation.type) && (reservationForm.get('idCard').dirty || reservationForm.get('idCard').touched)">{{validation.message}}</mat-error>
             </mat-error>
           </mat-form-field>
           

@@ -56,8 +56,10 @@ export class ReservationDetailsComponent implements OnInit {
       data: { room: room }
     });
 
-    dialogRef.afterClosed().subscribe(() => {
-      this.router.navigateByUrl('/active-reservations');
+    dialogRef.afterClosed().subscribe((confirm) => {
+      if (confirm) {
+        this.router.navigateByUrl('/active-reservations');
+      }
     });
 
   }

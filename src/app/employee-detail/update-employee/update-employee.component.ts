@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation, Inject, Input } from '@angular/co
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { EmployeeService } from '../../_services/employee.service';
+import { CustomValidators } from '../../_services/custom_validators';
 
 @Component({
   selector: 'app-update-employee',
@@ -28,20 +29,23 @@ export class UpdateEmployeeComponent implements OnInit {
 
   validation_messages = {
     'firstName': [
-      { type: 'required', message: 'Name is required' }
+      { type: 'required', message: 'First Name is required' },
+      { type: 'nameVal', message: 'First char must be capital (only characters)' }
     ],
     'lastName': [
-        { type: 'required', message: 'Surame is required' }
+        { type: 'required', message: 'Last is required' },
+        { type: 'nameVal', message: 'First char must be capital (only characters)' }
     ],
     'gender': [
       { type: 'required', message: 'Please select gender' },
     ],
-    'roles': [
+    'position': [
         { type: 'required', message: 'Please insert position' },
     ],
     'birthday': [
-      { type: 'required', message: 'Please birthday' },
-    ]
+      { type: 'required', message: 'Please insert birthday' },
+      { type: 'DateGreaterThanToday', message: 'He/She cant be born in the future' }
+    ],
   };
 
   constructor(
@@ -52,14 +56,14 @@ export class UpdateEmployeeComponent implements OnInit {
 
   ngOnInit() {
     this.employee = this.modalData.employee;
-    this.createForms(this.modalData);
+    this.createForms();
   }
 
-  createForms(modalData: any) {
+  createForms() {
     this.updateEmployeeForm = this.fb.group({
-      firstName: [this.employee.firstName, Validators.required ],
-      lastName: [this.employee.lastName, Validators.required],
-      birthday: [this.employee.birthday, Validators.required],
+      firstName: [this.employee.firstName, [Validators.required, CustomValidators.NameValidator]],
+      lastName: [this.employee.lastName, [Validators.required, CustomValidators.NameValidator]],
+      birthday: [this.employee.birthday, [Validators.required, CustomValidators.DateValidator]],
       gender: new FormControl(this.employee.gender, Validators.required),
       roles: new FormControl(this.employee.roles[0], Validators.required)
     });

@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Validators, FormGroup, FormControl, FormBuilder} from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { RoomService } from '../../../_services/room.service';
+import { CustomValidators } from '../../../_services/custom_validators';
 
 @Component({
   selector: 'app-new-reservation',
@@ -26,19 +27,24 @@ export class NewReservationComponent implements OnInit {
   ];
 
   validation_messages = {
-    'type': [
-      { type: 'required', message: 'Type is required' },
+    'from': [
+      { type: 'required', message: 'Please insert from' },
     ],
-    'number': [
-      { type: 'required', message: 'Please select room number' },
-      { type: 'pattern', message: 'You can pick only numbers' }
+    'to': [
+      { type: 'required', message: 'Please insert to' },
     ],
-    'size': [
-      { type: 'required', message: 'Please select number of people' },
+    'firstName': [
+      { type: 'required', message: 'First name is required' },
+      { type: 'nameVal', message: 'Invalid first name' }
     ],
-    'dateConservation': [
-      { type: 'required', message: 'Please insert last conservation date' },
+    'lastName': [
+      { type: 'required', message: 'Last name is required' },
+      { type: 'nameVal', message: 'Invalid last name' }
     ],
+    'idCard': [
+      { type: 'required', message: 'ID card number is required' },
+      { type: 'idVal', message: 'Invalid ID card number' }
+    ]
   };
 
   constructor(
@@ -60,11 +66,10 @@ export class NewReservationComponent implements OnInit {
   }
 
   createForms() {
-    // reservation form validations
     this.reservationForm = this.fb.group({
-      firstName: ['', Validators.required ],
-      lastName: ['', Validators.required ],
-      idCard: ['', Validators.required],
+      firstName: ['', [Validators.required, CustomValidators.NameValidator]],
+      lastName: ['', [Validators.required, CustomValidators.NameValidator] ],
+      idCard: ['', [Validators.required, CustomValidators.IDValidator]],
       from: ['', Validators.required],
       to: ['', Validators.required]
     });

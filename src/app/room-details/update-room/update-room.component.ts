@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Validators, FormGroup, FormControl, FormBuilder} from '@angular/forms';
 import { RoomService } from '../../_services/room.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { CustomValidators } from '../../_services/custom_validators';
 
 @Component({
   selector: 'app-update-room',
@@ -38,8 +39,9 @@ export class UpdateRoomComponent implements OnInit {
     'size': [
       { type: 'required', message: 'Please select number of people' },
     ],
-    'dateConservation': [
+    'conservationDate': [
       { type: 'required', message: 'Please insert last conservation date' },
+      { type: 'DateGreaterThanToday', message: 'Date cant be creater than today' }
     ],
   };
 
@@ -63,31 +65,17 @@ export class UpdateRoomComponent implements OnInit {
     this.thisDialogRef.close(null);
   }
 
-  onSubmit(values) {
-    this.room = values;
-    console.log(this.room);
-
-    // create new room
-    // this.roomService.createRoom(data)
-    // .subscribe(name => {
-    //   this.thisDialogRef.close(name);
-    //   this.roomForm.reset();
-    // });
-  }
-
   createForms() {
     // room form validations
     this.roomForm = this.fb.group({
       type: [this.room.type, Validators.required ],
-      conservationDate: [this.room.conservationDate, Validators.required],
+      conservationDate: [this.room.conservationDate, [Validators.required, CustomValidators.DateValidator]],
       size: new FormControl(this.room.size, Validators.required),
       number: [this.room.number, Validators.required]
     });
   }
 
   onSubmitRoom(values) {
-    console.log(this.room._id);
-    console.log('onSubmit');
     this.roomService.updateRoom(values, this.room._id)
        .subscribe(room => {
       this.thisDialogRef.close(room);

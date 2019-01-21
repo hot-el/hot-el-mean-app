@@ -40,19 +40,31 @@
               <mat-select formControlName="employee" placeholder="Name">
                   <mat-option *ngFor="let employee of employees" [value]="employee">
                     {{ employee.firstName }} {{employee.lastName}} {{employee.roles[0]}}
-                  </mat-option>      
+                  </mat-option>   
+                  <mat-error *ngFor="let validation of validation_messages.employee">
+                    <mat-error class="error-message" *ngIf="eventForm.get('employee').hasError(validation.type) && (eventForm.get('employee').dirty || eventForm.get('employee').touched)">{{validation.message}}</mat-error>
+                  </mat-error>   
                 </mat-select>
               </mat-form-field>    
               <mat-form-field>
                 <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="start" required>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngFor="let validation of validation_messages.start">
+                  <mat-error class="error-message" *ngIf="eventForm.get('start').hasError(validation.type) && (eventForm.get('start').dirty || eventForm.get('start').touched)">{{validation.message}}</mat-error>
+                </mat-error>
               </mat-form-field>
               <mat-form-field class="example-full-width">
                   <input min="0" max="24" matInput placeholder="Starts at" formControlName="from" required>
+                  <mat-error *ngFor="let validation of validation_messages.from">
+                    <mat-error class="error-message" *ngIf="eventForm.get('from').hasError(validation.type) && (eventForm.get('from').dirty || eventForm.get('from').touched)">{{validation.message}}</mat-error>
+                  </mat-error>
               </mat-form-field>
               <mat-form-field class="example-full-width">
                   <input min="0" max="24" matInput placeholder="Ends at" formControlName="to" required>
+                  <mat-error *ngFor="let validation of validation_messages.to">
+                    <mat-error class="error-message" *ngIf="eventForm.get('to').hasError(validation.type) && (eventForm.get('to').dirty || eventForm.get('to').touched)">{{validation.message}}</mat-error>
+                  </mat-error>
               </mat-form-field>    
               <button class="submit-btn" color="primary" mat-raised-button type="submit" [disabled]="!eventForm.valid">
                 Add

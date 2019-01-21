@@ -16,7 +16,8 @@ export class CheckOutComponent implements OnInit {
   constructor(
     public thisDialogRef: MatDialogRef<CheckOutComponent>,
     @Inject(MAT_DIALOG_DATA) public modalData: any,
-    public roomService: RoomService
+    public roomService: RoomService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -45,14 +46,12 @@ export class CheckOutComponent implements OnInit {
     this.reservation.occupied = false;
     const id = this.reservation._id;
     delete this.reservation._id;
-    console.log(this.reservation);
     this.roomService.updateRoom(this.reservation, id).subscribe(res => {
       this.thisDialogRef.close(true);
     });
   }
 
   onCloseCancel() {
-    this.thisDialogRef.close(false);
+    this.thisDialogRef.close(null);
   }
-
 }

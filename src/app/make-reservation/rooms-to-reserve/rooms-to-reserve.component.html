@@ -2,6 +2,8 @@
     <mat-card-header>
         <mat-card-title>Rooms</mat-card-title>
     </mat-card-header>
+    <a mat-raised-button routerLink="/receptionist">Receptionist board</a> <br> <br>
+    <mat-divider></mat-divider>
     <mat-card-content>
         <mat-nav-list>
             <a class="rooms1" mat-raised-button *ngFor="let room of rooms" [routerLink]="['/new-reservation/', room._id]">Room {{room.number}} </a>

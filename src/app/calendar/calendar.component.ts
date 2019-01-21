@@ -38,16 +38,6 @@ const colors: any = {
   }
 };
 
-// interface MyEvent extends CalendarEvent {
-//   firstName: string;
-//   lastName: string;
-//   role: string;
-//   id: string;
-//   _id: string;
-//   actions: any;
-//   color: any;
-// }
-
 class MyEvent1 implements CalendarEvent {
   firstName: string;
   lastName: string;
@@ -96,6 +86,21 @@ export class CalendarComponent implements OnInit {
       }
     }
   ];
+
+  validation_messages = {
+    'employee': [
+      { type: 'required', message: 'Name is required' },
+    ],
+    'start': [
+        { type: 'required', message: 'Date is required' },
+    ],
+    'to': [
+      { type: 'required', message: 'To is required' },
+    ],
+    'from': [
+        { type: 'required', message: 'From is required' },
+    ]
+  };
 
   shifts: any;
   requests: any;
@@ -206,16 +211,15 @@ export class CalendarComponent implements OnInit {
         this.activeDayIsOpen = true;
       }
     }
-    console.log('Day was clicked');
-    console.log(events);
   }
 
   handleEvent(action: string, event: CalendarEvent): void {
-    console.log('Event clicked', action, ', ', event);
+    // console.log(event);
   }
 
   addEvent(event): void {
     this.shiftService.addShift(event).subscribe(e => {
+      event['_id'] = e['_id'];
       this.events.push(new MyEvent1(event));
       this.refresh.next();
     });
@@ -224,9 +228,9 @@ export class CalendarComponent implements OnInit {
   createForm() {
     this.eventForm = this.fb.group({
       employee: ['', Validators.required ],
-      start: [new Date(Date.now()), Validators.required],
-      to: new FormControl(16, Validators.required),
-      from: [8, Validators.required]
+      start: [new Date(Date.now()), [Validators.required]],
+      to: [16, [Validators.required, Validators.min(1), Validators.max(24)]],
+      from: [8, [Validators.required, Validators.min(1), Validators.max(24)]]
     });
   }
 
