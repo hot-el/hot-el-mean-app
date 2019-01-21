@@ -1,0 +1,19 @@
+mat-grid-list {
+    margin: 50px;
+}
+
+mat-grid-tile {
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0,0,0,0);
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    transition-duration: 0.3s;
+    transition-property: transform;
+    transition-timing-function: ease-out;
+}
+
+mat-grid-tile:hover,
+mat-grid-tile:focus,
+mat-grid-tile:active{
+    transform: translateY(-8px);
+}

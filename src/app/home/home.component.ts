@@ -1,4 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { routes } from '../app-routing/app-routing.module';
+
+export interface Tile {
+  color: string;
+  cols: number;
+  rows: number;
+  text: string;
+  link: string;
+}
 
 @Component({
   selector: 'app-home',
@@ -9,15 +18,23 @@ export class HomeComponent implements OnInit {
 
   constructor() { }
 
-  routes: any[];
+  homeroutes: Tile[] 
 
-  ngOnInit() {  
-    this.routes = [
-      'room',
-      'auth',
-      'invoice',
-      'service'
-    ]
-  }
+  ngOnInit() { 
+    this.homeroutes = [
+      {text: 'Schedule', link: '/calendar', color: 'lightpink', cols: 3, rows: 1},
+      {text: 'Manage your account', link: '/your-account', color: 'lightgreen', cols: 1, rows: 2},
+    ];
+
+    const user = (<any>window).user;
+    
+    if(user.isManager || user.isAdmin) this.homeroutes.push(
+      {text: 'Manager Panel', link: '/manager', color: 'lightblue', cols: 2, rows: 1},
+    );
+
+    if(user.isReceptionist || user.isAdmin) this.homeroutes.push(
+      {text: 'Receptionist Panel', link: '/receptionist', color: 'lightyellow', cols: 1, rows: 1},
+    );
+   }
 
 }
