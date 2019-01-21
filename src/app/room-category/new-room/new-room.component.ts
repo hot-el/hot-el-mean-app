@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Validators, FormGroup, FormControl, FormBuilder} from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { RoomService } from '../../_services/room.service';
+import { CustomValidators } from '../../_services/custom_validators';
 
 @Component({
   selector: 'app-new-room-form',
@@ -39,8 +40,9 @@ export class NewRoomComponent implements OnInit {
     'size': [
       { type: 'required', message: 'Please select number of people' },
     ],
-    'dateConservation': [
+    'conservationDate': [
       { type: 'required', message: 'Please insert last conservation date' },
+      { type: 'DateGreaterThanToday', message: 'Date cant be greater than today' }
     ],
   };
 
@@ -78,7 +80,7 @@ export class NewRoomComponent implements OnInit {
     console.log('creating forms');
     this.roomForm = this.fb.group({
       type: [this.types[0], Validators.required ],
-      conservationDate: ['', Validators.required],
+      conservationDate: [new Date(Date.now()), [Validators.required, CustomValidators.DateValidator]],
       size: new FormControl(this.sizes[0], Validators.required),
       number: ['', Validators.required]
     });

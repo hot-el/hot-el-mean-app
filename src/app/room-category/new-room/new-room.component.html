@@ -36,7 +36,7 @@
             <br>
 
             <mat-form-field class="full-width">
-              <input matInput [matDatepicker]="picker" placeholder="Last conservationDate" formControlName="conservationDate" required>
+              <input matInput [matDatepicker]="picker" placeholder="Last conservation date" formControlName="conservationDate" required>
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
               <mat-error *ngFor="let validation of validation_messages.conservationDate">
@@ -62,7 +62,7 @@
             <mat-form-field class="full-width">
                 <input min="0" type="number" matInput placeholder="Room number" formControlName="number" required>
                 <mat-error *ngFor="let validation of validation_messages.number">
-                  <mat-error class="error-message" *ngIf="roomForm.get('number').hasError(validation.number) && (roomForm.get('number').dirty || roomForm.get('number').touched)">{{validation.message}}</mat-error>
+                  <mat-error class="error-message" *ngIf="roomForm.get('number').hasError(validation.type) && (roomForm.get('number').dirty || roomForm.get('number').touched)">{{validation.message}}</mat-error>
                 </mat-error>
               </mat-form-field>
 

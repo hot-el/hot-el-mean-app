@@ -1,11 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 import { EmployeeService } from '../_services/employee.service';
 import { MatDialog } from '@angular/material';
 import {Router} from '@angular/router';
-
-// import { UpdateEmployeeComponent } from './update-employee/update-employee.component';
 import { DeleteAccountComponent } from './delete-account/delete-account.component';
 import { UpdateAccountFormComponent } from './update-account-form/update-account-form.component';
 
@@ -24,7 +21,6 @@ export class AccountDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private employeeService: EmployeeService,
-    private location: Location,
     public dialog: MatDialog,
     private router: Router
   ) { }
@@ -60,6 +56,7 @@ export class AccountDetailComponent implements OnInit {
         this.account.birthday = confirm.birthday;
         this.account.gender = confirm.gender;
         this.account.roles = confirm.roles;
+        this.account.email = confirm.email;
       }
     });
   }

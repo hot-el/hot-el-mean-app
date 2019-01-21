@@ -16,7 +16,6 @@ export class SearchEmployeesComponent implements OnInit {
   }
 
   fastRoute(id: string) {
-    // this.url = this.url + id;
     this.router.navigateByUrl('/detail/' + id);
   }
 

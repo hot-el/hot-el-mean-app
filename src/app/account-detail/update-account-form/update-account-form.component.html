@@ -4,7 +4,6 @@
       <div class="col">
         <h3 class="section-title">Account Form</h3>
         <form class="example-form" (ngSubmit)="onSubmitAccount(updateAccountForm.value)">
-        <!-- <form [formGroup]="updateAccountForm" (ngSubmit)="onSubmitAccount(updateAccountForm.value)"></form> -->
           <table cellspacing="0" [formGroup]="updateAccountForm">
               <tr>
                 <td>   
@@ -31,7 +30,9 @@
                         <td>
                           <mat-form-field>
                             <input matInput placeholder="Email" formControlName="email" name="email" required>
-                            <mat-error *ngIf="email.invalid && email.errors.email">Invalid email address</mat-error>
+                            <mat-error *ngFor="let validation of validation_messages.email">
+                              <mat-error class="error-message" *ngIf="updateAccountForm.get('email').hasError(validation.type) && (updateAccountForm.get('email').dirty || updateAccountForm.get('email').touched)">{{validation.message}}</mat-error>
+                            </mat-error>
                           </mat-form-field>
                         </td>
                       </tr>

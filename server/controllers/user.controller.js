@@ -83,10 +83,14 @@ async function updateByAdmin(user) {
   user.firstName = user.firstName[0].toUpperCase() + user.firstName.slice(1).toLowerCase()
   user.lastName = user.lastName[0].toUpperCase() + user.lastName.slice(1).toLowerCase();
   user.fullname = user.firstName + ' ' + user.lastName;
-  if (user.password === undefined  || user.password === 'password') {
+  if (user.password === undefined) {
     user.password = (user.firstName[0] + user.lastName).toLowerCase();
   }
-  user.hashedPassword = bcrypt.hashSync(user.password, 10);
+  if (user.password === 'password') {
+    //do not change password
+  } else {
+    user.hashedPassword = bcrypt.hashSync(user.password, 10);
+  }
   console.log(user.password);
   delete user.password;
   return await user;

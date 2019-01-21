@@ -6,7 +6,7 @@
       <form [formGroup]="employeeForm" (ngSubmit)="onSubmitEmployee(employeeForm.value)">
         <mat-form-field class="full-width">
           <input matInput placeholder="First Name" formControlName="firstName" required>
-          <mat-error *ngFor="let validation of validation_messages.name">
+          <mat-error *ngFor="let validation of validation_messages.firstName">
             <mat-error class="error-message" *ngIf="employeeForm.get('firstName').hasError(validation.type) && (employeeForm.get('firstName').dirty || employeeForm.get('firstName').touched)">{{validation.message}}</mat-error>
           </mat-error>
         </mat-form-field>
