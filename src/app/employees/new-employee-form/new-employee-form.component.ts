@@ -2,8 +2,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
 import { EmployeeService } from '../../_services/employee.service';
-import { LowerCasePipe } from '@angular/common';
 import { CustomValidators } from '../../_services/custom_validators';
+import { ActivatedRoute, Params } from '@angular/router';
 
 
 @Component({
@@ -14,11 +14,7 @@ import { CustomValidators } from '../../_services/custom_validators';
 export class NewEmployeeFormComponent implements OnInit {
 
   employeeForm: FormGroup;
-//   accountDetailsForm: FormGroup;
-//   addEmployeeForm: FormGroup;
-
-//   matching_passwords_group: FormGroup;
-//   country_phone_group: FormGroup;
+  userId = '';
 
   genders = [
     'Male',
@@ -57,53 +53,32 @@ export class NewEmployeeFormComponent implements OnInit {
     ]
   };
 
-//   account_validation_messages = {
-//     'username': [
-//       { type: 'required', message: 'Username is required' },
-//       { type: 'minlength', message: 'Username must be at least 5 characters long' },
-//       { type: 'maxlength', message: 'Username cannot be more than 25 characters long' },
-//       { type: 'pattern', message: 'Your username must contain only numbers and letters' },
-//       { type: 'validUsername', message: 'Your username has already been taken' }
-//     ],
-//     'email': [
-//       { type: 'required', message: 'Email is required' },
-//       { type: 'pattern', message: 'Enter a valid email' }
-//     ],
-//     'confirm_password': [
-//       { type: 'required', message: 'Confirm password is required' },
-//       { type: 'areEqual', message: 'Password mismatch' }
-//     ],
-//     'password': [
-//       { type: 'required', message: 'Password is required' },
-//       { type: 'minlength', message: 'Password must be at least 5 characters long' },
-//       { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, and one number' }
-//     ],
-//     'terms': [
-//       { type: 'pattern', message: 'You must accept terms and conditions' }
-//     ]
-//   };
-
   constructor(
     private fb: FormBuilder,
     public thisDialogRef: MatDialogRef<NewEmployeeFormComponent>,
-    private employeeService: EmployeeService) { }
+    private employeeService: EmployeeService,
+    private route: ActivatedRoute
+    ) {}
+
+  // Getters
+  get name() { return this.employeeForm.get('FirstName'); }
+  get email() { return this.employeeForm.get('email'); }
 
   ngOnInit() {
     this.createForms();
+
+    this.route.params
+      .subscribe(
+        (params: Params) => {
+          this.userId = params['id'] ? params['id'] : '';
+
+          this.employeeForm.controls['email'].setAsyncValidators(
+            CustomValidators.createEmailNotTakenValidator(this.employeeService, this.userId));
+        }
+      );
   }
 
   createForms() {
-    // matching passwords validation
-    // this.matching_passwords_group = new FormGroup({
-    //   password: new FormControl('', Validators.compose([
-    //     Validators.minLength(5),
-    //     Validators.required,
-    //     Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
-    //   ])),
-    //   confirm_password: new FormControl('', Validators.required)
-    // }, (formGroup: FormGroup) => {
-    //   return PasswordValidator.areEqual(formGroup);
-    // });
     this.employeeForm = this.fb.group({
       firstName: ['', [Validators.required, CustomValidators.NameValidator]],
       lastName: ['', [Validators.required, CustomValidators.NameValidator]],

@@ -1,4 +1,6 @@
 import { FormControl, Validators, AbstractControl } from '@angular/forms';
+import { EmployeeService } from './employee.service';
+import 'rxjs/add/operator/map';
 
 export class CustomValidators extends Validators {
 
@@ -79,4 +81,13 @@ export class CustomValidators extends Validators {
         } : null;
       }
 
+      static createEmailNotTakenValidator(employeeService: EmployeeService, userId: string) {
+        return (control: AbstractControl) => {
+          return employeeService.checkEmailNotTaken(control.value, userId).map(res => {
+            return res.emailNotTaken ? null : {emailTaken: true};
+          });
+        };
+      }
+
 }
+

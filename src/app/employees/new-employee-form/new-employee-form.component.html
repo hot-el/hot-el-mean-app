@@ -65,6 +65,7 @@
               <mat-error *ngFor="let validation of validation_messages.email">
                 <mat-error class="error-message" *ngIf="employeeForm.get('email').hasError(validation.type) && (employeeForm.get('email').dirty || employeeForm.get('email').touched)">{{validation.message}}</mat-error>
               </mat-error>
+              <mat-error *ngIf="email.invalid && email.errors.emailTaken">Email already taken</mat-error>
             </mat-form-field>
             
        <br>
