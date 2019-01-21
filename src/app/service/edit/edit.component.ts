@@ -43,5 +43,8 @@ export class EditComponent implements OnInit {
     this.db.updateService(this.data._id, service).subscribe();
     this.dialogRef.close();
   }
+
+  get name() {return this.form.get('name')}
+  get price() {return this.form.get('price')}
   
 }

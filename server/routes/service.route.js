@@ -40,8 +40,7 @@ async function update(req, res) {
 
 async function deleteById(req, res, next) {
     await serviceCtrl.deleteById(req.params.id);
-    res.send('Deleted service: '.concat(req.params.id));
-    next()
+    res.json({msg: 'Deleted service: '.concat(req.params.id)});
 }
 
 async function getByName(req, res) {

@@ -9,8 +9,8 @@
         <input matInput placeholder="Description" formControlName="description">
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Price" formControlName="price" required>
-        <div *ngIf="price.invalic && (price.dirty || price.touched)">
+        <input id="price" matInput placeholder="Price" formControlName="price" required>
+        <div *ngIf="price.invalid && (price.dirty || price.touched)">
             <div *ngIf="price.errors.min">Must be greater than 0</div> 
           </div>
       </mat-form-field>
