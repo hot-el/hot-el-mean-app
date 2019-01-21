@@ -9,7 +9,7 @@
                 <p mat-line>Description: {{service.description}} </p>
                 <p mat-line> Price: {{service.price}}</p>
                 <button mat-flat-button color="primary" (click)="edit(service)">Edit</button>
-                <button mat-flat-button color="warn" (click)="delete(service)">Delete</button>
+                <button mat-flat-button color="warn" (click)="delete(service._id)">Delete</button>
             </mat-list-item>
         </mat-list>
     </mat-card-content>
