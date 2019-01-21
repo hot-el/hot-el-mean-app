@@ -59,8 +59,6 @@ async function insertByAdmin(user) {
     user.password = (user.firstName[0] + user.lastName).toLowerCase();
   }
   user.hashedPassword = bcrypt.hashSync(user.password, 10);
-  console.log(user.password);
-  console.log('?');
   delete user.password;
   return await new User(user).save();
 }
@@ -72,7 +70,6 @@ async function insertByManager(user) {
   user.fullname = user.firstName + ' ' + user.lastName;
   user.password = (user.firstName[0] + user.lastName).toLowerCase();
   user.hashedPassword = bcrypt.hashSync(user.password, 10);
-  console.log(user.password);
   delete user.password;
   return await new User(user).save();
 }
@@ -91,7 +88,6 @@ async function updateByAdmin(user) {
   } else {
     user.hashedPassword = bcrypt.hashSync(user.password, 10);
   }
-  console.log(user.password);
   delete user.password;
   return await user;
 }
@@ -100,7 +96,6 @@ async function changePassword(user) {
   delete user._id
   user = await Joi.validate(user, userSchemaPassword, { abortEarly: false });
   user.hashedPassword = bcrypt.hashSync(user.password, 10);
-  console.log(user.password);
   delete user.password;
   return await user;
 }

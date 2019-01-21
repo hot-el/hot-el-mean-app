@@ -17,26 +17,15 @@ export class ShiftService {
   constructor(private http: HttpClient) { }
 
   getShifts () {
-    console.log('all shifts .');
-    // const event = this.http.get(shiftsUrl, httpOptions).pipe(map(shift => {
-    //   shift['hello'] = 'hello';
-    // }));
-    // const data = this.http.get(shiftsUrl, httpOptions);
-    const sth = this.http.get(shiftsUrl, httpOptions).pipe(map(shift => console.log(shift)));
-    console.log(sth);
-    console.log(shiftsUrl);
     return this.http.get(shiftsUrl, httpOptions);
   }
 
   getShiftsByUserId (userId): Observable<any> {
     const url = `${shiftsUrl}/${userId}`;
-    console.log(url);
     return this.http.get(url, httpOptions);
   }
 
   addShift(event) {
-    console.log('HEEELO');
-    console.log(event);
     const shift = {
       'userId': event.userId,
       'firstName': event.firstName,
@@ -48,7 +37,6 @@ export class ShiftService {
       'from': event.from,
       'to': event.to
     };
-    console.log(shift);
     return this.http.post(shiftsUrl, shift, httpOptions).pipe();
   }
 
