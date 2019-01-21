@@ -1,11 +1,23 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule, Injectable } from '@angular/core';
+import { Routes, RouterModule, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { InvoiceComponent } from './invoice.component';
 import { CreateComponent } from './create/create.component';
+import { CanActivate } from '@angular/router';
+
+@Injectable()
+export class InvoiceGuard implements CanActivate{
+  constructor(){}
+
+  canActivate(){
+    const user = (<any>window).user;
+    return user && (user.isAdmin || user.isReceptionist || user.isManager);
+  }
+
+}
 
 const routes: Routes = [{
   path: 'invoice',
-  //canActivate
+  canActivate: [InvoiceGuard],
   children: [{
     path: '',
     component: InvoiceComponent
@@ -19,4 +31,6 @@ const routes: Routes = [{
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class InvoiceRoutingModule { }
+export class InvoiceRoutingModule { 
+
+}

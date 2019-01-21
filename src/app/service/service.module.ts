@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ServiceRoutingModule } from './service-routing.module';
+import { ServiceRoutingModule, ServiceGuard } from './service-routing.module';
 import { ServiceComponent } from './service.component';
 import { SharedModule } from '../shared/shared.module';
 import { DetailComponent } from './detail/detail.component';
@@ -15,6 +15,7 @@ import { EditComponent } from './edit/edit.component';
     ServiceRoutingModule,
     SharedModule
   ],
-  entryComponents: [EditComponent]
+  entryComponents: [EditComponent],
+  providers: [ServiceGuard]
 })
 export class ServiceModule { }

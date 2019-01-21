@@ -11,6 +11,9 @@
             placeholder="Name" 
             [formControl]="name"
           >
+          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+            <div *ngIf="name.errors.required">Name is required</div>
+          </div>
         </mat-form-field>
         
         <mat-form-field>
@@ -29,6 +32,10 @@
             placeholder="Price" 
             [formControl]="price"
           >
+          <div *ngIf="price.invalic && (price.dirty || price.touched)">
+            <div *ngIf="price.errors.min">Must be greater than 0</div> 
+            <div *ngIf="price.errors.required">Price is required</div>
+          </div>
         </mat-form-field>
     </mat-card-content>
     <mat-card-actions align="start">

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormBuilder } from '@angular/forms';
+import { FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ServicesService } from '../service.service';
 import { Router } from '@angular/router';
 
@@ -18,9 +18,12 @@ export class CreateComponent implements OnInit {
   ngOnInit() {
   }
 
-  name = new FormControl('');
+  name = new FormControl('', Validators.required);
   description = new FormControl('');
-  price = new FormControl('');
+  price = new FormControl('', [
+    Validators.min(0),
+    Validators.required
+  ]);
   
   onCreate() {
     let service = {

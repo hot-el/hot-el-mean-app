@@ -46,7 +46,11 @@ export class AuthService {
   }
 
   setUser(user): void {
-    if (user) user.isAdmin = (user.roles.indexOf('Admin') > -1);
+    if (user) {
+      user.isAdmin = (user.roles.indexOf('Admin') > -1);
+      user.isManager = (user.roles.indexOf('Manager') > -1);
+      user.isReceptionist = (user.roles.indexOf('Receptionist') > -1);
+    }
     this.$userSource.next(user);
     (<any>window).user = user;
   }

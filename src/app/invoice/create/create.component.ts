@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InvoiceService } from '../invoice.service';
-import { FormControl, FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { FormControl, FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { startWith, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { reference } from '@angular/core/src/render3';
@@ -24,7 +24,7 @@ export class CreateComponent implements OnInit {
   
   services: Service[] = [];
   serviceInput = new FormControl('');
-  quantity = new FormControl('');
+  quantity = new FormControl('', Validators.required);
   
   selectedServices: any[] = [];
 
@@ -38,10 +38,10 @@ export class CreateComponent implements OnInit {
     this.getServices();
 
     this.invoiceForm = this.fb.group({
-      invoiceNumber: null,
-      issueDate: null,
-      dueDate: null,
-      tax: [23],
+      invoiceNumber: ['', Validators.required],
+      issueDate: ['', Validators.required],
+      dueDate: ['', Validators.required],
+      tax: [23, Validators.required],
     });
   }
   

@@ -6,20 +6,20 @@
   <mat-card-content>
     <form class="invoice-form" [formGroup]='invoiceForm'>
       <mat-form-field>
-        <input type="text" matInput placeholder="Invoice No." formControlName="invoiceNumber">
+        <input type="text" matInput placeholder="Invoice No." formControlName="invoiceNumber" required>
       </mat-form-field>
       <mat-form-field>
-        <input matInput [matDatepicker]="dp" placeholder="Issue Date" formControlName="issueDate">
+        <input matInput [matDatepicker]="dp" placeholder="Issue Date" formControlName="issueDate" required>
         <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
         <mat-datepicker #dp disabled="false"></mat-datepicker>
       </mat-form-field>
       <mat-form-field>
-        <input [matDatepicker]="dp1" matInput placeholder="Due Date" formControlName="dueDate">
+        <input [matDatepicker]="dp1" matInput placeholder="Due Date" formControlName="dueDate" required>
         <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
         <mat-datepicker #dp1 disabled="false"></mat-datepicker>
       </mat-form-field>
       <mat-form-field>
-        <input type="number" matInput placeholder="Tax" formControlName="tax">
+        <input type="number" matInput placeholder="Tax" formControlName="tax" required>
       </mat-form-field>
     </form>
   </mat-card-content>
@@ -41,7 +41,7 @@
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput placeholder="Quantity" [formControl]="quantity">
+      <input matInput placeholder="Quantity" [formControl]="quantity" required>
     </mat-form-field>
 
     <button mat-button (click)="Add()">Add</button>
