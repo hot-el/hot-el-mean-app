@@ -23,7 +23,7 @@ export class NewEmployeeFormComponent implements OnInit {
 
   positions = [
     'Manager',
-    'Recepcionist',
+    'Receptionist',
     'Waiter',
     'Cleaner'
   ];

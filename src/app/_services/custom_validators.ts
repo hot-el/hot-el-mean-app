@@ -84,7 +84,7 @@ export class CustomValidators extends Validators {
       static createEmailNotTakenValidator(employeeService: EmployeeService, userId: string) {
         return (control: AbstractControl) => {
           return employeeService.checkEmailNotTaken(control.value, userId).map(res => {
-            return res.emailNotTaken ? null : {emailTaken: true};
+            return res['emailNotTaken'] ? null : {emailTaken: true};
           });
         };
       }
