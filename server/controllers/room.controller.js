@@ -6,8 +6,18 @@ const roomSchema = Joi.object({
     type: Joi.string().required().default('Basic'),
     size: Joi.number().required().min(2),
     conservationDate: Joi.date(),
-    occupied: Joi.boolean()
-})
+    occupied: Joi.boolean(),
+    firstName: Joi.string()
+        .when('occupied', { is: true, then: Joi.required() }),
+    lastName: Joi.string()
+        .when('occupied', { is: true, then: Joi.required() }),
+    idCard: Joi.string()
+        .when('occupied', { is: true, then: Joi.required() }),
+    from: Joi.date()
+        .when('occupied', { is: true, then: Joi.required() }),
+    to: Joi.date()
+        .when('occupied', { is: true, then: Joi.required() })
+});
 
 module.exports = {
     insert,
@@ -15,7 +25,11 @@ module.exports = {
     getRoomsByCategory,
     getRoomsByCategoryAndSize,
     getRoomById,
-    deleteRoom
+    deleteRoom,
+    getRoomsByCategorySizeAndOccupied,
+    getRoomsByCategoryAndOccupied,
+    getRoomsByOccupied,
+    update
 }
 
 async function insert(room) {
@@ -24,15 +38,15 @@ async function insert(room) {
 }
 
 async function getAllRooms() {
-    return await Room.find();
+    return await Room.find().sort({number: 1});
 }
 
 async function getRoomsByCategory(category) {
-    return await Room.find().where('type').equals(category);
+    return await Room.find().where('type').equals(category).sort({number: 1});
 }
 
 async function getRoomsByCategoryAndSize(category, size) {
-    return await Room.find().where('type').equals(category).where('size').equals(size);
+    return await Room.find().where('type').equals(category).where('size').equals(size).sort({number: 1});
 }
 
 async function getRoomById(id) {
@@ -41,4 +55,25 @@ async function getRoomById(id) {
 
 async function deleteRoom(id) {
     return await Room.findByIdAndDelete(id);
+}
+
+async function getRoomsByCategorySizeAndOccupied(category, size, occupied) {
+    return await Room.find().where('type').equals(category)
+        .where('size').equals(size)
+        .where('occupied').equals(occupied).sort({number: 1});
+}
+
+async function getRoomsByCategoryAndOccupied(category, occupied) {
+    return await Room.find().where('type').equals(category)
+        .where('occupied').equals(occupied).sort({number: 1});
+}
+
+async function getRoomsByOccupied(occupied) {
+    return await Room.find().where('occupied').equals(occupied).sort({number: 1});
+}
+
+async function update(id, room) {
+    console.log(room);
+    room = await Joi.validate(room, roomSchema);
+    return await Room.findByIdAndUpdate(id, room);
 }

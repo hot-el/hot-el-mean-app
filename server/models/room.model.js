@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const RoomSchema = new mongoose.Schema({
     number: {
         type: Number,
-        required: true
+        required: true,
+        unique: true
     },
     type: {
         type: String,
@@ -22,6 +23,21 @@ const RoomSchema = new mongoose.Schema({
     occupied: {
         type: Boolean,
         default: false
+    },
+    firstName: {
+        type: String,
+    },
+    lastName: {
+        type: String
+    },
+    idCard: {
+        type: String
+    },
+    from: {
+        type: Date
+    },
+    to: {
+        type: Date
     }
 }, {
     versionKey: false

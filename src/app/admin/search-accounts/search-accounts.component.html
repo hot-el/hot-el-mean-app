@@ -1,0 +1,7 @@
+<input type="search" [(ngModel)]="searchText" placeholder="Search text">
+<button class="button1" mat-button *ngFor="let account of accountsArray | filter: searchText" mat-button (click)="fastRoute(account._id)"> 
+  <i class="material-icons">face </i> {{account.firstName}} {{account.lastName}} {{account.roles[0]}} 
+  <mat-divider></mat-divider>  
+</button>
+<mat-divider></mat-divider>
+

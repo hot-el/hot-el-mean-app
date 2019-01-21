@@ -22,14 +22,7 @@ export class RoomsComponent implements OnInit {
     this.category = this.route.snapshot.url[1].path;
     this.size = this.route.snapshot.url[2].path;
     this.fetchData();
-    console.log(this.category);
   }
-
-  // onSelect(room: Room): void {
-  //   this.selectedRoom = room;
-  //   console.log('selectedRoom');
-  //   console.log(room);
-  // }
 
   getRooms(): void {
     this.roomService.getRooms().subscribe(rooms => this.rooms = rooms);

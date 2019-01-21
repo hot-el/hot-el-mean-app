@@ -32,43 +32,9 @@
           </td>
         </tr>
       </table>
-
-    <h3>Add new event</h3>
-      <!-- <table class="table table-bordered">
-        <form [formGroup]="eventForm" (ngSubmit)="onSubmitEvent(eventForm.value)">     
-          <tr>
-            <td>
-              <mat-form-field class="example-full-width">
-                <input matInput placeholder="Employee" formControlName="employee" required> 
-              </mat-form-field>
-            </td>
-            <td>
-              <mat-form-field>
-                <input matInput [matDatepicker]="picker1" placeholder="Choose a date" formControlName="date" required>
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
-            </td>
-            <td>
-              <mat-form-field class="example-full-width">
-                  <input min="0" max="24" matInput placeholder="Starts at" formControlName="from" required>
-              </mat-form-field>
-            </td>
-            <td>
-              <mat-form-field class="example-full-width">
-                  <input min="0" max="24" matInput placeholder="Ends at" formControlName="to" required>
-              </mat-form-field>
-            </td>    
-            <td>
-              <button class="submit-btn" color="primary" mat-raised-button type="submit" [disabled]="!eventForm.valid">
-                Add
-              </button>
-            </td>  
-          </tr>
-        </form>    
-      </table> -->
-
+      
     <div *ngIf="adminOrManager">
+      <h3>Add new event</h3>
       <form [formGroup]="eventForm" (ngSubmit)="onSubmitEvent(eventForm.value)">
             <mat-form-field class="full-width">
               <mat-select formControlName="employee" placeholder="Name">

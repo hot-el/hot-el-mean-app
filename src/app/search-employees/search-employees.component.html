@@ -1,0 +1,6 @@
+<input type="search" [(ngModel)]="searchText" placeholder="Search text">
+<button class="button1" mat-button *ngFor="let employee of employeesArray | filter: searchText" mat-button (click)="fastRoute(employee._id)"> 
+  <i class="material-icons">face </i> {{employee.firstName}} {{employee.lastName}} {{employee.roles[0]}}  
+  <mat-divider></mat-divider>  
+</button>
+<mat-divider></mat-divider>

@@ -1,0 +1,23 @@
+<mat-card *ngIf="room" class="example-card">
+    <mat-card-header>
+      <mat-card-title>Room no. {{room.number}}</mat-card-title>
+      <mat-card-subtitle>Details</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p><b>Type:</b> {{room.type}} </p>
+      <p><b>Size:</b> {{room.size}} </p>
+      <p><b>Last conservation:</b> {{room.conservationDate | date:'dd/MM/yyyy'}} </p>
+      <p><b>Occupied:</b> {{room.occupied}} </p> 
+      <div *ngIf="isOccupied">
+          <p><b>First name:</b> {{room.firstName}} </p>
+          <p><b>Last name:</b> {{room.lastName}} </p>
+          <p><b>ID card:</b> {{room.idCard}} </p>
+          <p><b>From:</b> {{room.from | date:'dd/MM/yyyy'}} </p>
+          <p><b>To:</b> {{room.to | date:'dd/MM/yyyy'}} </p>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button (click)="goBack()">Go back</button>
+      <button mat-raised-button (click)="openNewReservationForm(room)">Reserve Room</button>
+    </mat-card-actions>
+  </mat-card>

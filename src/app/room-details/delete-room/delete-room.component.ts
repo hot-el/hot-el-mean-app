@@ -19,16 +19,12 @@ export class DeleteRoomComponent implements OnInit {
 
   ngOnInit(): void {
     this.room = this.modalData.room;
-    console.log('todelete');
-    console.log(this.room);
   }
 
   onCloseConfirm() {
-    console.log('confirmed');
     this.roomService.deleteRoom(this.modalData.room).subscribe(res => {
       this.thisDialogRef.close(true);
     });
-    console.log('deleted');
   }
 
   onCloseCancel() {

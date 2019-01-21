@@ -42,6 +42,18 @@ import { UpdateRoomComponent } from './room-details/update-room/update-room.comp
 
 import { MyCalendarModule } from './calendar/calendar.module';
 import 'hammerjs';
+import { SearchEmployeesComponent } from './search-employees/search-employees.component';
+import { FilterPipe } from './search-employees/filter.pipe';
+import { ReceptionistComponent } from './receptionist/receptionist.component';
+import { MakeReservationComponent } from './make-reservation/make-reservation.component';
+import { ReserveRoomComponent } from './make-reservation/reserve-room/reserve-room.component';
+import { RoomsToReserveComponent } from './make-reservation/rooms-to-reserve/rooms-to-reserve.component';
+import { NewReservationComponent } from './make-reservation/reserve-room/new-reservation/new-reservation.component';
+import { ActiveReservationsComponent } from './active-reservations/active-reservations.component';
+import { ReservationDetailsComponent } from './reservation-details/reservation-details.component';
+import { DeleteReservationComponent } from './reservation-details/delete-reservation/delete-reservation.component';
+import { UpdateReservationComponent } from './reservation-details/update-reservation/update-reservation.component';
+import { CheckOutComponent } from './reservation-details/check-out/check-out.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +76,19 @@ import 'hammerjs';
     RoomsComponent,
     RoomDetailsComponent,
     DeleteRoomComponent,
-    UpdateRoomComponent
+    UpdateRoomComponent,
+    SearchEmployeesComponent,
+    FilterPipe,
+    ReceptionistComponent,
+    MakeReservationComponent,
+    ReserveRoomComponent,
+    RoomsToReserveComponent,
+    NewReservationComponent,
+    ActiveReservationsComponent,
+    ReservationDetailsComponent,
+    DeleteReservationComponent,
+    UpdateReservationComponent,
+    CheckOutComponent
   ],
   imports: [
     BrowserModule,
@@ -103,7 +127,11 @@ import 'hammerjs';
     ChangePasswordComponent,
     NewRoomComponent,
     DeleteRoomComponent,
-    UpdateRoomComponent
+    UpdateRoomComponent,
+    NewReservationComponent,
+    DeleteReservationComponent,
+    UpdateReservationComponent,
+    CheckOutComponent
   ],
   bootstrap: [AppComponent]
 })

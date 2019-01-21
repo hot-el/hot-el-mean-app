@@ -13,6 +13,7 @@ import { Location } from '@angular/common';
 })
 export class RoomDetailsComponent implements OnInit {
   @Input() room: any;
+  @Input() isOccupied;
 
   constructor(
     public dialog: MatDialog,
@@ -22,9 +23,7 @@ export class RoomDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log('Room Details activated');
     this.getRoom();
-    console.log(this.room);
   }
 
   openDeleteRoom(room) {
@@ -34,48 +33,31 @@ export class RoomDetailsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(confirm => {
       if (confirm) {
-        this.delete(room);
         this.location.back();
-        // this.router.navigateByUrl('/Rooms');
-        // refresh the Rooms list
-        // const index = this.Rooms.findIndex((Room) => Room.id === RoomId);
-        // this.Rooms.splice(index, 1);
-
-        // TODO: evaluar cambiar esto por un operation method en loopback.
-        // this.RoomService.getAnswers(RoomId)
-        // .then(answers => {
-        //   for(let answer of answers){
-        //     this.answersService.deleteAnswer(answer.id);
-        //   }
-        // })
       }
     });
   }
 
-  delete(room): void {
-    this.roomService.deleteRoom(room);
-    // .subscribe();
-  }
-
   openUpdateRoom(room) {
-    console.log(room);
     const dialogRef = this.dialog.open(UpdateRoomComponent, {
       data: { room: room }
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      console.log('heyhey');
       this.getRoom();
-      console.log('heykey2');
     });
 
   }
 
   getRoom(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    console.log(id);
     this.roomService.getRoom(id)
-      .subscribe(room => this.room = room);
+      .subscribe(room => {
+        this.room = room;
+        if (this.room.occupied === true) {
+          this.isOccupied = true;
+        }
+      });
   }
 
   goBack(): void {

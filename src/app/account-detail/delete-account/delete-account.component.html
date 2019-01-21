@@ -1,10 +1,11 @@
-<div class="alert-modal">
-  <h3 class="alert-modal-title">DELETE EMPLOYEE</h3>
-  <span class="alert-modal-text">Are you sure to delete this employee: {{account.firstName}}?</span>
-  <div>
-    <div class="alert-modal-buttons">
-      <button mat-raised-button color="primary" class="alert-modal-button alert-modal-button-success" (click)="onCloseConfirm()">Yes</button>
-      <button mat-raised-button class="alert-modal-button alert-modal-button-failure" (click)="onCloseCancel()">No</button>
-    </div>
-  </div>
-</div>
+<mat-card>
+    <mat-card-content>
+        <h2>Delete account</h2>
+        <p>Are you sure to delete this account: <b>{{account.firstName}} {{account.lastName}} ({{account.roles[0]}}) </b>?</p>
+      </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary" class="alert-modal-button alert-modal-button-success" (click)="onCloseConfirm()">Yes</button>
+            <button mat-raised-button class="alert-modal-button alert-modal-button-failure" (click)="onCloseCancel()">No</button>
+      </mat-card-actions>
+    </mat-card>
+

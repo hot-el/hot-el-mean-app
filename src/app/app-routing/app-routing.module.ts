@@ -12,6 +12,12 @@ import { CalendarComponent } from '../calendar/calendar.component';
 import { RoomCategoryComponent } from '../room-category/room-category.component';
 import { RoomsComponent } from '../rooms/rooms.component';
 import { RoomDetailsComponent } from '../room-details/room-details.component';
+import { ReceptionistComponent } from '../receptionist/receptionist.component';
+import { MakeReservationComponent } from '../make-reservation/make-reservation.component';
+import { RoomsToReserveComponent } from '../make-reservation/rooms-to-reserve/rooms-to-reserve.component';
+import { ReserveRoomComponent } from '../make-reservation/reserve-room/reserve-room.component';
+import { ActiveReservationsComponent } from '../active-reservations/active-reservations.component';
+import { ReservationDetailsComponent } from '../reservation-details/reservation-details.component';
 
 export const routes: Routes = [{
   path: '',
@@ -32,6 +38,12 @@ export const routes: Routes = [{
 { path: 'room-categories', component: RoomCategoryComponent },
 { path: 'rooms/:categorySlug/:size', component: RoomsComponent },
 { path: 'room-details/:id', component: RoomDetailsComponent },
+{ path: 'receptionist', component: ReceptionistComponent },
+{ path: 'reservation', component: MakeReservationComponent },
+{ path: 'active-reservations', component: ActiveReservationsComponent },
+{ path: 'reservation-details/:id', component: ReservationDetailsComponent },
+{ path: 'rooms-to-reserve/:categorySlug/:size', component: RoomsToReserveComponent},
+{ path: 'new-reservation/:id', component: ReserveRoomComponent },
 {
   path: 'room',
   loadChildren: 'app/room/room.module#RoomModule'
