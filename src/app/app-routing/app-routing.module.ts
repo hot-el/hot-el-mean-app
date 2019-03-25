@@ -6,7 +6,6 @@ import { ManagerComponent } from '../manager/manager.component';
 import { EmployeeDetailComponent } from '../employee-detail/employee-detail.component';
 import { AccountDetailComponent } from '../account-detail/account-detail.component';
 import { CurrentUserComponent } from '../current-user/current-user.component';
-import { RoomsComponent } from '../rooms/rooms.component';
 import { RoomDetailsComponent } from '../room-details/room-details.component';
 import { ReceptionistComponent } from '../receptionist/receptionist.component';
 import { ReserveRoomComponent } from '../make-reservation/reserve-room/reserve-room.component';

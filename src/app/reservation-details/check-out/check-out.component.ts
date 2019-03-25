@@ -22,7 +22,6 @@ export class CheckOutComponent implements OnInit {
 
   ngOnInit(): void {
     this.reservation = this.modalData.room;
-    console.log(this.reservation);
     const from = new Date(this.reservation.from);
     const to = new Date(this.reservation.to);
     const timeDiff = Math.abs(to.getTime() - from.getTime());

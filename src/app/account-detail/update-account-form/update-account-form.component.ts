@@ -61,10 +61,7 @@ export class UpdateAccountFormComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public modalData: any) { }
 
   ngOnInit() {
-    console.log('onInit');
-    console.log(this.modalData.account);
     this.account = this.modalData.account;
-    console.log(this.account);
     this.createForms();
   }
 

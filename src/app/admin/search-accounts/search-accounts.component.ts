@@ -16,7 +16,6 @@ export class SearchAccountsComponent implements OnInit {
   }
 
   fastRoute(id: string) {
-    // this.url = this.url + id;
     this.router.navigateByUrl('/accounts/detail/' + id);
   }
 

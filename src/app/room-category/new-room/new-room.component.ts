@@ -64,20 +64,11 @@ export class NewRoomComponent implements OnInit {
   }
 
   onSubmit(values) {
-    // const data: Room = new Room();
-    console.log(values);
     this.add(values);
-    // create new room
-    // this.roomService.createRoom(data)
-    // .subscribe(name => {
-    //   this.thisDialogRef.close(name);
-    //   this.roomForm.reset();
-    // });
   }
 
   createForms() {
     // room form validations
-    console.log('creating forms');
     this.roomForm = this.fb.group({
       type: [this.types[0], Validators.required ],
       conservationDate: [new Date(Date.now()), [Validators.required, CustomValidators.DateValidator]],
@@ -87,15 +78,12 @@ export class NewRoomComponent implements OnInit {
   }
 
   onSubmitRoom(value) {
-    console.log(value);
     value.number = value.number.toString();
-    console.log(value);
     this.add(value);
   }
 
   add(room): void {
     if (!room) { return; }
-    console.log('add');
     this.roomService.addRoom(room)
       .subscribe(res => {
         this.thisDialogRef.close(res);

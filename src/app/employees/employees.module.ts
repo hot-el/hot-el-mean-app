@@ -4,6 +4,7 @@ import { SharedModule } from '../shared/shared.module';
 import { EmployeesComponent } from './employees.component';
 import { NewEmployeeFormComponent } from './new-employee-form/new-employee-form.component';
 import { SearchEmployeesModule } from '../search-employees/search-employees.module';
+import { ManagerRoutingModule } from '../manager/manager-routing.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { SearchEmployeesModule } from '../search-employees/search-employees.modu
   imports: [
     CommonModule,
     SharedModule,
-    SearchEmployeesModule
+    SearchEmployeesModule,
+    ManagerRoutingModule
   ],
   entryComponents: [
     NewEmployeeFormComponent

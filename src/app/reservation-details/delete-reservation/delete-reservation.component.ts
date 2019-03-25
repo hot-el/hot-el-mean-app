@@ -25,7 +25,6 @@ export class DeleteReservationComponent implements OnInit {
     this.reservation.occupied = false;
     const id = this.reservation._id;
     delete this.reservation._id;
-    console.log(this.reservation);
     this.roomService.updateRoom(this.reservation, id).subscribe(res => {
       this.thisDialogRef.close(true);
     });

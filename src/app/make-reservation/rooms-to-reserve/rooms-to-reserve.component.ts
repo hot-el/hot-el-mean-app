@@ -37,7 +37,6 @@ export class RoomsToReserveComponent implements OnInit {
   }
 
   fetchData() {
-    console.log(this.size);
     if (this.size === 'all') {
       this.getUnreservedRoomsByCategory(this.category);
       } else {

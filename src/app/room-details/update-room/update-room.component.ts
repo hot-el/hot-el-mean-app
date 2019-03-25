@@ -56,8 +56,6 @@ export class UpdateRoomComponent implements OnInit {
 
   ngOnInit(): void {
     this.room = this.modalData.room;
-    console.log(this.room);
-    console.log(this.room._id);
     this.createForms();
   }
 

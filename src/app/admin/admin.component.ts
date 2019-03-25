@@ -43,7 +43,6 @@ export class AdminComponent implements OnInit {
   }
 
   fastRoute(id: string) {
-    console.log(id);
     this.router.navigateByUrl('/accounts/detail/' + id);
   }
 

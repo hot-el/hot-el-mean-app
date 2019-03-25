@@ -19,8 +19,6 @@ export class DeleteAccountComponent implements OnInit {
 
   ngOnInit(): void {
     this.account = this.modalData.account;
-    console.log('todelete');
-    console.log(this.account.firstName);
   }
 
   onCloseConfirm() {
