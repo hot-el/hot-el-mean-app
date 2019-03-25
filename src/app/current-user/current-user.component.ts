@@ -1,12 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
-import { MatIconRegistry, MatDialog } from '@angular/material';
-import { DomSanitizer } from '@angular/platform-browser';
-
-
+import { MatDialog } from '@angular/material';
 import { AuthService } from '../auth/auth.service';
-import * as schema from './schema/equipment.json';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @Component({
@@ -16,7 +11,6 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 })
 export class CurrentUserComponent implements OnInit {
 
-  private userSubscription: Subscription;
   public user: any;
 
   constructor(

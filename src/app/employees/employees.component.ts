@@ -29,14 +29,6 @@ export class EmployeesComponent implements OnInit {
         .subscribe(employees => this.employees = employees);
   }
 
-  // add(employee): void {
-  //   if (!employee) { return; }
-  //   this.employeeService.createEmployeeByManager(employee);
-  //     // .subscribe(e => {
-  //     //   this.employees.push(e);
-  //     // });
-  // }
-
   openNewEmployeeForm() {
     const dialogRef = this.dialog.open(NewEmployeeFormComponent);
 
@@ -48,8 +40,6 @@ export class EmployeesComponent implements OnInit {
   }
 
   fastRoute(id: string) {
-    // this.url = this.url + id;
-    console.log(id);
     this.router.navigateByUrl('/detail/' + id);
   }
 

@@ -16,7 +16,6 @@ export class AdminComponent implements OnInit {
 
   accounts: any;
   name: string;
-  // public url: any = '/accounts/detail/';
 
   constructor(
     private employeeService: EmployeeService,
@@ -33,14 +32,6 @@ export class AdminComponent implements OnInit {
         .subscribe(acc => this.accounts = acc);
   }
 
-  // add(employee): void {
-  //   if (!employee) { return; }
-  //   this.employeeService.createEmployeeByManager(employee);
-  //     // .subscribe(e => {
-  //     //   this.employees.push(e);
-  //     // });
-  // }
-
   openNewAccountForm() {
     const dialogRef = this.dialog.open(NewAccountFormComponent);
 
@@ -52,7 +43,6 @@ export class AdminComponent implements OnInit {
   }
 
   fastRoute(id: string) {
-    // this.url = this.url + id;
     console.log(id);
     this.router.navigateByUrl('/accounts/detail/' + id);
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Validators, FormGroup, FormControl, FormBuilder} from '@angular/forms';
+import { Validators, FormGroup, FormBuilder} from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { RoomService } from '../../../_services/room.service';
 import { CustomValidators } from '../../../_services/custom_validators';

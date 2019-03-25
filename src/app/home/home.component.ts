@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { routes } from '../app-routing/app-routing.module';
 
 export interface Tile {
   color: string;

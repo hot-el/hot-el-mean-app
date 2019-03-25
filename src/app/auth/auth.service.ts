@@ -4,9 +4,6 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 import { TokenStorage } from './token.storage';
-import { TooltipComponent } from '@angular/material';
-
-// const User = require('../../../server/models/user.model');
 
 @Injectable()
 export class AuthService {

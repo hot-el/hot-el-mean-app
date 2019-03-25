@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 import { Category } from '../_models/category';
 import { CategoriesService } from '../_services/categories.service';
 import { NewRoomComponent } from './new-room/new-room.component';
@@ -15,8 +14,6 @@ export class RoomCategoryComponent implements OnInit {
   categories: Category[];
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
     private categoriesService: CategoriesService,
     public dialog: MatDialog
   ) {}
