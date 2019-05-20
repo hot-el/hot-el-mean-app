@@ -5,7 +5,7 @@ import { RoomService } from '../_services/room.service';
 import { UpdateReservationComponent } from './update-reservation/update-reservation.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { CheckOutComponent } from './check-out/check-out.component';
+import { CheckInComponent } from './check-in/check-in.component';
 
 @Component({
   selector: 'app-reservation-details',
@@ -51,8 +51,8 @@ export class ReservationDetailsComponent implements OnInit {
 
   }
 
-  openCheckout(room) {
-    const dialogRef = this.dialog.open(CheckOutComponent, {
+  openCheckIn(room) {
+    const dialogRef = this.dialog.open(CheckInComponent, {
       data: { room: room }
     });
 
@@ -63,7 +63,6 @@ export class ReservationDetailsComponent implements OnInit {
     });
 
   }
-
 
   getRoom(): void {
     const id = this.route.snapshot.paramMap.get('id');

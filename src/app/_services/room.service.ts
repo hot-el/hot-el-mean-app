@@ -19,12 +19,17 @@ export class RoomService {
     return this.http.get(this.roomsUrl);
   }
 
-  getUnreservedRooms (): Observable<any> {
-    const url = `${this.roomsUrl}/o/false`;
+  getFreeRooms (): Observable<any> {
+    const url = `${this.roomsUrl}/ro/false/false`;
     return this.http.get(url);
   }
 
   getReservedRooms (): Observable<any> {
+    const url = `${this.roomsUrl}/r/true`;
+    return this.http.get(url);
+  }
+
+  getOccupiedRooms (): Observable<any> {
     const url = `${this.roomsUrl}/o/true`;
     return this.http.get(url);
   }
@@ -49,8 +54,8 @@ export class RoomService {
     return this.http.get(url, httpOptions);
   }
 
-  getRoomsByCategoryAndOccupied(category, isOccupied) {
-    const url = `${this.roomsUrl}/co/${category}/${isOccupied}`;
+  getRoomsByCategoryReservedAndOccupied(category, isReserved, isOccupied) {
+    const url = `${this.roomsUrl}/cro/${category}/${isReserved}/${isOccupied}`;
     console.log(url);
     return this.http.get(url, httpOptions);
   }
@@ -60,8 +65,8 @@ export class RoomService {
     return this.http.get(url, httpOptions);
   }
 
-  getRoomsByCategorySizeAndOccupied(category, size, isOccupied) {
-    const url = `${this.roomsUrl}/cso/${category}/${size}/${isOccupied}`;
+  getRoomsByCategorySizeReservedAndOccupied(category, size, isReserved, isOccupied) {
+    const url = `${this.roomsUrl}/csro/${category}/${size}/${isReserved}/${isOccupied}`;
     return this.http.get(url, httpOptions);
   }
 

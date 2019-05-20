@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, Input} from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { RoomService } from '../../_services/room.service';
 
@@ -43,6 +43,7 @@ export class CheckOutComponent implements OnInit {
 
   onCloseConfirm() {
     this.reservation.occupied = false;
+    this.reservation.reserved = false;
     const id = this.reservation._id;
     delete this.reservation._id;
     this.roomService.updateRoom(this.reservation, id).subscribe(res => {

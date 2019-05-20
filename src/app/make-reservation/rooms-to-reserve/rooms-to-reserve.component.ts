@@ -24,23 +24,23 @@ export class RoomsToReserveComponent implements OnInit {
     this.fetchData();
   }
 
-  getUnreservedRooms(): void {
-    this.roomService.getUnreservedRooms().subscribe(rooms => this.rooms = rooms);
+  getFreeRooms(): void {
+    this.roomService.getFreeRooms().subscribe(rooms => this.rooms = rooms);
   }
 
-  getUnreservedRoomsByCategory(category: string) {
-    this.roomService.getRoomsByCategoryAndOccupied(category, false).subscribe(rooms => this.rooms = rooms);
+  getFreeRoomsByCategory(category: string) {
+    this.roomService.getRoomsByCategoryReservedAndOccupied(category, false, false).subscribe(rooms => this.rooms = rooms);
   }
 
-  getUnreservedRoomsByCategoryAndSize(category: string, size: string) {
-    this.roomService.getRoomsByCategorySizeAndOccupied(category, size, false).subscribe(rooms => this.rooms = rooms);
+  getFreeRoomsByCategoryAndSize(category: string, size: string) {
+    this.roomService.getRoomsByCategorySizeReservedAndOccupied(category, size, false, false).subscribe(rooms => this.rooms = rooms);
   }
 
   fetchData() {
     if (this.size === 'all') {
-      this.getUnreservedRoomsByCategory(this.category);
+      this.getFreeRoomsByCategory(this.category);
       } else {
-        this.getUnreservedRoomsByCategoryAndSize(this.category, this.size);
+        this.getFreeRoomsByCategoryAndSize(this.category, this.size);
       }
   }
 

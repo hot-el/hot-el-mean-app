@@ -1,5 +1,4 @@
 import { Component, OnInit, Inject} from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 import { Validators, FormGroup, FormBuilder} from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { RoomService } from '../../../_services/room.service';
@@ -29,6 +28,7 @@ export class NewReservationComponent implements OnInit {
   validation_messages = {
     'from': [
       { type: 'required', message: 'Please insert from' },
+      { type: 'DateSmallerThanToday', message: 'Its too late' }
     ],
     'to': [
       { type: 'required', message: 'Please insert to' },
@@ -48,8 +48,6 @@ export class NewReservationComponent implements OnInit {
   };
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
     public roomService: RoomService,
     public thisDialogRef: MatDialogRef<NewReservationComponent>,
     @Inject(MAT_DIALOG_DATA) public modalData: any,
@@ -70,7 +68,7 @@ export class NewReservationComponent implements OnInit {
       firstName: ['', [Validators.required, CustomValidators.NameValidator]],
       lastName: ['', [Validators.required, CustomValidators.NameValidator] ],
       idCard: ['', [Validators.required, CustomValidators.IDValidator]],
-      from: ['', Validators.required],
+      from: ['', [Validators.required, CustomValidators.DateValidator2]],
       to: ['', Validators.required]
     });
   }
@@ -80,7 +78,7 @@ export class NewReservationComponent implements OnInit {
     const id = this.room._id;
     delete this.room._id;
     reservation = this.room;
-    reservation['occupied'] = true;
+    reservation['reserved'] = true;
     reservation['firstName'] = values.firstName;
     reservation['lastName'] = values.lastName;
     reservation['from'] = values.from;

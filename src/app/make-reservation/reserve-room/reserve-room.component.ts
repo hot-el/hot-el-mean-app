@@ -13,7 +13,7 @@ import { Location } from '@angular/common';
 export class ReserveRoomComponent implements OnInit {
 
   @Input() room: any;
-  @Input() isOccupied: any;
+  @Input() isReserved: any;
 
   constructor(
     public dialog: MatDialog,
@@ -44,8 +44,8 @@ export class ReserveRoomComponent implements OnInit {
     this.roomService.getRoom(id)
       .subscribe(room => {
         this.room = room;
-        if (this.room.occupied === true) {
-          this.isOccupied = true;
+        if (this.room.reserved === true) {
+          this.isReserved = true;
         }
       });
   }

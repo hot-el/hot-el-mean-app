@@ -1,0 +1,23 @@
+<mat-card *ngIf="occupied" class="example-card">
+  <mat-card-header>
+    <mat-card-title>occupied no. {{occupied.number}}</mat-card-title>
+    <mat-card-subtitle>Details</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p><b>Type:</b> {{occupied.type}} </p>
+    <p><b>Size:</b> {{occupied.size}} </p>
+    <p><b>Date:</b> {{occupied.conservationDate | date:'dd/MM/yyyy'}} </p>
+    <p><b>Occupied:</b> {{occupied.occupied}} </p>
+    <p><b>Reserved:</b> {{occupied.reserved}} </p>
+    <p><b>First name:</b> {{occupied.firstName}} </p>
+    <p><b>Last name:</b> {{occupied.lastName}} </p>
+    <p><b>ID card:</b> {{occupied.idCard}} </p>
+    <p><b>From:</b> {{occupied.from | date:'dd/MM/yyyy'}} </p>
+    <p><b>To:</b> {{occupied.to | date:'dd/MM/yyyy'}} </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="goBack()">Back</button>
+    <button mat-raised-button color="warn" (click)="openDeleteOccupied(occupied)">Delete</button>
+    <button mat-raised-button color="accent" (click)="openCheckout(occupied)">Check-out</button>
+  </mat-card-actions>
+</mat-card>

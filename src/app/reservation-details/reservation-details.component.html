@@ -8,6 +8,7 @@
       <p><b>Size:</b> {{reservation.size}} </p>
       <p><b>Date:</b> {{reservation.conservationDate | date:'dd/MM/yyyy'}} </p>
       <p><b>Occupied:</b> {{reservation.occupied}} </p>
+      <p><b>Reserved:</b> {{reservation.reserved}} </p>
       <p><b>First name:</b> {{reservation.firstName}} </p>
       <p><b>Last name:</b> {{reservation.lastName}} </p>
       <p><b>ID card:</b> {{reservation.idCard}} </p>
@@ -17,7 +18,7 @@
     <mat-card-actions>
       <button mat-raised-button (click)="goBack()">Back</button>
       <button mat-raised-button (click)="openUpdateReservation(reservation)">Update</button>
-      <button mat-raised-button color="primary" (click)="openCheckout(reservation)">Check-out</button>
+      <button mat-raised-button color="primary" (click)="openCheckIn(reservation)">Check-in</button>
       <button mat-raised-button color="warn" (click)="openDeleteReservation(reservation)">Delete</button>
     </mat-card-actions>
   </mat-card>

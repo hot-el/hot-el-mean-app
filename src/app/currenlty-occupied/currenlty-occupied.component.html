@@ -1,0 +1,16 @@
+<mat-card>
+  <mat-card-header>
+      <mat-card-title>Currenlty occupied</mat-card-title>
+  </mat-card-header>
+  <a mat-raised-button routerLink="/receptionist">Receptionist board</a> <br> <br>
+  <mat-card-content>
+      <mat-divider></mat-divider>
+      <mat-nav-list>
+          <a class="o" mat-button *ngFor="let o of occupied" [routerLink]="['/occupied-details/', o._id]">
+           <b> {{o.firstName}} {{o.lastName}} </b><small> | no. {{o.number}} 
+            | From: {{o.from | date:'dd/MM/yyyy'}} | To: {{o.to | date:'dd/MM/yyyy'}} </small> 
+              <mat-divider></mat-divider>
+          </a>
+       </mat-nav-list>
+  </mat-card-content>
+</mat-card>

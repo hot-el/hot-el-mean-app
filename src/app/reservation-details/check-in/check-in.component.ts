@@ -3,16 +3,16 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { RoomService } from '../../_services/room.service';
 
 @Component({
-  selector: 'app-delete-reservation',
-  templateUrl: './delete-reservation.component.html',
-  styleUrls: ['./delete-reservation.component.scss']
+  selector: 'app-check-in',
+  templateUrl: './check-in.component.html',
+  styleUrls: ['./check-in.component.scss']
 })
-export class DeleteReservationComponent implements OnInit {
+export class CheckInComponent implements OnInit {
 
   @Input() reservation: any;
 
   constructor(
-    public thisDialogRef: MatDialogRef<DeleteReservationComponent>,
+    public thisDialogRef: MatDialogRef<CheckInComponent>,
     @Inject(MAT_DIALOG_DATA) public modalData: any,
     public roomService: RoomService
   ) {}
@@ -22,6 +22,7 @@ export class DeleteReservationComponent implements OnInit {
   }
 
   onCloseConfirm() {
+    this.reservation.occupied = true;
     this.reservation.reserved = false;
     const id = this.reservation._id;
     delete this.reservation._id;

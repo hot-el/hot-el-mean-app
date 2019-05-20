@@ -8,7 +8,8 @@
       <p><b>Size:</b> {{room.size}} </p>
       <p><b>Last conservation:</b> {{room.conservationDate | date:'dd/MM/yyyy'}} </p>
       <p><b>Occupied:</b> {{room.occupied}} </p> 
-      <div *ngIf="isOccupied">
+      <p><b>Reserved:</b> {{room.reserved}} </p> 
+      <div *ngIf="isReserved">
           <p><b>First name:</b> {{room.firstName}} </p>
           <p><b>Last name:</b> {{room.lastName}} </p>
           <p><b>ID card:</b> {{room.idCard}} </p>

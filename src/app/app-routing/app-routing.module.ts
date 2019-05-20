@@ -10,6 +10,7 @@ import { RoomDetailsComponent } from '../room-details/room-details.component';
 import { ReceptionistComponent } from '../receptionist/receptionist.component';
 import { ReserveRoomComponent } from '../make-reservation/reserve-room/reserve-room.component';
 import { ReservationDetailsComponent } from '../reservation-details/reservation-details.component';
+import { OccupiedDetailsComponent } from '../currenlty-occupied/occupied-details/occupied-details.component'; 
 
 import { MakeReservationRoutingModule } from '../make-reservation/make-reservation-routing.module';
 import { ManagerRoutingModule } from '../manager/manager-routing.module';
@@ -34,6 +35,7 @@ export const routes: Routes = [{
 { path: 'receptionist', component: ReceptionistComponent },
 { path: 'reservation-details/:id', component: ReservationDetailsComponent },
 { path: 'new-reservation/:id', component: ReserveRoomComponent },
+{ path: 'occupied-details/:id', component: OccupiedDetailsComponent },
 {
   path: 'room',
   loadChildren: 'app/room/room.module#RoomModule'

@@ -33,6 +33,10 @@ import  { EmployeeDetailModule } from './employee-detail/employee-detail.module'
 import { RoomCategoryModule } from './room-category/room-category.module';
 import { SearchEmployeesModule } from './search-employees/search-employees.module';
 import { EmployeesModule } from './employees/employees.module';
+import { CurrenltyOccupiedComponent } from './currenlty-occupied/currenlty-occupied.component';
+import { DeleteOccupiedComponent } from './currenlty-occupied/delete-occupied/delete-occupied.component';
+import { OccupiedDetailsComponent } from './currenlty-occupied/occupied-details/occupied-details.component';
+import { CheckOutComponent } from './currenlty-occupied/check-out/check-out.component';
 // import { ServiceModule } from './service/service.module';
 
 @NgModule({
@@ -43,7 +47,11 @@ import { EmployeesModule } from './employees/employees.module';
     ManagerComponent,
     RoomsComponent,
     ReceptionistComponent,
-    ActiveReservationsComponent
+    ActiveReservationsComponent,
+    CurrenltyOccupiedComponent,
+    DeleteOccupiedComponent,
+    OccupiedDetailsComponent,
+    CheckOutComponent
   ],
   imports: [
     BrowserModule,
@@ -69,6 +77,10 @@ import { EmployeesModule } from './employees/employees.module';
     RoomCategoryModule,
     SearchEmployeesModule,
     EmployeesModule
+  ],
+  entryComponents: [
+    DeleteOccupiedComponent,
+    CheckOutComponent
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

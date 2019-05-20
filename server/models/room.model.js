@@ -24,6 +24,10 @@ const RoomSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    reserved: {
+        type: Boolean,
+        default: false
+    },
     firstName: {
         type: String,
     },

@@ -23,14 +23,20 @@ router.route('/c/:category')
 router.route('/cs/:category/:size')
     .get(asyncHandler(getRoomsByCategoryAndSize));
 
-router.route('/cso/:category/:size/:occupied')
-    .get(asyncHandler(getRoomsByCategorySizeAndOccupied));
+router.route('/csro/:category/:size/:reserved/:occupied')
+    .get(asyncHandler(getRoomsByCategorySizeReservedAndOccupied));
 
-router.route('/co/:category/:occupied')
-    .get(asyncHandler(getRoomsByCategoryAndOccupied));
+router.route('/cro/:category/:reserved/:occupied')
+    .get(asyncHandler(getRoomsByCategoryReservedAndOccupied));
 
 router.route('/o/:occupied')
     .get(asyncHandler(getRoomsByOccupied));
+
+router.route('/r/:reserved')
+    .get(asyncHandler(getRoomsByReserved));
+
+router.route('/ro/:reserved/:occupied')
+    .get(asyncHandler(getFreeRooms));
 
 async function insert(req, res) {
     let room = await roomCtrl.insert(req.body);
@@ -52,13 +58,13 @@ async function getRoomsByCategoryAndSize(req, res) {
     res.json(rooms);
 }
 
-async function getRoomsByCategorySizeAndOccupied(req, res) {
-    let rooms = await roomCtrl.getRoomsByCategorySizeAndOccupied(req.params.category, req.params.size, req.params.occupied);
+async function getRoomsByCategorySizeReservedAndOccupied(req, res) {
+    let rooms = await roomCtrl.getRoomsByCategorySizeReservedAndOccupied(req.params.category, req.params.size, req.params.reserved,req.params.occupied);
     res.json(rooms);
 }
 
-async function getRoomsByCategoryAndOccupied(req, res) {
-    let rooms = await roomCtrl.getRoomsByCategoryAndOccupied(req.params.category, req.params.occupied);
+async function getRoomsByCategoryReservedAndOccupied(req, res) {
+    let rooms = await roomCtrl.getRoomsByCategoryReservedAndOccupied(req.params.category, req.params.reserved, req.params.occupied);
     res.json(rooms);
 }
 
@@ -67,8 +73,18 @@ async function getRoomsByOccupied(req, res) {
     res.json(rooms);
 }
 
+async function getRoomsByReserved(req, res) {
+    let rooms = await roomCtrl.getRoomsByReserved(req.params.reserved);
+    res.json(rooms);
+}
+
 async function getRoomById(req, res) {
     let room = await roomCtrl.getRoomById(req.params.id);
+    res.json(room);
+}
+
+async function getFreeRooms(req, res) {
+    let room = await roomCtrl.getFreeRooms(req.params.reserved, req.params.occupied);
     res.json(room);
 }
 
@@ -79,12 +95,6 @@ router.delete('/:id', function(req, res, next) {
     });
   });
 
-// router.put('/:id', function(req, res, next) {
-//     Room.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
-//       if (err) return next(err);
-//       res.json(post);
-//     });
-//   });
 
 async function update(req, res) {
     console.log('update room');
