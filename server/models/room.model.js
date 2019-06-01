@@ -28,21 +28,30 @@ const RoomSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    firstName: {
-        type: String,
-    },
-    lastName: {
-        type: String
-    },
-    idCard: {
-        type: String
-    },
-    from: {
-        type: Date
-    },
-    to: {
-        type: Date
-    }
+    reservations: [
+        {
+            firstName: {
+                type: String,
+            },
+            lastName: {
+                type: String
+            },
+            idCard: {
+                type: String
+            },
+            from: {
+                type: Date
+            },
+            to: {
+                type: Date
+            },
+            checkedIn: {
+                type: Boolean,
+                default: false
+            }
+        }
+    ]
+    
 }, {
     versionKey: false
 });

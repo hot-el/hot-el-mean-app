@@ -15,6 +15,7 @@ import { CheckInComponent } from './check-in/check-in.component';
 export class ReservationDetailsComponent implements OnInit {
 
   @Input() reservation: any;
+  canCheck: boolean = false;
 
   constructor(
     public dialog: MatDialog,
@@ -25,7 +26,7 @@ export class ReservationDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getRoom();
+    this.getReservation();
   }
 
   openDeleteReservation(room) {
@@ -46,7 +47,7 @@ export class ReservationDetailsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      this.getRoom();
+      this.getReservation();
     });
 
   }
@@ -64,11 +65,13 @@ export class ReservationDetailsComponent implements OnInit {
 
   }
 
-  getRoom(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.roomService.getRoom(id)
+  getReservation(): void {
+    const room_id = this.route.snapshot.paramMap.get('room_id');
+    const reservation_id = this.route.snapshot.paramMap.get('reservation_id');
+    this.roomService.getReservation(room_id, reservation_id)
       .subscribe(room => {
         this.reservation = room;
+        this.canCheck = Date.parse(room.reservations[0].from) >= Date.now() - 60 * 60 * 24 * 1000 && Date.parse(room.reservations[0].from) <= Date.now() + 60 * 60 * 24 * 1000;
       });
   }
 

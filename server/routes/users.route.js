@@ -52,6 +52,7 @@ router.get('/:id', function(req, res, next) {
 router.post('/', function(req, res, next) {
   User.create(req.body, function (err, post) {
     if (err) return next(err);
+    console.log(post);
     res.json(post);
   });
 });
@@ -61,8 +62,9 @@ router.route('/admin/:id')
 
 async function updateByAdmin(req, res) {
   let user = await userCtrl.updateByAdmin(req.body);
-  User.findByIdAndUpdate(req.params.id, user, function (err, post) {
-    if (err) return next(err);
+  User.findByIdAndUpdate(req.params.id, user, {new: true}, function (err, post) {
+    if (err) console.log("?", err);
+    console.log(post);
     res.json(post);
   });
 }
@@ -72,15 +74,16 @@ router.route('/password/:id')
 
 async function changePassword(req, res) {
   let user = await userCtrl.changePassword(req.body);
-  User.findByIdAndUpdate(req.params.id, user, function (err, post) {
+  User.findByIdAndUpdate(req.params.id, user, {new: true}, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
 }
 
 router.put('/:id', function(req, res, next) {
-  User.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
-    if (err) return next(err);
+  User.findByIdAndUpdate(req.params.id, req.body, {new: true}, function (err, post) {
+    if (err) return console.log("?", err);
+    console.log(post);
     res.json(post);
   });
 });

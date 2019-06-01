@@ -20,7 +20,6 @@ import { ActiveReservationsComponent } from './active-reservations/active-reserv
 import { RoomsComponent } from './rooms/rooms.component';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
-import { RoomModule } from './room/room.module';
 import { InvoiceModule } from './invoice/invoice.module';
 import { AdminModule } from './admin/admin.module';
 import { MyCalendarModule } from './calendar/calendar.module';
@@ -37,6 +36,8 @@ import { CurrenltyOccupiedComponent } from './currenlty-occupied/currenlty-occup
 import { DeleteOccupiedComponent } from './currenlty-occupied/delete-occupied/delete-occupied.component';
 import { OccupiedDetailsComponent } from './currenlty-occupied/occupied-details/occupied-details.component';
 import { CheckOutComponent } from './currenlty-occupied/check-out/check-out.component';
+import { SearchFreeRoomsComponent } from './search-free-rooms/search-free-rooms.component';
+import { SearchComponent } from './search-free-rooms/search/search.component';
 // import { ServiceModule } from './service/service.module';
 
 @NgModule({
@@ -51,7 +52,9 @@ import { CheckOutComponent } from './currenlty-occupied/check-out/check-out.comp
     CurrenltyOccupiedComponent,
     DeleteOccupiedComponent,
     OccupiedDetailsComponent,
-    CheckOutComponent
+    CheckOutComponent,
+    SearchFreeRoomsComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,6 @@ import { CheckOutComponent } from './currenlty-occupied/check-out/check-out.comp
     RouterModule,
     SharedModule,
     AuthModule,
-    RoomModule,
     InvoiceModule,
     AdminModule,
     AppRoutingModule,

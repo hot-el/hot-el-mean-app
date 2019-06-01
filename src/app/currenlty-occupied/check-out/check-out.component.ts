@@ -1,5 +1,4 @@
 import { Component, OnInit, Inject, Input} from '@angular/core';
-import { Router } from '@angular/router';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { RoomService } from '../../_services/room.service';
 
@@ -16,14 +15,13 @@ export class CheckOutComponent implements OnInit {
   constructor(
     public thisDialogRef: MatDialogRef<CheckOutComponent>,
     @Inject(MAT_DIALOG_DATA) public modalData: any,
-    public roomService: RoomService,
-    private router: Router
+    public roomService: RoomService
   ) {}
 
   ngOnInit(): void {
     this.reservation = this.modalData.room;
-    const from = new Date(this.reservation.from);
-    const to = new Date(this.reservation.to);
+    const from = new Date(this.reservation.reservations[0].from);
+    const to = new Date(this.reservation.reservations[0].to);
     const timeDiff = Math.abs(to.getTime() - from.getTime());
     const days = Math.ceil(timeDiff / (1000 * 3600 * 24));
     if (this.reservation.type === 'Premium') {
@@ -42,11 +40,13 @@ export class CheckOutComponent implements OnInit {
   }
 
   onCloseConfirm() {
-    this.reservation.occupied = false;
-    this.reservation.reserved = false;
-    const id = this.reservation._id;
-    delete this.reservation._id;
-    this.roomService.updateRoom(this.reservation, id).subscribe(res => {
+    const room_id = this.reservation._id;
+    const reservation_id = this.reservation.reservations[0]._id
+    let reservation = {
+      occupied: false,
+      checkedIn: false
+    }
+    this.roomService.updateReservation(room_id, reservation_id, reservation).subscribe(res => {
       this.thisDialogRef.close(true);
     });
   }

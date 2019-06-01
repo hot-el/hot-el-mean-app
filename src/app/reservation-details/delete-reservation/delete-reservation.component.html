@@ -2,8 +2,8 @@
     <mat-card-content>
         <h2>Delete reservation</h2>
         <p>Are you sure you want to cancel this reservation: <br> 
-          <b>{{reservation.firstName}} {{reservation.lastName}} | no. {{reservation.number}} 
-            | {{reservation.from | date:'dd/MM/yyyy'}} - {{reservation.to | date:'dd/MM/yyyy'}} </b>?</p>
+          <b>{{reservation.reservations[0].firstName}} {{reservation.reservations[0].lastName}} | no. {{reservation.number}} 
+            | {{reservation.reservations[0].from | date:'dd/MM/yyyy'}} - {{reservation.reservations[0].to | date:'dd/MM/yyyy'}} </b>?</p>
       </mat-card-content>
         <mat-card-actions>
           <button mat-raised-button color="primary" class="alert-modal-button alert-modal-button-success" (click)="onCloseConfirm()">Yes</button>

@@ -15,10 +15,11 @@ export class CurrenltyOccupiedComponent implements OnInit {
 
   ngOnInit() {
     this.getOccupied();
+    console.log(this.occupied);
   }
 
   getOccupied() {
-    this.roomService.getOccupiedRooms().subscribe(occupied => {
+    this.roomService.getOccupied().subscribe(occupied => {
       this.occupied = occupied;
     });
   }

@@ -1,3 +1,17 @@
-.mat-card {
-    text-align: "center";
+#content {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    flex-flow: flex-start;
+}
+
+#actions {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    flex-flow: center;
+    justify-content: center;
+    // button {
+    //     max-width: 100px;
+    // }
 }

@@ -34,7 +34,7 @@
       </table>
       
     <div *ngIf="adminOrManager">
-      <h3>Add new event</h3>
+      <h3>Add new shift</h3>
       <form [formGroup]="eventForm" (ngSubmit)="onSubmitEvent(eventForm.value)">
             <mat-form-field class="full-width">
               <mat-select formControlName="employee" placeholder="Name">

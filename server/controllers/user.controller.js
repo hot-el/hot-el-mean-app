@@ -6,7 +6,7 @@ const userSchema = Joi.object({
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
   email: Joi.string().email().required(),
-  password: Joi.string().trim(),
+  password: Joi.string().trim().regex(/^[a-zA-Z0-9]{6,16}$/).min(6),
   repeatPassword: Joi.string().valid(Joi.ref('password')),
   roles: Joi.array().required(),
   birthday: Joi.date().required(),
@@ -17,7 +17,7 @@ const userSchemaByAdmin = Joi.object({
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
   email: Joi.string().email().required(),
-  password: Joi.string().trim(),
+  password: Joi.string().trim().regex(/^[a-zA-Z0-9]{6,16}$/).min(6),
   repeatPassword: Joi.string().valid(Joi.ref('password')),
   roles: Joi.array().required(),
   birthday: Joi.date().required(),
@@ -27,14 +27,14 @@ const userSchemaByAdmin = Joi.object({
 const userSchemaByManager = Joi.object({
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
-  email: Joi.string().email(),
+  email: Joi.string().email().required(),
   roles: Joi.array().required(),
   birthday: Joi.date().required(),
   gender: Joi.string().required()
 })
 
 const userSchemaPassword = Joi.object({
-  password: Joi.string().trim().required(),
+  password: Joi.string().trim().required().regex(/^[a-zA-Z0-9]{6,16}$/).min(6),
   repeatPassword: Joi.string().valid(Joi.ref('password')).required(),
 })
 

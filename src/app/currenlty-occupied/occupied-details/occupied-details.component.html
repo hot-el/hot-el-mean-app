@@ -9,11 +9,11 @@
     <p><b>Date:</b> {{occupied.conservationDate | date:'dd/MM/yyyy'}} </p>
     <p><b>Occupied:</b> {{occupied.occupied}} </p>
     <p><b>Reserved:</b> {{occupied.reserved}} </p>
-    <p><b>First name:</b> {{occupied.firstName}} </p>
-    <p><b>Last name:</b> {{occupied.lastName}} </p>
-    <p><b>ID card:</b> {{occupied.idCard}} </p>
-    <p><b>From:</b> {{occupied.from | date:'dd/MM/yyyy'}} </p>
-    <p><b>To:</b> {{occupied.to | date:'dd/MM/yyyy'}} </p>
+    <p><b>First name:</b> {{occupied.reservations[0].firstName}} </p>
+    <p><b>Last name:</b> {{occupied.reservations[0].lastName}} </p>
+    <p><b>ID card:</b> {{occupied.reservations[0].idCard}} </p>
+    <p><b>From:</b> {{occupied.reservations[0].from | date:'dd/MM/yyyy'}} </p>
+    <p><b>To:</b> {{occupied.reservations[0].to | date:'dd/MM/yyyy'}} </p>
   </mat-card-content>
   <mat-card-actions>
     <button mat-raised-button (click)="goBack()">Back</button>

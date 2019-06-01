@@ -29,8 +29,38 @@ export class RoomService {
     return this.http.get(url);
   }
 
+  getReservations (): Observable<any> {
+    const url = `${this.roomsUrl}/reservations/all`;
+    return this.http.get(url);
+  }
+
+  getReservation (room_id, reservation_id): Observable<any> {
+    const url = `${this.roomsUrl}/change/${room_id}/${reservation_id}`;
+    return this.http.get(url);
+  }
+
+  updateReservation (room_id, reservation_id, reservation): Observable<any> {
+    const url = `${this.roomsUrl}/change/${room_id}/${reservation_id}`;
+    return this.http.put(url, reservation, httpOptions);
+  }
+
+  deleteReservation (room_id, reservation_id): Observable<any> {
+    const url = `${this.roomsUrl}/change/${room_id}/${reservation_id}`;
+    return this.http.delete(url, httpOptions);
+  }
+
+  getActiveReservations (): Observable<any> {
+    const url = `${this.roomsUrl}/reservations/active`;
+    return this.http.get(url);
+  }
+
   getOccupiedRooms (): Observable<any> {
     const url = `${this.roomsUrl}/o/true`;
+    return this.http.get(url);
+  }
+
+  getOccupied (): Observable<any> {
+    const url = `${this.roomsUrl}/occupied/occupied`;
     return this.http.get(url);
   }
 
@@ -74,4 +104,15 @@ export class RoomService {
     const url = `${this.roomsUrl}/${room_id}`;
     return this.http.put(url, room, httpOptions);
   }
+
+  searchFreeRoomsBySizeAndType(from, to, size, type) {
+    const url = `${this.roomsUrl}/free-rooms/${from}/${to}/${size}/${type}`;
+    return this.http.get(url, httpOptions);
+  }
+
+  addReservationToRoom (reservation, room_id): Observable<any> {
+    const url = `${this.roomsUrl}/add-reservation/${room_id}`;
+    return this.http.put(url, reservation, httpOptions);
+  }
+
 }

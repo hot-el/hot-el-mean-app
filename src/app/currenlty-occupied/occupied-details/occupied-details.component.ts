@@ -24,7 +24,7 @@ export class OccupiedDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getRoom();
+    this.getOccupied();
   }
 
   openDeleteOccupied(room) {
@@ -52,11 +52,13 @@ export class OccupiedDetailsComponent implements OnInit {
 
   }
 
-  getRoom(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.roomService.getRoom(id)
+  getOccupied(): void {
+    const room_id = this.route.snapshot.paramMap.get('room_id');
+    const reservation_id = this.route.snapshot.paramMap.get('reservation_id');
+    this.roomService.getReservation(room_id, reservation_id)
       .subscribe(room => {
         this.occupied = room;
+        console.log(this.occupied);
       });
   }
 

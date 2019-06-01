@@ -1,11 +1,11 @@
 <mat-card>
-    <mat-card-content>
+    <mat-card-content id="content">
         <h2>Check in</h2>
-        <p>Are you sure you want to check in this reservation: <br> 
-          <b>{{reservation.firstName}} {{reservation.lastName}} | no. {{reservation.number}} 
-            | {{reservation.from | date:'dd/MM/yyyy'}} - {{reservation.to | date:'dd/MM/yyyy'}} </b>?</p>
+        <p>Are you sure you want to check in this reservation: <br> <br>
+          <b>{{reservation.reservations[0].firstName}} {{reservation.reservations[0].lastName}} <br> {{reservation.type}} room no. {{reservation.number}} <br>
+            {{reservation.reservations[0].from | date:'dd/MM/yyyy'}} - {{reservation.reservations[0].to | date:'dd/MM/yyyy'}} </b>?</p>
       </mat-card-content>
-        <mat-card-actions>
+        <mat-card-actions id="actions">
           <button mat-raised-button color="primary" class="alert-modal-button alert-modal-button-success" (click)="onCloseConfirm()">Yes</button>
           <button mat-raised-button class="alert-modal-button alert-modal-button-failure" (click)="onCloseCancel()">No</button>
       </mat-card-actions>

@@ -14,6 +14,10 @@ export class ReserveRoomComponent implements OnInit {
 
   @Input() room: any;
   @Input() isReserved: any;
+  reservations: any;
+
+  from: any;
+  to: any;
 
   constructor(
     public dialog: MatDialog,
@@ -23,19 +27,22 @@ export class ReserveRoomComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.from = this.route.snapshot.paramMap.get('from');
+    this.to = this.route.snapshot.paramMap.get('to');
     this.getRoom();
   }
 
 
   openNewReservationForm(room: any) {
     const dialogRef = this.dialog.open(NewReservationComponent, {
-      data: { room: room }
+      data: { room: room, from: this.from, to: this.to }
     });
 
     dialogRef.afterClosed().subscribe(confirm => {
       if (confirm) {
         this.getRoom();
       }
+      this.goBack();
     });
   }
 
@@ -44,9 +51,11 @@ export class ReserveRoomComponent implements OnInit {
     this.roomService.getRoom(id)
       .subscribe(room => {
         this.room = room;
-        if (this.room.reserved === true) {
-          this.isReserved = true;
-        }
+        this.reservations = room.reservations;
+        this.isReserved = true;
+        // if (this.room.reserved === true) {
+        //   this.isReserved = true;
+        // }
       });
   }
 

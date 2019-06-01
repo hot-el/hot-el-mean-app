@@ -22,11 +22,10 @@ export class DeleteOccupiedComponent implements OnInit {
   }
 
   onCloseConfirm() {
-    this.occupied.occupied = false;
-    this.occupied.reserved = false;
-    const id = this.occupied._id;
-    delete this.occupied._id;
-    this.roomService.updateRoom(this.occupied, id).subscribe(res => {
+    const room_id = this.occupied._id;
+    const reservation_id = this.occupied.reservations[0]._id;
+    console.log(room_id, reservation_id);
+    this.roomService.deleteReservation(room_id, reservation_id).subscribe(res => {
       this.thisDialogRef.close(true);
     });
   }

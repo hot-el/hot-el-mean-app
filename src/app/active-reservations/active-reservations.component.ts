@@ -18,7 +18,7 @@ export class ActiveReservationsComponent implements OnInit {
   }
 
   getReservations() {
-    this.roomService.getReservedRooms().subscribe(reservations => {
+    this.roomService.getActiveReservations().subscribe(reservations => {
       this.reservations = reservations;
     });
   }

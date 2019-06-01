@@ -3,6 +3,7 @@ import { Validators, FormGroup, FormBuilder} from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { RoomService } from '../../../_services/room.service';
 import { CustomValidators } from '../../../_services/custom_validators';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-new-reservation',
@@ -13,6 +14,8 @@ export class NewReservationComponent implements OnInit {
 
   reservationForm: FormGroup;
   room: any;
+  from: any;
+  to: any;
 
   sizes = [
     2,
@@ -51,13 +54,15 @@ export class NewReservationComponent implements OnInit {
     public roomService: RoomService,
     public thisDialogRef: MatDialogRef<NewReservationComponent>,
     @Inject(MAT_DIALOG_DATA) public modalData: any,
-    private fb: FormBuilder
+    private fb: FormBuilder,
   ) {}
 
   ngOnInit(): void {
     this.room = this.modalData.room;
+    this.from = this.modalData.from;
+    this.to = this.modalData.to;
     this.createForms();
-  }
+  }     
 
   onCloseCancel() {
     this.thisDialogRef.close(null);
@@ -67,9 +72,9 @@ export class NewReservationComponent implements OnInit {
     this.reservationForm = this.fb.group({
       firstName: ['', [Validators.required, CustomValidators.NameValidator]],
       lastName: ['', [Validators.required, CustomValidators.NameValidator] ],
-      idCard: ['', [Validators.required, CustomValidators.IDValidator]],
-      from: ['', [Validators.required, CustomValidators.DateValidator2]],
-      to: ['', Validators.required]
+      idCard: ['', [Validators.required, CustomValidators.IDValidator]]
+      // from: ['', [Validators.required, CustomValidators.DateValidator2]],
+      // to: ['', Validators.required]
     });
   }
 
@@ -77,22 +82,33 @@ export class NewReservationComponent implements OnInit {
     let reservation = new Object();
     const id = this.room._id;
     delete this.room._id;
-    reservation = this.room;
-    reservation['reserved'] = true;
     reservation['firstName'] = values.firstName;
     reservation['lastName'] = values.lastName;
-    reservation['from'] = values.from;
-    reservation['to'] = values.to;
+    // reservation['from'] = values.from;
+    // reservation['to'] = values.to;
+    reservation['from'] = this.from;
+    reservation['to'] = this.to;
     reservation['idCard'] = values.idCard;
-    this.addReservation(reservation, id);
+    console.log(reservation);
+    this.addReservationToRoom(reservation, id);
   }
 
-  addReservation(reservation, roomId): void {
+  // addReservation(reservation, roomId): void {
+  //   if (!reservation) { return; }
+  //   this.roomService.updateRoom(reservation, roomId)
+  //     .subscribe(res => {
+  //       this.thisDialogRef.close(res);
+  //       this.reservationForm.reset();
+  //     });
+  // }
+
+  addReservationToRoom(reservation, roomId): void {
     if (!reservation) { return; }
-    this.roomService.updateRoom(reservation, roomId)
+    this.roomService.addReservationToRoom(reservation, roomId)
       .subscribe(res => {
         this.thisDialogRef.close(res);
         this.reservationForm.reset();
       });
   }
+
 }

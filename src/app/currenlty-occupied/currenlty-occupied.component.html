@@ -6,9 +6,9 @@
   <mat-card-content>
       <mat-divider></mat-divider>
       <mat-nav-list>
-          <a class="o" mat-button *ngFor="let o of occupied" [routerLink]="['/occupied-details/', o._id]">
-           <b> {{o.firstName}} {{o.lastName}} </b><small> | no. {{o.number}} 
-            | From: {{o.from | date:'dd/MM/yyyy'}} | To: {{o.to | date:'dd/MM/yyyy'}} </small> 
+          <a class="o" mat-button *ngFor="let o of occupied" [routerLink]="['/occupied-details/', o._id, o.reservations._id]">
+           <b> {{o.reservations.firstName}} {{o.reservations.lastName}} </b><small> | no. {{o.number}} 
+            | From: {{o.reservations.from | date:'dd/MM/yyyy'}} | To: {{o.reservations.to | date:'dd/MM/yyyy'}} </small> 
               <mat-divider></mat-divider>
           </a>
        </mat-nav-list>

@@ -8,17 +8,17 @@
       <p><b>Size:</b> {{reservation.size}} </p>
       <p><b>Date:</b> {{reservation.conservationDate | date:'dd/MM/yyyy'}} </p>
       <p><b>Occupied:</b> {{reservation.occupied}} </p>
-      <p><b>Reserved:</b> {{reservation.reserved}} </p>
-      <p><b>First name:</b> {{reservation.firstName}} </p>
-      <p><b>Last name:</b> {{reservation.lastName}} </p>
-      <p><b>ID card:</b> {{reservation.idCard}} </p>
-      <p><b>From:</b> {{reservation.from | date:'dd/MM/yyyy'}} </p>
-      <p><b>To:</b> {{reservation.to | date:'dd/MM/yyyy'}} </p>
+      <!-- <p><b>Reserved:</b> {{reservation.reserved}} </p> -->
+      <p><b>First name:</b> {{reservation.reservations[0].firstName}} </p>
+      <p><b>Last name:</b> {{reservation.reservations[0].lastName}} </p>
+      <p><b>ID card:</b> {{reservation.reservations[0].idCard}} </p>
+      <p><b>From:</b> {{reservation.reservations[0].from | date:'dd/MM/yyyy'}} </p>
+      <p><b>To:</b> {{reservation.reservations[0].to | date:'dd/MM/yyyy'}} </p>
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button (click)="goBack()">Back</button>
-      <button mat-raised-button (click)="openUpdateReservation(reservation)">Update</button>
-      <button mat-raised-button color="primary" (click)="openCheckIn(reservation)">Check-in</button>
+      <!-- <button mat-raised-button (click)="openUpdateReservation(reservation)">Update</button> -->
+      <button mat-raised-button color="primary" (click)="openCheckIn(reservation)" [disabled]="!canCheck">Check-in</button>
       <button mat-raised-button color="warn" (click)="openDeleteReservation(reservation)">Delete</button>
     </mat-card-actions>
   </mat-card>

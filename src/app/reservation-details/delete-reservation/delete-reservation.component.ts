@@ -22,10 +22,9 @@ export class DeleteReservationComponent implements OnInit {
   }
 
   onCloseConfirm() {
-    this.reservation.reserved = false;
-    const id = this.reservation._id;
-    delete this.reservation._id;
-    this.roomService.updateRoom(this.reservation, id).subscribe(res => {
+    const room_id = this.reservation._id;
+    const reservation_id = this.reservation.reservations[0]._id;
+    this.roomService.deleteReservation(room_id, reservation_id).subscribe(res => {
       this.thisDialogRef.close(true);
     });
   }

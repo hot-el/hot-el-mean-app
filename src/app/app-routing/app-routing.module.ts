@@ -11,6 +11,7 @@ import { ReceptionistComponent } from '../receptionist/receptionist.component';
 import { ReserveRoomComponent } from '../make-reservation/reserve-room/reserve-room.component';
 import { ReservationDetailsComponent } from '../reservation-details/reservation-details.component';
 import { OccupiedDetailsComponent } from '../currenlty-occupied/occupied-details/occupied-details.component'; 
+import { SearchFreeRoomsComponent } from '../search-free-rooms/search-free-rooms.component';
 
 import { MakeReservationRoutingModule } from '../make-reservation/make-reservation-routing.module';
 import { ManagerRoutingModule } from '../manager/manager-routing.module';
@@ -33,9 +34,10 @@ export const routes: Routes = [{
 { path: 'your-account', component: CurrentUserComponent},
 { path: 'room-details/:id', component: RoomDetailsComponent },
 { path: 'receptionist', component: ReceptionistComponent },
-{ path: 'reservation-details/:id', component: ReservationDetailsComponent },
-{ path: 'new-reservation/:id', component: ReserveRoomComponent },
-{ path: 'occupied-details/:id', component: OccupiedDetailsComponent },
+{ path: 'reservation-details/:room_id/:reservation_id', component: ReservationDetailsComponent },
+{ path: 'new-reservation/:id/:from/:to', component: ReserveRoomComponent },
+{ path: 'occupied-details/:room_id/:reservation_id', component: OccupiedDetailsComponent },
+{ path: 'make-reservation', component: SearchFreeRoomsComponent },
 {
   path: 'room',
   loadChildren: 'app/room/room.module#RoomModule'

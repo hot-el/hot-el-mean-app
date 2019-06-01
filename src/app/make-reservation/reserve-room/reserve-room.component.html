@@ -8,13 +8,15 @@
       <p><b>Size:</b> {{room.size}} </p>
       <p><b>Last conservation:</b> {{room.conservationDate | date:'dd/MM/yyyy'}} </p>
       <p><b>Occupied:</b> {{room.occupied}} </p> 
-      <p><b>Reserved:</b> {{room.reserved}} </p> 
-      <div *ngIf="isReserved">
-          <p><b>First name:</b> {{room.firstName}} </p>
-          <p><b>Last name:</b> {{room.lastName}} </p>
-          <p><b>ID card:</b> {{room.idCard}} </p>
-          <p><b>From:</b> {{room.from | date:'dd/MM/yyyy'}} </p>
-          <p><b>To:</b> {{room.to | date:'dd/MM/yyyy'}} </p>
+      <!-- <p><b>Reserved:</b> {{room.reserved}} </p>  -->
+      <h4>Reservations: </h4>
+      <div *ngFor="let r of reservations">
+          <small><b>First name:</b> {{r.firstName}} </small>
+          <small><b>Last name:</b> {{r.lastName}} </small>
+          <small><b>ID card:</b> {{r.idCard}} </small>
+          <small><b>From:</b> {{r.from | date:'dd/MM/yyyy'}} </small>
+          <small><b>To:</b> {{r.to | date:'dd/MM/yyyy'}} </small>
+          <br>
       </div>
     </mat-card-content>
     <mat-card-actions>
