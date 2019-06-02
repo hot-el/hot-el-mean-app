@@ -1,0 +1,30 @@
+.legend {
+    margin: 10px;
+    background-color: beige;
+    position: absolute;
+    left: 850px;
+    top: 470px; 
+    padding: 10px;
+    .leg {
+        margin: 5px;
+        span {
+            margin-left: 5px;
+        }
+        svg {
+            margin-left: 10px;
+        }
+        
+    }
+}
+
+.floors {
+    background-color: beige;
+    position: absolute;
+    left: 850px;
+    top: 100px;
+    button {
+        display: block;
+        margin: 5px;
+    }
+    padding: 30px;
+}

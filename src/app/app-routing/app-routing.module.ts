@@ -18,6 +18,8 @@ import { ManagerRoutingModule } from '../manager/manager-routing.module';
 import { ReceptionistRoutingModule } from '../receptionist/receptionist-routing.module';
 import { RoomCategoryRoutingModule } from '../room-category/room-category-routing.module';
 
+import { BuildingPlanComponent } from '../building-plan/building-plan/building-plan.component';
+
 export const routes: Routes = [{
   path: '',
   component: HomeComponent
@@ -47,6 +49,9 @@ export const routes: Routes = [{
 }, {
   path: 'service',
   loadChildren: 'app/service/service.module#ServiceModule'
+}, {
+  path: 'building-plan',
+  loadChildren: 'app/building-plan/building-plan.module#BuildingPlanModule'
 }
 ];
 

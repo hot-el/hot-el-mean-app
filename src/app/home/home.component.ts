@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
     this.homeroutes = [
       {text: 'Schedule', link: '/calendar', color: 'lightpink', cols: 3, rows: 1},
       {text: 'Manage your account', link: '/your-account', color: 'lightgreen', cols: 1, rows: 2},
+      {text: 'Building Plan', link: '/building-plan', color: 'orange', cols: 3, rows: 1}
     ];
 
     const user = (<any>window).user;
@@ -32,7 +33,7 @@ export class HomeComponent implements OnInit {
     );
 
     if(user.isReceptionist || user.isAdmin) this.homeroutes.push(
-      {text: 'Receptionist Panel', link: '/receptionist', color: 'lightyellow', cols: 1, rows: 1},
+      {text: 'Receptionist Panel', link: '/receptionist', color: 'lightyellow', cols: 2, rows: 1},
     );
    }
 

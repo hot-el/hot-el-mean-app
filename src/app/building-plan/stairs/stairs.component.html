@@ -1,0 +1,16 @@
+<svg:rect
+  [attr.x]="x"
+  [attr.y]="y"
+  [attr.width]="width"
+  [attr.height]="height"
+  fill="lightgray"
+  stroke="black"
+  stroke-width="1"
+>
+</rect>
+<svg:rect *ngFor="let st of no"
+  [attr.x]="x"
+  [attr.y]="st"
+  [attr.width]="width"
+  height="10"
+  fill="darkgray">

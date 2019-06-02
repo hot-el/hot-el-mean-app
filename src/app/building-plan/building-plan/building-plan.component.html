@@ -1,0 +1,45 @@
+<svg class="img" xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600"> 
+  <rect x="0" y="0" width="800" height="600" stroke="black" fill="gray"></rect>
+  <svg room *ngFor="let room of rooms"
+      [x]="room.x"
+      [y]="room.y"
+      [width]="room.width"
+      [height]="room.height"
+      [fill]="room.fill"
+      [name]="room.name"
+      [alert]="room.alert"
+  ></svg>
+  <svg stairs *ngFor="let stair of stairs"
+      [x]="stair.x"
+      [y]="stair.y"
+      [width]="stair.width"
+      [height]="stair.height"
+  ></svg>
+</svg>
+
+<div class="floors">
+  <button *ngFor="let i of floors" mat-raised-button (click)="onClick(i)">Floor {{i+1}}</button>
+</div>
+
+<div class="legend">
+  <p>Legend:</p>
+  <div class="leg" *ngIf="is2person()">
+      <svg width="10" height="10">
+          <rect width="10" height="10" fill="lightyellow" stroke="black"></rect>
+      </svg>
+      <span>2 person room</span>
+  </div>
+
+  <div class="leg" *ngIf="is4person()">
+      <svg width="10" height="10">
+          <rect width="10" height="10" fill="lightblue" stroke="black"></rect>
+      </svg>
+      <span>4 person room</span>
+  </div>
+  <div class="leg" *ngIf="isMaintainance()">
+          <svg width="10" height="10">
+              <rect width="10" height="10" fill="lightgreen" stroke="black"></rect>
+          </svg>
+          <span>Maintenance room</span>
+      </div>
+</div>

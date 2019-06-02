@@ -1,0 +1,25 @@
+<svg:rect
+  [attr.x]="x"
+  [attr.y]="y"
+  [attr.width]="width"
+  [attr.height]="height"
+  [attr.fill]="fill"
+  stroke="black"
+  stroke-width="1"
+></rect>
+
+<svg:text
+  [attr.x]="textX"
+  [attr.y]="textY"
+  text-anchor="middle"
+  alignment-baseline="middle"
+>{{name}}</text>
+  
+
+<svg:text
+  [attr.x]="alertx"
+  [attr.y]="alerty"
+  text-anchor="middle"
+  alignment-baseline="middle"
+  fill="red"
+>{{alert}}</text>
