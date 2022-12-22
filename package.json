@@ -50,7 +50,7 @@
     "helmet": "^3.15.0",
     "http-errors": "^1.7.1",
     "joi": "^14.3.1",
-    "jsonwebtoken": "^8.4.0",
+    "jsonwebtoken": "^9.0.0",
     "method-override": "^3.0.0",
     "mongoose": "^5.4.3",
     "mongoose-find-and-filter": "^1.0.0",
